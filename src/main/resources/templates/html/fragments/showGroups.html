@@ -1,0 +1,70 @@
+<script src="js/fragments/showGroups.js" type="text/javascript"></script>
+<script src="js/fragments/search-expandAdvancedSearch.js" type="text/javascript"></script>
+<script src="js/fragments/search-executeSearch.js" type="text/javascript"></script>
+
+<div>
+	<div class="search-form" id="searchFormDiv">
+		<!-- add more filters button --><button class="btn btn-primary  search-button" id="addFilters"
+			name="addFilters">Add Filter</button><!-- 
+		
+		dropdown for advanced search
+	--><select class="select2-div" id="select-dropdown_0" style="width: 20%">
+		</select><!-- 
+		
+		search bar 
+	--><input class="form-control mr-sm-2 search-bar" type="text"
+			placeholder="Search" id="searchItem_0"><!-- 
+		
+		search button 
+	--><button class="btn btn-primary  search-button" id="search"
+			name="search" type="submit">Search</button><!-- 
+	--></div>
+
+		<select id="select-logical-operand" style="width: 8%"></select><!--
+	 --><div style="display: inline; margin-right: 0.5%;"></div><!--
+	 --><select id="select-word-position" style="width: 20%"></select>
+	 
+	 <table id="ajaxShowSearchedGroups" class="table groups-table"></table>
+	 
+	<div id="ajaxShowGroupRequests"></div>
+	 
+	 <h2 id="groupsTableLabel" class="blue-titles">Your Groups: </h2>
+	<table id="groupsTable" class="table groups-table"></table>
+	
+	<button class="btn btn-primary" id="newGroupModalButton">Create Group</button>
+
+</div>
+
+
+<div class="modal fade" id="newGroupModal" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Create New Group</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form id="newGroupModal" value="">
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="newGroupName">Group Name</label> <input type="text"
+							class="form-control" id="newGroupName">
+					</div>
+					<div class="form-group">
+						<label for="newGroupDescription">Description</label>
+						<textarea class="form-control" id="newGroupDescription" rows="3"></textarea>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button class="btn btn-primary" id="confirmGroupCreateButton">Create</button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+</div>

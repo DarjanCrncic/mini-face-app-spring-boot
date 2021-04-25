@@ -1,0 +1,99 @@
+
+
+<h3 id="profilePageTitle">Your Profile:</h3>
+
+<div class="splitColumnsRow">
+	<div class="left-column-profile">
+
+		<img id="profilePictureOnProfile" class="profileImage" />
+
+		<form method="post" action="ProfilePage" enctype="multipart/form-data"
+			target="_self" style="width: 300px">
+			<div class="fileInputContainer">
+				<div class="input-group">
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" id="customFileInput"
+							aria-describedby="customFileInput" accept=".jpg, .jpeg, .png"
+							name="image" required> <label class="custom-file-label"
+							for="customFileInput">Select file</label>
+						<input type="hidden" name="type" value="updateImage">
+					</div>
+					<div class="input-group-append">
+						<input class="btn btn-primary" type="submit"
+							id="customFileInputButton" value="Submit" />
+					</div>
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+	<div class="right-column-profile">
+		<h3 id="profileName">Tu treba ime</h3>
+		<hr>
+		<h2 class="blue-titles-profile">Username: </h2>
+		<h2 class="black-titles-profile" id="profileUsername" ></h2>
+		<hr>
+		<h2 class="blue-titles-profile">Age: </h2>
+		<h2 class="black-titles-profile" id="profileAge" ></h2>
+		<hr>
+		<h2 class="blue-titles-profile">City: </h2>
+		<h2 class="black-titles-profile" id="profileCity" ></h2>
+		<hr>
+		<h2 class="blue-titles-profile">Country: </h2>
+		<h2 class="black-titles-profile" id="profileCountry" ></h2>
+		<hr>
+		<h2 class="blue-titles-profile">Gender: </h2>
+		<h2 class="black-titles-profile" id="profileGender" ></h2>
+		<hr>
+		<input class="form-check-input" type="checkbox" value="" id="receiveMailsCheck">
+ 		<label class="form-check-label" for="receiveMailsCheck">
+    		Notify me of new group posts
+  		</label>
+		<button style="float: right;" class="btn btn-secondary" id="showEditInfoModal">Edit</button>		
+	</div>
+</div>
+
+<!-- Edit info modal -->
+<div class="modal fade" id="editInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Info</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        	<div class="form-group">
+    			 <label for="editedUsernameInput">Username</label>
+   				 <input type="text" class="form-control" id="editedUsernameInput" required> 
+    			 <label for="editedAgeInput">Age</label>
+   				 <input type="number" min="1" max="100" step="1" class="form-control" id="editedAgeInput" required>
+   				 <label for="editedCountryInput">Country</label>
+   				 <input type="text" class="form-control" id="editedCountryInput" required>
+   				 <label for="editedCityInput">City</label>
+   				 <input type="text" class="form-control" id="editedCityInput" required>
+   				 <label for="editedGenderInput">Gender</label>
+   				 <input type="text" class="form-control" id="editedGenderInput" required>
+  			</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="saveEditedInfo">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+	document.querySelector('.custom-file-input').addEventListener('change', function(e) {
+		var name = document.getElementById("customFileInput").files[0].name;
+		var nextSibling = e.target.nextElementSibling
+		nextSibling.innerText = name
+	})
+</script>
+
+<script src="js/fragments/profilePage.js" type="text/javascript"></script>
+

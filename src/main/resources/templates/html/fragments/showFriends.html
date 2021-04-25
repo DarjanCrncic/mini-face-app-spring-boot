@@ -1,0 +1,40 @@
+
+<div id="ajaxShowFriendsListResponse">
+	
+	<div class="search-form" id="searchFormDiv">
+		<!-- add more filters button --><button class="btn btn-primary  search-button" id="addFilters"
+			name="addFilters">Add Filter</button><!-- 
+		
+		dropdown for advanced search
+	--><select class="select2-div" id="select-dropdown_0" style="width: 20%">
+		</select><!-- 
+		
+		search bar 
+	--><input class="form-control mr-sm-2 search-bar" type="text"
+			placeholder="Search" id="searchItem_0"><!-- 
+		
+		search button 
+	--><button class="btn btn-primary  search-button" id="search"
+			name="search" type="submit">Search</button><!-- 
+	--></div>
+
+	
+		<select id="select-logical-operand" style="width: 8%"></select><!--
+	 --><div style="display: inline; margin-right: 0.5%;"></div><!--
+	 --><select id="select-word-position" style="width: 20%"></select>
+	
+
+	<table id="ajaxShowSearchedPeople" class="table friends-table">
+	</table>
+	
+	<div id="ajaxShowPendingRequests"></div>
+					
+	<h2 id="friendsTableLabel" class="blue-titles">Your Friends: </h2>
+	<table id="friendsTable" class="table friends-table">
+		
+	</table>
+</div>
+
+<script src="js/fragments/showFriends.js" type="text/javascript"></script>
+<script src="js/fragments/search-expandAdvancedSearch.js" type="text/javascript"></script>
+<script src="js/fragments/search-executeSearch.js" type="text/javascript"></script>
