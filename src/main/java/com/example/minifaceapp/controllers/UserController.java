@@ -64,11 +64,6 @@ public class UserController {
 		return "login_user";
 	}
 
-//	@PostMapping("/login")
-//	public String handleLogin(Model model) {
-//		return "";
-//	}
-
 	@GetMapping("/main")
 	public String showMainPage(Model model) {
 		return "main";

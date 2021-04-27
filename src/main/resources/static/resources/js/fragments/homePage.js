@@ -5,18 +5,18 @@
 $(document).ready(function() {
 
 		$.ajax({
-			url: 'HomePage',
+			url: 'profile/info',
 			dataType: 'json',
 			success: function(data) {
-				$('#ajaxShowGreeting').append('<h1>Hey there ' + data.data.name + ' ' + data.data.surname + '</h1>');	
-				$('#nameDropdown').text(data.data.name + ' ' + data.data.surname);	
+				$('#ajaxShowGreeting').append('<h1>Hey there ' + data.name + ' ' + data.surname + '</h1>');	
+				$('#nameDropdown').text(data.name + ' ' + data.surname);	
 			},
 			error: function() {
 				alert(data.message);
 			}
 		});
 		
-		$.ajax({
+		/*$.ajax({
 			url: 'ProfilePage',
 			dataType: 'json',
 			success: function(data) {
@@ -26,6 +26,6 @@ $(document).ready(function() {
 			error: function() {
 				alert(data.message);
 			}
-		});
+		});*/
 
 });

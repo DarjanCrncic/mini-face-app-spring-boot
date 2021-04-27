@@ -1,6 +1,6 @@
 package com.example.minifaceapp.services;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -26,9 +26,8 @@ public class FaceUserServiceImpl implements FaceUserService{
 	}
 
 	@Override
-	public Set<FaceUser> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<FaceUser> findAll() {
+		return faceUserRepository.findAll();
 	}
 
 	@Override
@@ -38,14 +37,13 @@ public class FaceUserServiceImpl implements FaceUserService{
 
 	@Override
 	public void delete(FaceUser object) {
-		// TODO Auto-generated method stub
+		return;
 		
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-		
+		return;
 	}
 
 	@Override
@@ -56,6 +54,6 @@ public class FaceUserServiceImpl implements FaceUserService{
 	@Override
 	public FaceUser findByEmail(String email) {
 		return faceUserRepository.findByEmail(email);
-	}	
-	
+	}
+
 }

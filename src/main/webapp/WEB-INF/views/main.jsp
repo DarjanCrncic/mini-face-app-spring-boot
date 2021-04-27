@@ -41,9 +41,7 @@
 				</li>
 				<li class="nav-item">
 						<button class="nav-link nav-button navigation" id="reportPage" onclick="MainObject.navigationPage(this.id)">Report</button>		
-				</li>
-				
-		
+				</li>	
 			</ul>
 		<div class="dropdown">
 			<a id="nameDropdown" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
@@ -64,7 +62,7 @@
 	
 	<%@ include file="partials/footer.jsp"%>
 	
-	<script src="js/fragments/mainPage.js"></script>
+	<script src="resources/js/fragments/mainPage.js"></script>
 
 </body>
 </html>

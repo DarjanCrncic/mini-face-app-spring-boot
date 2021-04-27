@@ -56,7 +56,7 @@ const MainObject = {
 	},
 
 	navigationPage: function(id) {
-		MainObject.loadPrimary("html/fragments/" + id + ".html", true, null);
+		MainObject.loadPrimary("resources/html/fragments/" + id + ".html", true, null);
 	},
 
 	findMaxIdInClass: function(className) {

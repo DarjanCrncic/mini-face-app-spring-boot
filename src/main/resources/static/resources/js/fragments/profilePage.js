@@ -4,7 +4,8 @@ $(document).ready(function() {
 
 	$('#showEditInfoModal').click(function() {
 		$('#editInfoModal').modal('show');
-		$('#editedUsernameInput').val($('#profileUsername').text());
+		$('#editedNameInput').val($('#profileName').text());
+		$('#editedSurnameInput').val($('#profileSurname').text());
 		$('#editedCountryInput').val($('#profileCountry').text());
 		$('#editedCityInput').val($('#profileCity').text());
 		$('#editedAgeInput').val($('#profileAge').text());
@@ -12,68 +13,63 @@ $(document).ready(function() {
 	});
 
 	$('#saveEditedInfo').click(function() {
-		let input = {
-			type: "updateInfo",
-			username: $('#editedUsernameInput').val(),
-			country: $('#editedCountryInput').val(),
-			city: $('#editedCityInput').val(),
-			age: $('#editedAgeInput').val(),
-			gender: $('#editedGenderInput').val()
-		}
-
+		let input = 
+		{name: $('#editedNameInput').val(),
+		surname: $('#editedSurnameInput').val(),
+		country: $('#editedCountryInput').val(),
+		city: $('#editedCityInput').val(),
+		age: $('#editedAgeInput').val(),
+		gender: $('#editedGenderInput').val()}
+				
 		$.ajax({
 			type: "POST",
-			url: 'ProfilePage',
-			dataType: 'json',
+			url: 'profile/update',
 			data: input,
 			success: function(data) {
-				if (data.status == 'success') {
-					$('#editInfoModal').modal('hide');
-					showProfilePage();
-				} else {
-					alert(data.message);
-				}
+				$('#editInfoModal').modal('hide');
+				showProfilePage();
 			},
 			error: function() {
 				alert("Something went wrong, try again later");
 			}
 		});
 	})
-	
+
 	function showProfilePage() {
 		$.ajax({
-			url: 'ProfilePage',
+			url: 'profile/info',
 			dataType: 'json',
 			success: function(data) {
-				$("#profilePicture").attr("src", "data:image/jpg;base64," + data.data.IMAGE);
-				$("#profilePictureOnProfile").attr("src", "data:image/jpg;base64," + data.data.IMAGE);
-				$('#profileUsername').text(data.data.USERNAME);
-				$('#profileName').text(data.data.NAME);
-				$('#profileAge').text(data.data.AGE);
-				$('#profileCity').text(data.data.CITY);
-				$('#profileCountry').text(data.data.COUNTRY);
-				$('#profileGender').text(data.data.GENDER);
-				if(data.data.NOTIFY == true){
+				$("#profilePicture").attr("src", "data:image/jpg;base64," + data.image);
+				$("#profilePictureOnProfile").attr("src", "data:image/jpg;base64," + data.image);
+				$('#profileName').text(data.name);
+				$('#profileSurname').text(data.surname);
+				$('#profileFullName').text(data.name + " " + data.surname);
+				$('#profileAge').text((data.age != 0) ? data.age : "");
+				$('#profileCity').text(data.city);
+				$('#profileCountry').text(data.country);
+				$('#profileGender').text(data.gender);
+				if (data.notify == true) {
 					$('#receiveMailsCheck').prop('checked', true);
-				}else{
+				} else {
 					$('#receiveMailsCheck').prop('checked', false);
 				}
-				
+
 			},
 			error: function() {
 				alert(data.message);
 			}
 		});
 	}
-	
-	$('#receiveMailsCheck').click(function(){
+
+	$('#receiveMailsCheck').click(function() {
 		let notify;
-		if($('#receiveMailsCheck').is(':checked')){
+		if ($('#receiveMailsCheck').is(':checked')) {
 			notify = true;
-		}else{
+		} else {
 			notify = false;
 		}
-		
+
 		let input = {
 			type: "updateNotify",
 			notify: notify
@@ -96,5 +92,5 @@ $(document).ready(function() {
 			}
 		});
 	});
-	
+
 });

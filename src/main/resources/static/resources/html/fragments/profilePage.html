@@ -29,10 +29,13 @@
 	</div>
 
 	<div class="right-column-profile">
-		<h3 id="profileName">Tu treba ime</h3>
+		<h3 id="profileFullName">Tu treba ime</h3>
 		<hr>
-		<h2 class="blue-titles-profile">Username: </h2>
-		<h2 class="black-titles-profile" id="profileUsername" ></h2>
+		<h2 class="blue-titles-profile">Name: </h2>
+		<h2 class="black-titles-profile" id="profileName" ></h2>
+		<hr>
+		<h2 class="blue-titles-profile">Surname: </h2>
+		<h2 class="black-titles-profile" id="profileSurname" ></h2>
 		<hr>
 		<h2 class="blue-titles-profile">Age: </h2>
 		<h2 class="black-titles-profile" id="profileAge" ></h2>
@@ -66,8 +69,10 @@
       </div>
       <div class="modal-body">
         	<div class="form-group">
-    			 <label for="editedUsernameInput">Username</label>
-   				 <input type="text" class="form-control" id="editedUsernameInput" required> 
+    			 <label for="editedNameInput">Name</label>
+   				 <input type="text" class="form-control" id="editedNameInput" required> 
+   				 <label for="editedSurnameInput">Surname</label>
+   				 <input type="text" class="form-control" id="editedSurnameInput" required> 
     			 <label for="editedAgeInput">Age</label>
    				 <input type="number" min="1" max="100" step="1" class="form-control" id="editedAgeInput" required>
    				 <label for="editedCountryInput">Country</label>
@@ -95,5 +100,5 @@
 	})
 </script>
 
-<script src="js/fragments/profilePage.js" type="text/javascript"></script>
+<script src="resources/js/fragments/profilePage.js" type="text/javascript"></script>
 

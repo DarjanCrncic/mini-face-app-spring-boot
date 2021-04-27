@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Login</title>
 
-<script src="js/libs/jquery-3.5.1.js" type="text/javascript"></script>
 <%@ include file="partials/header.jsp"%>
 
 </head>
@@ -35,7 +34,7 @@
 				<div class="error-message-div">
 					<c:if test="${param.error == true}">
 						<div id="error">
-							<li class="error">Ivalid username or password.</li>
+							<p class="error">Ivalid username or password.</p>
 						</div>
 					</c:if>
 				</div>

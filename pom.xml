@@ -75,7 +75,6 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-
 	</dependencies>
 
 	<build>
@@ -90,6 +89,7 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					<addResources>true</addResources>
 				</configuration>
 			</plugin>
 		</plugins>

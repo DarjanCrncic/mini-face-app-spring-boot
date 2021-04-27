@@ -1,4 +1,4 @@
-MainObject.loadTertiary("html/fragments/chatroom.html");
+//MainObject.loadTertiary("resources/html/fragments/chatroom.html");
 
 let $loading = $('.loader').hide();
 $(document).ajaxStart(function() {
@@ -8,7 +8,7 @@ $(document).ajaxStop(function() {
 	$loading.hide();
 });
 
-
+/*
 $('.navigation').click(function(){
 	const id = this.id;
 	if(history.state.id !== id)
@@ -26,6 +26,6 @@ window.addEventListener('popstate', e => {
 });
 
 
-history.replaceState({ 'id': null }, "", './main');
+history.replaceState({ 'id': null }, "", './main');*/
 
-MainObject.navigationPage("homePage");
+MainObject.navigationPage("homePage"); 
