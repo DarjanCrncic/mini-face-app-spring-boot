@@ -36,7 +36,7 @@ const FriendsPageObject = {
 					}
 				},
 				error: function(data) {
-					alert("Something went wrong, try again later");
+					//alert("Something went wrong, try again later");
 				}
 			})
 		});
@@ -67,7 +67,7 @@ const FriendsPageObject = {
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
-				alert('Something went wrong, try again later');
+				//alert('Something went wrong, try again later');
 			}
 		})
 	},
@@ -75,7 +75,7 @@ const FriendsPageObject = {
 	///// show all friends in table
 	displayFriendsTable : function() {
 		$.ajax({
-			url: 'ShowFriends',
+			url: 'friends/find',
 			dataType: 'json',
 			success: function(data) {
 				if (data.status == 'success') {
@@ -89,7 +89,7 @@ const FriendsPageObject = {
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
-				alert('Something went wrong, try again later');
+				//alert('Something went wrong, try again later');
 			}
 		});
 	}

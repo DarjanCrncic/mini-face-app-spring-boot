@@ -27,7 +27,7 @@ public class ProfileController {
 		this.faceUserService = faceUserService;
 	}
 	
-	@GetMapping("/findAll")
+	@GetMapping("/find")
     @ResponseStatus(HttpStatus.OK)
 	public List<FaceUser> getAllUsers() {
 		return faceUserService.findAll();
@@ -36,9 +36,14 @@ public class ProfileController {
 	@GetMapping("/info")
 	@ResponseStatus(HttpStatus.OK)
 	public FaceUser getUserInfo(Principal principal) {
-		FaceUser faceUser = faceUserService.findByUsername(principal.getName());
-		if(faceUser != null) faceUser.setPassword(null);
-		return faceUser;
+		if(principal != null) {
+			FaceUser faceUser = faceUserService.findByUsername(principal.getName());
+			if(faceUser != null) faceUser.setPassword(null);
+			return faceUser;
+		}else {
+			return null;
+		}
+		
 	}
 	
 	@PostMapping(path = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
@@ -55,6 +60,5 @@ public class ProfileController {
 		
 		faceUserService.save(faceUser);
 	}
-	
 	
 }

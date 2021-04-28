@@ -2,18 +2,24 @@ package com.example.minifaceapp.model;
 
 import java.sql.Blob;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.ToString;
@@ -75,4 +81,21 @@ public class FaceUser {
 	@Column(name = "notify")
 	@ColumnDefault("0")
 	private boolean notify;
+	
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name="face_friend",
+	 joinColumns=@JoinColumn(name="face_user_id"),
+	 inverseJoinColumns=@JoinColumn(name="friend_user_id")
+	)
+	private List<FaceUser> friends;
+
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name="face_friend",
+	 joinColumns=@JoinColumn(name="friend_user_id"),
+	 inverseJoinColumns=@JoinColumn(name="face_user_id")
+	)
+	private List<FaceUser> friendOf;
+	
 }

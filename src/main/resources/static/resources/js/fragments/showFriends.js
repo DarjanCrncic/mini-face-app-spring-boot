@@ -13,11 +13,11 @@ $(document).ready(function() {
 	
 	$("#select-word-position").select2({
 		theme: "bootstrap",
-		data: [{ id: "both", text: "Every position " }, { id: "front", text: "Starting with" }, { id: "back", text: "Ending with" }]
+		data: [{ id: "both", text: "Contains" }, { id: "front", text: "Starting with" }, { id: "back", text: "Ending with" }]
 	});
 
 	addFilters([{ id: "all", text: "All" }, { id: "fu.name", text: "First Name" }, { id: "fu.surname", text: "Last Name" }, { id: "fu.username", text: "Username" }]);
-	prepareExecuteSearch(friendSuccessFunction, 'ShowFriends');
+	prepareExecuteSearch(friendSuccessFunction, 'friends/search');
 
 	FriendsPageObject.displayFriendsTable();
 	

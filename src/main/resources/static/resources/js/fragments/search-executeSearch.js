@@ -42,18 +42,14 @@ function searchFunction(successFunction, backendURL, pageNumber, rowNumber){
 			$.ajax({
 				type: "POST",
 				url: backendURL,
-				dataType: 'json',
 				contentType: "application/json",
+				dataType: "json",
 				data: JSON.stringify(searchInput),
 				success: function(data) {
-					if (data.status == 'success') {
-						successFunction(data);
-					} else {
-						alert(data.message);
-					}
+					successFunction(data);
 				},
 				error: function() {
-					alert("Something went wrong, try again later");
+					//alert("Something went wrong, try again later");
 				}
 			});
 		}
@@ -89,12 +85,12 @@ function friendSuccessFunction(data) {
 	$('#ajaxShowSearchedPeople').html("");
 	$('#ajaxShowSearchedPeople').append('<h2 id="searchResults" class="blue-titles">Search Results:</h2>');
 	$('#ajaxShowSearchedPeople').append('<tr class="mainFriendsTableRow"> <th style="width: 28%">Name</th> <th style="width: 28%">Last Name</th> <th style="width: 28%">Username</th><th style="width: 16%"></th></tr>')
-	for (var i = 0; i < data.data.length; i++) {
-		var row = $('<tr><td>' + data.data[i].NAME + '</td><td>' + data.data[i].SURNAME + '</td>\
-		<td>' + data.data[i].USERNAME + '</td>\
-		<td style="padding: 0.3rem;"><button class="btn btn-outline-secondary request-button" id="sendRequest_'+ data.data[i].ID + '">Send Request</button></td></tr>');
+	for (var i = 0; i < data.length; i++) {
+		var row = $('<tr><td>' + data[i].name + '</td><td>' + data[i].surname + '</td>\
+		<td>' + data[i].username + '</td>\
+		<td style="padding: 0.3rem;"><button class="btn btn-outline-secondary request-button" id="sendRequest_'+ data[i].id + '">Send Request</button></td></tr>');
 		$('#ajaxShowSearchedPeople').append(row);
-		FriendsPageObject.addFriendRequestListener(data.data[i], 'create', 'sendRequest');
+		FriendsPageObject.addFriendRequestListener(data[i], 'create', 'sendRequest');
 	}
 }
 
