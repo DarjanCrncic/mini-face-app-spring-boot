@@ -47,6 +47,7 @@ public class ProfileController {
 	}
 	
 	@PostMapping(path = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
 	public void updateUserInfo(@RequestParam Map<String, String> update, Principal principal) {
 	
 		FaceUser faceUser = faceUserService.findByUsername(principal.getName());

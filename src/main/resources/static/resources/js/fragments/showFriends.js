@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 	FriendsPageObject.displayFriendsTable();
 	
-	FriendsPageObject.showPendingRequests();
+	//FriendsPageObject.showPendingRequests();
 	
 	
 });

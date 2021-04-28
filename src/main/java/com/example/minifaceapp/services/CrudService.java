@@ -2,10 +2,8 @@ package com.example.minifaceapp.services;
 
 import java.util.List;
 
-import com.example.minifaceapp.model.FaceUser;
-
 public interface CrudService<T, ID> {
-	List<FaceUser> findAll();
+	List<T> findAll();
 	
 	T findById(ID id);
 	

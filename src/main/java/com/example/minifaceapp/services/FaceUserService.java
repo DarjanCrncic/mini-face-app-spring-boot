@@ -14,4 +14,6 @@ public interface FaceUserService extends CrudService<FaceUser, Long>{
 
 	List<FaceUserDTO> searchFaceUsers(SearchDTO searchDTO, FaceUser faceUser);
 
+	List<FaceUserDTO> findFriends(FaceUser faceUser);
+
 }

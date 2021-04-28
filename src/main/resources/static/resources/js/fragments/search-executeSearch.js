@@ -89,8 +89,9 @@ function friendSuccessFunction(data) {
 		var row = $('<tr><td>' + data[i].name + '</td><td>' + data[i].surname + '</td>\
 		<td>' + data[i].username + '</td>\
 		<td style="padding: 0.3rem;"><button class="btn btn-outline-secondary request-button" id="sendRequest_'+ data[i].id + '">Send Request</button></td></tr>');
-		$('#ajaxShowSearchedPeople').append(row);
-		FriendsPageObject.addFriendRequestListener(data[i], 'create', 'sendRequest');
+		$('#ajaxShowSearchedPeople').append(row);	
+		FriendsPageObject.addFriendRequestListener(data[i], 'create', 'sendRequest', 'friends/send');
+		
 	}
 }
 

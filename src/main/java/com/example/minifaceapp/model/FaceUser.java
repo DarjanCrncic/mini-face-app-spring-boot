@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -22,9 +23,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
-import lombok.ToString;
 
-@ToString
 @Data
 @Entity
 public class FaceUser {
@@ -86,7 +85,8 @@ public class FaceUser {
 	@ManyToMany
 	@JoinTable(name="face_friend",
 	 joinColumns=@JoinColumn(name="face_user_id"),
-	 inverseJoinColumns=@JoinColumn(name="friend_user_id")
+	 inverseJoinColumns=@JoinColumn(name="friend_user_id"),
+	 uniqueConstraints=@UniqueConstraint(columnNames = {"face_user_id", "friend_user_id"})
 	)
 	private List<FaceUser> friends;
 
@@ -94,7 +94,8 @@ public class FaceUser {
 	@ManyToMany
 	@JoinTable(name="face_friend",
 	 joinColumns=@JoinColumn(name="friend_user_id"),
-	 inverseJoinColumns=@JoinColumn(name="face_user_id")
+	 inverseJoinColumns=@JoinColumn(name="face_user_id"),
+	 uniqueConstraints=@UniqueConstraint(columnNames = {"friend_user_id", "face_user_id"})
 	)
 	private List<FaceUser> friendOf;
 	

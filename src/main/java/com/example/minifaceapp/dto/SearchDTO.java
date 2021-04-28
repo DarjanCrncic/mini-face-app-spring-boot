@@ -2,13 +2,9 @@ package com.example.minifaceapp.dto;
 
 import java.util.ArrayList;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@Getter
-@Setter
-@ToString
+@Data
 public class SearchDTO {
 	
 	private ArrayList<String> searchParams;

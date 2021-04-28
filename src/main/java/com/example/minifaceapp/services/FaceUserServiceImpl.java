@@ -64,17 +64,14 @@ public class FaceUserServiceImpl implements FaceUserService{
 	@Override
 	public List<FaceUserDTO> searchFaceUsers(SearchDTO searchDTO, FaceUser faceUser) {
 		String[] caseAll = { "FU.SURNAME", "FU.NAME" };
-		System.out.println(ConcatSQLSearch.createSQLQueryAddition("and", searchDTO, caseAll));
+		
 		String placeholder = "";
 		
 		if(!searchDTO.getSearchWords().get(0).isBlank()) {
 			placeholder = ConcatSQLSearch.createSQLQueryAddition("and", searchDTO, caseAll);
 		}
-		String id = Long.toString(faceUser.getId());
-		
-		//List<FaceUser> otherUsers = faceUserRepository.searchFaceUsers();
-		//System.out.println(otherUsers);
-		
+		String id = Long.toString(faceUser.getId());		
+		System.out.println(placeholder);	
 		
 		String query = "select * from face_user fu where id not in "
 				+ "(select friend_user_id from face_friend where face_user_id = ?) "
@@ -83,5 +80,14 @@ public class FaceUserServiceImpl implements FaceUserService{
 		
 		return jdbcTemplate.query(query, new Object[] {id, id, id}, new int[] {Types.INTEGER, Types.INTEGER, Types.INTEGER}, new FaceUserDTOMapper());
 
+	}
+
+	@Override
+	public List<FaceUserDTO> findFriends(FaceUser faceUser) {
+		String id = Long.toString(faceUser.getId());
+		String query = "select * from face_user fu where " 
+				+ "id in (select friend_user_id from face_friend where face_user_id = ?) " 
+				+ "or id in (select face_user_id from face_friend where friend_user_id = ?) ";
+		return jdbcTemplate.query(query, new Object[] {id, id}, new int[] {Types.INTEGER, Types.INTEGER}, new FaceUserDTOMapper());
 	}	
 }
