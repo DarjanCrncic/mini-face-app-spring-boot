@@ -2,7 +2,7 @@ package com.example.minifaceapp.utils;
 
 import java.util.ArrayList;
 
-import com.example.minifaceapp.dto.SearchDTO;
+import com.example.minifaceapp.api.v1.dtos.SearchDTO;
 
 public class ConcatSQLSearch {
 

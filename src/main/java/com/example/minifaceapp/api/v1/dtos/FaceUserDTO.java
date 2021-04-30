@@ -1,4 +1,4 @@
-package com.example.minifaceapp.dto;
+package com.example.minifaceapp.api.v1.dtos;
 
 import lombok.Data;
 
@@ -14,4 +14,5 @@ public class FaceUserDTO {
 	private int age;
 	private String email;
 	private String username;
+	private Boolean notify;
 }

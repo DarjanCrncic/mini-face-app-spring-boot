@@ -1,4 +1,4 @@
-package com.example.minifaceapp.dto;
+package com.example.minifaceapp.api.v1.dtos;
 
 import java.util.ArrayList;
 

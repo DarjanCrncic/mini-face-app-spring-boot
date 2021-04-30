@@ -16,6 +16,9 @@
 	<description>Miniature Facebook application.</description>
 	<properties>
 		<java.version>11</java.version>
+
+      	<m2e.apt.activation>jdt_apt</m2e.apt.activation>
+
 	</properties>
 	<dependencies>
 		<dependency>
@@ -75,6 +78,12 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.4.2.Final</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -90,6 +99,21 @@
 						</exclude>
 					</excludes>
 					<addResources>true</addResources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>11</source> <!-- depending on your project. In this example, Java 11 is used -->
+					<target>11</target> <!-- depending on your project. In this example, Java 11 is used -->
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>1.3.1.Final</version>
+						</path>
+					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
 		</plugins>

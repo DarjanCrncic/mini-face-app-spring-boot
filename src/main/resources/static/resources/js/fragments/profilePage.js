@@ -24,7 +24,9 @@ $(document).ready(function() {
 		$.ajax({
 			type: "POST",
 			url: 'profile/update',
-			data: input,
+			dataType: "JSON",
+			contentType: "application/json",
+			data: JSON.stringify(input),
 			success: function(data) {
 				$('#editInfoModal').modal('hide');
 				showProfilePage();

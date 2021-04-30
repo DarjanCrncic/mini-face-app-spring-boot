@@ -1,4 +1,4 @@
-package com.example.minifaceapp.mappers;
+package com.example.minifaceapp.api.v1.mappers;
 
 
 import java.sql.ResultSet;
@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.example.minifaceapp.dto.FaceUserDTO;
+import com.example.minifaceapp.api.v1.dtos.FaceUserDTO;
 
-public class FaceUserDTOMapper implements RowMapper<FaceUserDTO>{
+public class FaceUserDTORowMapper implements RowMapper<FaceUserDTO>{
 
 	@Override
 	public FaceUserDTO mapRow(ResultSet rs, int rowNum) throws SQLException {

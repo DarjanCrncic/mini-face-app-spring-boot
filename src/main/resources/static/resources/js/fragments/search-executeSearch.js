@@ -90,7 +90,7 @@ function friendSuccessFunction(data) {
 		<td>' + data[i].username + '</td>\
 		<td style="padding: 0.3rem;"><button class="btn btn-outline-secondary request-button" id="sendRequest_'+ data[i].id + '">Send Request</button></td></tr>');
 		$('#ajaxShowSearchedPeople').append(row);	
-		FriendsPageObject.addFriendRequestListener(data[i], 'create', 'sendRequest', 'friends/send');
+		FriendsPageObject.addFriendRequestListener(data[i], 'sendRequest', 'friends/send');
 		
 	}
 }

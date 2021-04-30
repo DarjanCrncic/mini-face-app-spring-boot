@@ -2,7 +2,7 @@
 const FriendsPageObject = {
 
 	/////////////////// add friend request listener
-	addFriendRequestListener: function(data, operation, buttonID, url) {
+	addFriendRequestListener: function(data, buttonID, url) {
 		$('#' + buttonID + '_' + data.id).on('click', function() {
 			let input = {
 				faceFriendId: data.id,
@@ -28,7 +28,7 @@ const FriendsPageObject = {
 						$('#requestDiv_' + input.faceFriendId).remove();
 					}
 				},
-				error: function(data) {
+				error: function() {
 					//alert("Something went wrong, try again later");
 				}
 			})
@@ -39,24 +39,24 @@ const FriendsPageObject = {
 	showPendingRequests: function() {
 
 		$.ajax({
-			url: 'CRUDRequest',
+			url: 'friends/requests',
 			dataType: 'json',
-			data: { type: 'friend' },
+			contentType: "application/json",
 			success: function(data) {
-				if (data.data.length > 0) {
+				if (data.length > 0) {
 					$('#ajaxShowPendingRequests').append('<h2 id="#friendRequestTitle" class="blue-titles">Friend Requests:</h2>');
 				}
-				for (var i = 0; i < data.data.length; i++) {
-					$('#ajaxShowPendingRequests').append('<div class="friendReqDiv" id="requestDiv_' + data.data[i].ID + '">\
-					<div class="requestMessage">'+ data.data[i].NAME + ' wants to be your friend!</div><div class="friendReqButtonsDiv">\
-					<button class="btn btn-outline-secondary" id="acceptRequest_'+ data.data[i].ID + '">Accept</button>\
-					<button class="btn btn-outline-danger" id="declineRequest_'+ data.data[i].ID + '">Decline</button>\
+				for (var i = 0; i < data.length; i++) {
+					$('#ajaxShowPendingRequests').append('<div class="friendReqDiv" id="requestDiv_' + data[i].id + '">\
+					<div class="requestMessage">'+ data[i].name + ' wants to be your friend!</div><div class="friendReqButtonsDiv">\
+					<button class="btn btn-outline-secondary" id="acceptRequest_'+ data[i].id + '">Accept</button>\
+					<button class="btn btn-outline-danger" id="declineRequest_'+ data[i].id + '">Decline</button>\
 					</div></div>');
-					FriendsPageObject.addFriendRequestListener(data.data[i], 'accept', 'acceptRequest');
-					FriendsPageObject.addFriendRequestListener(data.data[i], 'decline', 'declineRequest');
+					FriendsPageObject.addFriendRequestListener(data[i], 'acceptRequest');
+					FriendsPageObject.addFriendRequestListener(data[i], 'declineRequest');
 				}
 			},
-			error: function(jqXHR, textStatus, errorThrown) {
+			error: function() {
 				//alert('Something went wrong, try again later');
 			}
 		})
@@ -75,7 +75,7 @@ const FriendsPageObject = {
 					$('#friendsTable').append(row);
 				}
 			},
-			error: function(jqXHR, textStatus, errorThrown) {
+			error: function() {
 				//alert('Something went wrong, try again later');
 			}
 		});

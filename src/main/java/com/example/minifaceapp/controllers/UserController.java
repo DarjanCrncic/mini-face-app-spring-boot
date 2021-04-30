@@ -1,72 +1,47 @@
 package com.example.minifaceapp.controllers;
 
-import javax.validation.Valid;
-
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.example.minifaceapp.model.FaceUser;
+import com.example.minifaceapp.api.v1.dtos.FaceUserDTO;
+import com.example.minifaceapp.api.v1.mappers.FaceUserListDTO;
+import com.example.minifaceapp.security.CustomUserDetails;
 import com.example.minifaceapp.services.FaceUserService;
 
-@Controller
+@RestController
+@RequestMapping("/profile")
 public class UserController {
-
+	
 	private final FaceUserService faceUserService;
 
 	public UserController(FaceUserService faceUserService) {
 		this.faceUserService = faceUserService;
 	}
-
-	@RequestMapping({ "/", "/login" })
-	public String showLoginPage() {
-		return "login_user";
+	
+	@GetMapping("/find")
+    @ResponseStatus(HttpStatus.OK)
+	public FaceUserListDTO getAllUsers() {
+		return new FaceUserListDTO(faceUserService.findAll());
 	}
-
-	@GetMapping("/register")
-	public String showRegisterPage(Model model) {
-		model.addAttribute("user", new FaceUser());
-		return "register_user";
+	
+	@GetMapping("/info")
+	@ResponseStatus(HttpStatus.OK)
+	public FaceUserDTO getCurrentUserInfo(@AuthenticationPrincipal CustomUserDetails userDetails) {
+		return faceUserService.findById(userDetails.getId());	
 	}
-
-	@PostMapping("/register")
-	public String handleRegisterPage(@Valid @ModelAttribute("faceUser") FaceUser faceUser, BindingResult result,
-			Model model) {
-
-		System.out.println(faceUser.toString());
-		if (result.hasErrors()) {
-			model.addAttribute("faceUser", faceUser);
-			model.addAttribute("errors", result.getAllErrors());
-			return "register_user";
-		}
-		
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String encodedPassword = passwordEncoder.encode(faceUser.getPassword());
-
-		if (faceUserService.findByUsername(faceUser.getUsername()) != null) {
-			model.addAttribute("constraintError", "Already used username");
-			return "register_user";
-		}
-		if (faceUserService.findByEmail(faceUser.getEmail()) != null) {
-			model.addAttribute("constraintError", "Already used email");
-			return "register_user";
-		}
-
-		faceUser.setPassword(encodedPassword);
-		faceUserService.save(faceUser);
-
-		model.addAttribute("user", faceUser);
-		return "login_user";
-	}
-
-	@GetMapping("/main")
-	public String showMainPage(Model model) {
-		return "main";
+	
+	@PostMapping(path = "/update",  consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public FaceUserDTO updateUserInfo(@RequestBody FaceUserDTO faceUserDTO, @AuthenticationPrincipal CustomUserDetails userDetails) {
+		faceUserDTO.setId(userDetails.getId());		
+		return faceUserService.save(faceUserDTO);
 	}
 	
 }

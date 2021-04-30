@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.minifaceapp.dto.FaceFriendReqDTO;
-import com.example.minifaceapp.dto.FaceUserDTO;
-import com.example.minifaceapp.dto.SearchDTO;
+import com.example.minifaceapp.api.v1.dtos.FaceFriendReqDTO;
+import com.example.minifaceapp.api.v1.dtos.FaceUserDTO;
+import com.example.minifaceapp.api.v1.dtos.SearchDTO;
 import com.example.minifaceapp.model.FaceFriendReq;
 import com.example.minifaceapp.model.FaceUser;
 import com.example.minifaceapp.services.FaceFriendReqService;
@@ -59,5 +59,13 @@ public class FriendsController {
 		faceFriendReq.setFaceUserId(faceUser.getId());
 		faceFriendReq.setStatus(statusService.findById(1L));
 		return faceFriendReqService.save(faceFriendReq);		
+	}
+	
+	@GetMapping(value = "/requests", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public List<FaceUserDTO> getPendingReqs(Principal principal){
+		FaceUser faceUser = faceUserService.findByUsername(principal.getName());
+		List<Long> ids = faceFriendReqService.findAllByFaceFriendId(faceUser.getId());		
+		return faceUserService.findByIdIn(ids);
 	}
 }
