@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import com.example.minifaceapp.api.v1.dtos.FaceFriendReqDTO;
 import com.example.minifaceapp.api.v1.mappers.FaceFriendReqDTOMapper;
 import com.example.minifaceapp.model.FaceFriendReq;
+import com.example.minifaceapp.model.FaceUser;
 import com.example.minifaceapp.model.Status;
 import com.example.minifaceapp.repositories.FaceFriendReqRepository;
+import com.example.minifaceapp.repositories.FaceUserRepository;
 import com.example.minifaceapp.repositories.StatusRepository;
 
 @Service
@@ -20,11 +22,14 @@ public class FaceFriendReqServiceImpl implements FaceFriendReqService {
 	FaceFriendReqRepository faceFriendReqRepostory;
 	StatusRepository statusRepository;
 	FaceFriendReqDTOMapper faceFriendReqDTOMapper;
+	FaceUserRepository faceUserRepository;
 	
-	public FaceFriendReqServiceImpl(FaceFriendReqRepository faceFriendReqRepostory, StatusRepository statusRepository, FaceFriendReqDTOMapper faceFriendReqDTOMapper) {
+	public FaceFriendReqServiceImpl(FaceFriendReqRepository faceFriendReqRepostory, StatusRepository statusRepository, FaceFriendReqDTOMapper faceFriendReqDTOMapper,
+			FaceUserRepository faceUserRepository) {
 		this.faceFriendReqRepostory = faceFriendReqRepostory;
 		this.statusRepository = statusRepository;
 		this.faceFriendReqDTOMapper = faceFriendReqDTOMapper;
+		this.faceUserRepository = faceUserRepository;
 	}
 
 	@Override
@@ -59,8 +64,26 @@ public class FaceFriendReqServiceImpl implements FaceFriendReqService {
 	@Override
 	public List<Long> findAllByFaceFriendId(Long id) {
 		Status status = statusRepository.findById(1L).orElse(null);
-		List<Long> ids = faceFriendReqRepostory.getPendingFriendRequests(id, status);
-		return ids;
+		return faceFriendReqRepostory.getPendingFriendRequests(id, status);
+	}
+
+	@Override
+	public FaceFriendReqDTO updateToAccepted(FaceFriendReqDTO faceFriendReqDTO) {
+		Status status = statusRepository.findById(2L).orElse(null);
+		List<FaceFriendReq> reqs = faceFriendReqRepostory.findAllByFaceFriendIdAndFaceUserId(faceFriendReqDTO.getFaceFriendId(), faceFriendReqDTO.getFaceUserId());
+		for(FaceFriendReq req: reqs) {
+			req.setStatus(status);
+			faceFriendReqRepostory.save(req);
+		}
+		if(!reqs.isEmpty()) {
+			FaceUser currentUser = faceUserRepository.findById(faceFriendReqDTO.getFaceFriendId()).orElse(null);
+			FaceUser friendUser = faceUserRepository.findById(faceFriendReqDTO.getFaceUserId()).orElse(null);
+			
+			currentUser.getFriends().add(friendUser);
+			currentUser.getFriendOf().add(friendUser);			
+			faceUserRepository.save(currentUser);
+		}
+		return faceFriendReqDTO;
 	}
 
 }

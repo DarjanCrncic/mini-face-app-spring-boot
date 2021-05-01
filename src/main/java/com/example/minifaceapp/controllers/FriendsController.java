@@ -1,6 +1,5 @@
 package com.example.minifaceapp.controllers;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -38,8 +37,8 @@ public class FriendsController {
 
 	@GetMapping("/find")
 	@ResponseStatus(HttpStatus.OK)
-	public List<FaceUserDTO> findFriends(Principal principal){
-		FaceUser faceUser = faceUserService.findByUsername(principal.getName());
+	public List<FaceUserDTO> findFriends(@AuthenticationPrincipal CustomUserDetails userDetails){
+		FaceUser faceUser = faceUserService.findByUsername(userDetails.getUsername());
 		return faceUserService.findFriends(faceUser);
 	}
 	
@@ -57,11 +56,19 @@ public class FriendsController {
 		return faceFriendReqService.save(faceFriendReqDTO);		
 	}
 	
-	@GetMapping(value = "/requests", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/requests", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public List<FaceUserDTO> getPendingReqs(Principal principal){
-		FaceUser faceUser = faceUserService.findByUsername(principal.getName());
-		List<Long> ids = faceFriendReqService.findAllByFaceFriendId(faceUser.getId());		
+	public List<FaceUserDTO> getPendingReqs(@AuthenticationPrincipal CustomUserDetails userDetails){
+		List<Long> ids = faceFriendReqService.findAllByFaceFriendId(userDetails.getId());		
 		return faceUserService.findByIdIn(ids);
 	}
+	
+	@PostMapping(value = "/accept", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public FaceFriendReqDTO acceptFriendReq(@RequestBody FaceFriendReqDTO faceFriendReqDTO, @AuthenticationPrincipal CustomUserDetails userDetails) {
+		faceFriendReqDTO.setFaceFriendId(userDetails.getId());
+		faceFriendReqDTO.setStatus(statusService.findById(2L));
+		return faceFriendReqService.updateToAccepted(faceFriendReqDTO);
+	}
+	
 }

@@ -8,4 +8,6 @@ public interface FaceFriendReqService extends CrudService<FaceFriendReqDTO, Long
 
 	List<Long> findAllByFaceFriendId(Long id);
 
+	FaceFriendReqDTO updateToAccepted(FaceFriendReqDTO faceFriendReqDTO);
+
 }

@@ -4,8 +4,16 @@ const FriendsPageObject = {
 	/////////////////// add friend request listener
 	addFriendRequestListener: function(data, buttonID, url) {
 		$('#' + buttonID + '_' + data.id).on('click', function() {
-			let input = {
-				faceFriendId: data.id,
+			
+			let input = {};
+			if (buttonID == "sendRequest") {
+				input = {
+					faceFriendId: data.id
+				}
+			}else{
+				input = {
+					faceUserId: data.id
+				}
 			}
 
 			$.ajax({
@@ -16,8 +24,8 @@ const FriendsPageObject = {
 				data: JSON.stringify(input),
 				success: function(data) {
 					if (buttonID == "acceptRequest") {
-						$('#requestDiv_' + input.faceFriendId).empty();
-						$('#requestDiv_' + input.faceFriendId).remove();
+						$('#requestDiv_' + input.faceUserId).empty();
+						$('#requestDiv_' + input.faceUserId).remove();
 						$('#friendsTable').html("");
 						FriendsPageObject.displayFriendsTable();
 					}
@@ -52,8 +60,8 @@ const FriendsPageObject = {
 					<button class="btn btn-outline-secondary" id="acceptRequest_'+ data[i].id + '">Accept</button>\
 					<button class="btn btn-outline-danger" id="declineRequest_'+ data[i].id + '">Decline</button>\
 					</div></div>');
-					FriendsPageObject.addFriendRequestListener(data[i], 'acceptRequest');
-					FriendsPageObject.addFriendRequestListener(data[i], 'declineRequest');
+					FriendsPageObject.addFriendRequestListener(data[i], 'acceptRequest', 'friends/accept');
+					FriendsPageObject.addFriendRequestListener(data[i], 'declineRequest', 'friends/decline');
 				}
 			},
 			error: function() {

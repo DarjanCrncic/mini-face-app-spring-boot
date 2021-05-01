@@ -89,11 +89,12 @@ public class FaceUserServiceImpl implements FaceUserService{
 
 	@Override
 	public List<FaceUserDTO> findFriends(FaceUser faceUser) {
-		String id = Long.toString(faceUser.getId());
-		String query = "select * from face_user fu where " 
-				+ "id in (select friend_user_id from face_friend where face_user_id = ?) " 
-				+ "or id in (select face_user_id from face_friend where friend_user_id = ?) ";
-		return jdbcTemplate.query(query, new Object[] {id, id}, new int[] {Types.INTEGER, Types.INTEGER}, new FaceUserDTORowMapper());
+		List<FaceUser> users = faceUser.getFriends();
+		List<FaceUserDTO> dtos = new ArrayList<>();
+		for(FaceUser user: users) {
+			dtos.add(faceUserDTOMapper.faceUserToFaceUserDTOMapper(user));
+		}
+		return dtos;
 	}
 
 	@Override

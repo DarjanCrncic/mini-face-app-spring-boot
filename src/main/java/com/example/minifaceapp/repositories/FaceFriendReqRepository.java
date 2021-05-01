@@ -13,5 +13,6 @@ public interface FaceFriendReqRepository extends JpaRepository<FaceFriendReq, Lo
 	@Query("select distinct ffr.faceUserId from FaceFriendReq ffr where ffr.faceFriendId = ?1 and ffr.status = ?2")
 	List<Long> getPendingFriendRequests(Long id, Status status);
 
+	List<FaceFriendReq> findAllByFaceFriendIdAndFaceUserId(Long faceFriendId, Long faceUserId);
 
 }
