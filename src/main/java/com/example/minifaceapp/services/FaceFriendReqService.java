@@ -10,4 +10,6 @@ public interface FaceFriendReqService extends CrudService<FaceFriendReqDTO, Long
 
 	FaceFriendReqDTO updateToAccepted(FaceFriendReqDTO faceFriendReqDTO);
 
+	FaceFriendReqDTO updateToDecline(FaceFriendReqDTO faceFriendReqDTO);
+
 }

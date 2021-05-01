@@ -83,7 +83,18 @@ public class FaceFriendReqServiceImpl implements FaceFriendReqService {
 			currentUser.getFriendOf().add(friendUser);			
 			faceUserRepository.save(currentUser);
 		}
+		return faceFriendReqDTO;	
+	}
+	
+	@Override
+	public FaceFriendReqDTO updateToDecline(FaceFriendReqDTO faceFriendReqDTO) {
+		Status status = statusRepository.findById(3L).orElse(null);
+		List<FaceFriendReq> reqs = faceFriendReqRepostory.findAllByFaceFriendIdAndFaceUserId(faceFriendReqDTO.getFaceFriendId(), faceFriendReqDTO.getFaceUserId());
+		for(FaceFriendReq req: reqs) {
+			req.setStatus(status);
+			faceFriendReqRepostory.save(req);
+		}
 		return faceFriendReqDTO;
 	}
-
+	
 }

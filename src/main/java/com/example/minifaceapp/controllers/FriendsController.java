@@ -71,4 +71,12 @@ public class FriendsController {
 		return faceFriendReqService.updateToAccepted(faceFriendReqDTO);
 	}
 	
+	@PostMapping(value = "/decline", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public FaceFriendReqDTO declineFriendReq(@RequestBody FaceFriendReqDTO faceFriendReqDTO, @AuthenticationPrincipal CustomUserDetails userDetails) {
+		faceFriendReqDTO.setFaceFriendId(userDetails.getId());
+		faceFriendReqDTO.setStatus(statusService.findById(2L));
+		return faceFriendReqService.updateToDecline(faceFriendReqDTO);
+	}
+	
 }

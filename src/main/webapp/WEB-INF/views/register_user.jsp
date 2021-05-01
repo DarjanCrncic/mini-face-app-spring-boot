@@ -50,12 +50,8 @@
 						<c:forEach items="${errors}" var="error">
 							<li class="error"><c:out value="${error.defaultMessage}" /></li>
 						</c:forEach>
-						
-						<c:if test="${constraintError} != ''">
-						<li class="error"><c:out value="${constraintError}" /></li>
-						</c:if>
 					</ul>
-
+					<p class="error"><c:out value="${constraintError}" /></p>
 				</div>
 			</div>
 		</div>

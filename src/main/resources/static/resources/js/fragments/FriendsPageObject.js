@@ -33,7 +33,7 @@ const FriendsPageObject = {
 						$('#sendRequest_' + data.faceFriendId).remove();
 					}
 					if (buttonID == "declineRequest") {
-						$('#requestDiv_' + input.faceFriendId).remove();
+						$('#requestDiv_' + input.faceUserId).remove();
 					}
 				},
 				error: function() {
