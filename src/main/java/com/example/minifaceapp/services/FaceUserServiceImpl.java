@@ -67,7 +67,7 @@ public class FaceUserServiceImpl implements FaceUserService{
 	}
 
 	@Override
-	public List<FaceUserDTO> searchFaceUsers(SearchDTO searchDTO, FaceUser faceUser) {
+	public List<FaceUserDTO> searchFaceUsers(SearchDTO searchDTO, Long faceUserId) {
 		String[] caseAll = { "FU.SURNAME", "FU.NAME" };
 		
 		String placeholder = "";
@@ -75,7 +75,7 @@ public class FaceUserServiceImpl implements FaceUserService{
 		if(!searchDTO.getSearchWords().get(0).isBlank()) {
 			placeholder = ConcatSQLSearch.createSQLQueryAddition("and", searchDTO, caseAll);
 		}
-		String id = Long.toString(faceUser.getId());		
+		String id = Long.toString(faceUserId);		
 		System.out.println(placeholder);	
 		
 		String query = "select * from face_user fu where id not in "

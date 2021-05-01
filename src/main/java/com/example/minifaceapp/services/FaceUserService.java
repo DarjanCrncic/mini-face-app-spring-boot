@@ -12,12 +12,12 @@ public interface FaceUserService extends CrudService<FaceUserDTO, Long>{
 
 	FaceUser findByUsername(String username);
 
-	List<FaceUserDTO> searchFaceUsers(SearchDTO searchDTO, FaceUser faceUser);
-
 	List<FaceUserDTO> findFriends(FaceUser faceUser);
 
 	List<FaceUserDTO> findByIdIn(List<Long> ids);
 
 	void saveUserOnRegister(@Valid FaceUser faceUser);
+
+	List<FaceUserDTO> searchFaceUsers(SearchDTO searchDTO, Long faceUserId);
 
 }
