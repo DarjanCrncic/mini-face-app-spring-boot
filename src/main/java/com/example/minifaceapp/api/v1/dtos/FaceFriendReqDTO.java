@@ -11,5 +11,4 @@ public class FaceFriendReqDTO {
 	private Long faceUserId;
 	private Long faceFriendId;
 	private Status status;
-
 }

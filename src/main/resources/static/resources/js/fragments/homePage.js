@@ -10,6 +10,7 @@ $(document).ready(function() {
 			success: function(data) {
 				$('#ajaxShowGreeting').append('<h1>Hey there ' + data.name + ' ' + data.surname + '</h1>');	
 				$('#nameDropdown').text(data.name + ' ' + data.surname);	
+				MainObject.user = data;
 			},
 			error: function() {
 				alert(data.message);

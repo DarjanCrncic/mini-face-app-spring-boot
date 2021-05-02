@@ -3,7 +3,6 @@ package com.example.minifaceapp.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.example.minifaceapp.api.v1.dtos.FaceFriendReqDTO;
@@ -16,7 +15,6 @@ import com.example.minifaceapp.repositories.FaceUserRepository;
 import com.example.minifaceapp.repositories.StatusRepository;
 
 @Service
-@Repository
 public class FaceFriendReqServiceImpl implements FaceFriendReqService {
 
 	FaceFriendReqRepository faceFriendReqRepostory;

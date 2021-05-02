@@ -98,5 +98,5 @@ public class FaceUser {
 	 uniqueConstraints=@UniqueConstraint(columnNames = {"friend_user_id", "face_user_id"})
 	)
 	private List<FaceUser> friendOf;
-	
+		
 }

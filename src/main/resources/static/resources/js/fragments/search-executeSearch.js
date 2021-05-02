@@ -58,27 +58,21 @@ function searchFunction(successFunction, backendURL, pageNumber, rowNumber){
 
 function postSuccessFunction(data) {
 	$('#ajaxShowVissiblePosts').html("");
-	for (var i = 0; i < data.data.length; i++) {
-		if (data.userID == data.data[i].CREATOR_ID) {
+	for (var i = 0; i < data.length; i++) {
+		if (MainObject.user.id == data[i].creatorId) {
 
-			$('#ajaxShowVissiblePosts').append(PostsPageObject.createPostHtml(data.data[i]));
-
-			if (data.data[i].TYPE == "user")
-				PostsPageObject.addDeleteEditPostButtonListener(data.data[i], "user");
-			if (data.data[i].TYPE == "group")
-				PostsPageObject.addDeleteEditPostButtonListener(data.data[i], "group");
-				
-			PostsPageObject.addCreateWordDocListener(data.data[i]);	
-
+			$('#ajaxShowVissiblePosts').append(PostsPageObject.createPostHtml(data[i]));
+			PostsPageObject.addEditPostButtonListener(data[i]);
+			PostsPageObject.addDeletePostButtonListener(data[i]);
 		} else {
-			$('#ajaxShowVissiblePosts').append(PostsPageObject.createPostHtmlNotUser(data.data[i]));
+			$('#ajaxShowVissiblePosts').append(PostsPageObject.createPostHtmlNotUser(data[i]));
 		}
-		PostsPageObject.addLikePostListener(data.data[i], "post");
-		PostsPageObject.addCommentListener(data.data[i]);
-		PostsPageObject.viewCommentListener(data.data[i]);
-		PostsPageObject.getComments(data.data[i]);
+		//PostsPageObject.addLikePostListener(data[i], "post");
+		//PostsPageObject.addCommentListener(data[i]);
+		//PostsPageObject.viewCommentListener(data[i]);
+		//PostsPageObject.getComments(data[i]);
 	}
-	PostsPageObject.paginationButtonsInit(data.data.length, data.more);
+	PostsPageObject.paginationButtonsInit(data.length, data.more);
 }
 
 function friendSuccessFunction(data) {

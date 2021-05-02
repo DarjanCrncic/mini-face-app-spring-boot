@@ -8,7 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +20,6 @@ import com.example.minifaceapp.repositories.FaceUserRepository;
 import com.example.minifaceapp.utils.ConcatSQLSearch;
 
 @Service
-@Repository
 public class FaceUserServiceImpl implements FaceUserService{
 
 	private final FaceUserRepository faceUserRepository;

@@ -19,10 +19,10 @@ $(document).ready(function() {
 	});
 	
 	addFilters([{ id: "all", text: "All" }, { id: "fp.title", text: "Title" }, { id: "fp.body", text: "Body" }, {id: "fu.name+fu.surname", text: "Posted By"}]);
-	prepareExecuteSearch(postSuccessFunction, 'ShowPosts');
+	prepareExecuteSearch(postSuccessFunction, 'posts/search');
 	
 	PostsPageObject.rowNumber = 5;
-	searchFunction(postSuccessFunction, 'ShowPosts', 1, PostsPageObject.rowNumber);
+	searchFunction(postSuccessFunction, 'posts/search', 1, PostsPageObject.rowNumber);
 
 	PostsPageObject.createPostScriptInit("user", 0);
 

@@ -2,14 +2,12 @@ package com.example.minifaceapp.services;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.example.minifaceapp.model.Status;
 import com.example.minifaceapp.repositories.StatusRepository;
 
 @Service
-@Repository
 public class StatusServiceImpl implements StatusService{
 	
 	private final StatusRepository statusRepository;

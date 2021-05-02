@@ -49,29 +49,26 @@ const PostsPageObject = {
 			let input = {
 				title: $("#newPostTitleInput").val(),
 				body: $("#newPostBodyInput").val(),
-				operation: "add",
-				postId: "",
-				type: type,
-				groupID: groupID
+			}
+			if(input.title == "" || input.body == ""){
+				alert("Post title and body cannot be empty.")
+				return;
 			}
 
 			$.ajax({
 				type: "POST",
-				url: 'CRUDPost',
+				url: 'posts/new/user',
 				dataType: 'json',
-				data: input,
+				contentType: "application/json",
+				data: JSON.stringify(input),
 				success: function(data) {
-					if (data.status == 'success') {
-						$("#newPostTitleInput").val('');
-						$("#newPostBodyInput").val('');
-						if(type == "group"){
-							PostsPageObject.showAllVissiblePosts("group", groupID);
-						}
-						if(type == "user"){
-							searchFunction(postSuccessFunction, 'ShowPosts', 1, PostsPageObject.rowNumber);
-						}						
-					} else {
-						alert(data.message);
+					$("#newPostTitleInput").val('');
+					$("#newPostBodyInput").val('');
+					if (type == "group") {
+						PostsPageObject.showAllVissiblePosts("group", groupID);
+					}
+					if (type == "user") {
+						searchFunction(postSuccessFunction, 'posts/search', 1, PostsPageObject.rowNumber);
 					}
 				},
 				error: function() {
@@ -88,27 +85,27 @@ const PostsPageObject = {
 			let input = {
 				title: $("#editModalPostTitle").val(),
 				body: $("#editModalPostBody").val(),
-				operation: "edit",
-				postId: $("#editPostModalForm").val(),
+				id: $("#editPostModalForm").val(),
 			}
+			if(input.title == "" || input.body == ""){
+				alert("Post title and body cannot be empty.")
+				return;
+			}
+			
 
 			$("#editPostModal").modal('hide');
 
 
 			$.ajax({
-				type: "POST",
-				url: 'CRUDPost',
+				type: "PATCH",
+				url: 'posts/edit/'+input.id,
 				dataType: 'json',
-				data: input,
+				contentType: 'application/json',
+				data: JSON.stringify(input),
 				success: function(data) {
-					if (data.status == 'success') {
 
-						$("#title_" + data.data.ID).text(data.data.TITLE);
-						$("#body_" + data.data.ID).text(data.data.BODY);
-
-					} else {
-						alert(data.message);
-					}
+					searchFunction(postSuccessFunction, 'posts/search', 1, PostsPageObject.rowNumber);
+					//PostsPageObject.showAllVissiblePosts("group", input.groupID);								
 				},
 				error: function() {
 					alert("Something went wrong, try again later");
@@ -116,11 +113,11 @@ const PostsPageObject = {
 			});
 		});
 	},
-	
+
 	//////////////////////// document download
-	addCreateWordDocListener:function(data){
-		$('#createWord_' + data.ID).click(function(){
-			
+	addCreateWordDocListener: function(data) {
+		$('#createWord_' + data.ID).click(function() {
+
 			let input = {
 				postID: data.ID,
 			}
@@ -135,49 +132,36 @@ const PostsPageObject = {
 					alert("Something went wrong, try again later");
 				}
 			})
-		})		
+		})
 	},
 
 	////////////////////// delete and edit post on click function
-	addDeleteEditPostButtonListener: function(data, type, groupID) {
-		$('#' + data.ID).click(function() {
+	addEditPostButtonListener: function(data) {
 
-			let input = {
-				title: data.TITLE,
-				body: data.BODY,
-				operation: "delete",
-				postId: data.ID,
-				type: type,
-				groupID: groupID
-			}
+		// configure modal for designated post
+		$('#editPost_' + data.id).click(function() {
+			$("#editPostModal").modal('show');
+			$("#editModalPostBody").val($("#body_" + data.id).text());
+			$("#editModalPostTitle").val($("#title_" + data.id).text());
+			$("#editPostModalForm").val(data.id);
+
+		});
+	},
+	
+	addDeletePostButtonListener: function(data, type) {
+		$('#deletePost_' + data.id).click(function() {
 
 			$.ajax({
-				type: "POST",
-				url: 'CRUDPost',
-				dataType: 'json',
-				data: input,
+				type: "DELETE",
+				url: 'posts/delete/'+data.id,
 				success: function(data) {
-					if (data.status == 'success' && type == "user" || data.status == 'success' && type == "group" && input.groupID == null) {
-						searchFunction(postSuccessFunction, 'ShowPosts', 1, PostsPageObject.rowNumber);
-					} else if(data.status == 'success' && type == "group"){
-						PostsPageObject.showAllVissiblePosts("group", input.groupID);
-					} else {
-						alert(data.message);
-					}
+					searchFunction(postSuccessFunction, 'posts/search', 1, PostsPageObject.rowNumber);
+					//PostsPageObject.showAllVissiblePosts("group", input.groupID);					
 				},
 				error: function() {
 					alert("Something went wrong, try again later");
 				}
 			})
-		});
-
-		// configure modal for designated post
-		$('#editPost_' + data.ID).click(function() {
-			$("#editPostModal").modal('show');
-			$("#editModalPostBody").val($("#body_" + data.ID).text());
-			$("#editModalPostTitle").val($("#title_" + data.ID).text());
-			$("#editPostModalForm").val(data.ID);
-
 		});
 	},
 
@@ -378,39 +362,40 @@ const PostsPageObject = {
 
 	//////////////////// create html element for post item, created by current user
 	createPostHtml: function(data) {
-		return ('<div id="postDiv_' + data.ID + '"><div class="card"><div class="card-header post-card-header"><div class="posterName">' + data.NAME + '</div><div class="datetime">' + data.CREATION_TIME + '</div></div>\
+		console.log(data)
+		return ('<div id="postDiv_' + data.id + '"><div class="card"><div class="card-header post-card-header"><div class="posterName">' + data.creatorName + '</div><div class="datetime">' + data.creationTime + '</div></div>\
 		<div class="card-body">\
-		<h5 class="card-title"  id="title_' + data.ID + '">' + data.TITLE + '</h5>\
-		<p class="card-text" id="body_'+ data.ID + '">' + data.BODY + '</p>\
-		<i class="fas fa-thumbs-up" style="color: #007bff" ></i><p id="likeCounter_'+ data.ID + '" style="display:inline; margin-left: 5px;">' + data.LIKES + '</p>\
+		<h5 class="card-title"  id="title_' + data.id + '">' + data.title + '</h5>\
+		<p class="card-text" id="body_'+ data.id + '">' + data.body + '</p>\
+		<i class="fas fa-thumbs-up" style="color: #007bff" ></i><p id="likeCounter_'+ data.id + '" style="display:inline; margin-left: 5px;">' + data.likes + '</p>\
 		<div class="button-div">\
-		<button class="far fa-trash-alt  delete-button" id=' + data.ID + '></button>\
-		<button class="fas fa-edit edit-button" id="editPost_'+ data.ID + '"></button>\
-		<button class="far fa-thumbs-up like-button" id="likePost_'+ data.ID + '"</button>\
-		<button class="fas fa-file-word create-button" id="createWord_'+data.ID+'"></button></div></div>\
+		<button class="far fa-trash-alt  delete-button" id="deletePost_' + data.id + '"></button>\
+		<button class="fas fa-edit edit-button" id="editPost_'+ data.id + '"></button>\
+		<button class="far fa-thumbs-up like-button" id="likePost_'+ data.id + '"</button>\
+		<button class="fas fa-file-word create-button" id="createWord_'+ data.id + '"></button></div></div>\
 		<div class="card-footer">\
 		<div class="input-group">\
- 		<input type="text" class="form-control" id="postComment_'+ data.ID + '">\
-  		<button class="btn btn-outline-secondary" id="submitComment_'+ data.ID + '" type="button">Submit</button></div>\
-		<button id="viewComments_'+ data.ID + '" class="viewCommentsButton">View Comments</button><p id="commentCounter_' + data.ID + '" style="display:inline; margin-left: 5px">\
-		<div id="commentsSection_' + data.ID + '" class="viewCommentsDiv"></div>\
+ 		<input type="text" class="form-control" id="postComment_'+ data.id + '">\
+  		<button class="btn btn-outline-secondary" id="submitComment_'+ data.id + '" type="button">Submit</button></div>\
+		<button id="viewComments_'+ data.id + '" class="viewCommentsButton">View Comments</button><p id="commentCounter_' + data.id + '" style="display:inline; margin-left: 5px">\
+		<div id="commentsSection_' + data.id + '" class="viewCommentsDiv"></div>\
 		</div></div ></div ></div >');
 	},
 	//////////////////// create html element for post item, not created by current user
 	createPostHtmlNotUser: function(data) {
-		return ('<div id="postDiv_' + data.ID + '"><div class="card"><div class="card-header post-card-header"><div class="posterName">' + data.NAME + '</div><div class="datetime">' + data.CREATION_TIME + '</div></div>\
+		return ('<div id="postDiv_' + data.id + '"><div class="card"><div class="card-header post-card-header"><div class="posterName">' + data.creatorName + '</div><div class="datetime">' + data.creationTime + '</div></div>\
 		<div class="card-body">\
-		<h5 class="card-title"  id="title_' + data.ID + '">' + data.TITLE + '</h5>\
-		<p class="card-text" id="body_'+ data.ID + '">' + data.BODY + '</p>\
-		<i class="fas fa-thumbs-up" style="color: #007bff" ></i><p id="likeCounter_'+ data.ID + '" style="display:inline; margin-left: 5px">' + data.LIKES + '</p>\
+		<h5 class="card-title"  id="title_' + data.id + '">' + data.title + '</h5>\
+		<p class="card-text" id="body_'+ data.id + '">' + data.body + '</p>\
+		<i class="fas fa-thumbs-up" style="color: #007bff" ></i><p id="likeCounter_'+ data.id + '" style="display:inline; margin-left: 5px">' + data.likes + '</p>\
 		<div class="button-div">\
-		<button class="far fa-thumbs-up like-button" id="likePost_'+ data.ID + '"</button></div></div>\
+		<button class="far fa-thumbs-up like-button" id="likePost_'+ data.id + '"</button></div></div>\
 		<div class="card-footer">\
 		<div class="input-group">\
- 		<input type="text" class="form-control" id="postComment_'+ data.ID + '">\
-  		<button class="btn btn-outline-secondary" id="submitComment_'+ data.ID + '" type="button">Submit</button></div>\
-		<button id="viewComments_'+ data.ID + '" class="viewCommentsButton">View Comments</button><p id="commentCounter_' + data.ID + '" style="display:inline; margin-left: 5px">\
-		<div id="commentsSection_' + data.ID + '" class="viewCommentsDiv"></div>\
+ 		<input type="text" class="form-control" id="postComment_'+ data.id + '">\
+  		<button class="btn btn-outline-secondary" id="submitComment_'+ data.id + '" type="button">Submit</button></div>\
+		<button id="viewComments_'+ data.id + '" class="viewCommentsButton">View Comments</button><p id="commentCounter_' + data.id + '" style="display:inline; margin-left: 5px">\
+		<div id="commentsSection_' + data.id + '" class="viewCommentsDiv"></div>\
 		</div></div ></div ></div > ');
 	},
 

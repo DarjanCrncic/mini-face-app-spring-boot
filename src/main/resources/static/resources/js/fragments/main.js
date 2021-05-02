@@ -95,7 +95,9 @@ const MainObject = {
 	
 	showSecondary: function(){
 		$("#secondary").show();
-	}
+	},
+	
+	user: null,
 	
 	
 	
