@@ -20,7 +20,8 @@ public class FacePostDTORowMapper implements RowMapper<FacePostSearchDTO>{
 		facePostSearchDTO.setCreationTime(rs.getDate("creation_time"));
 		facePostSearchDTO.setCreatorId(rs.getLong("creator_id"));
 		facePostSearchDTO.setType(rs.getLong("type"));
-	
+		facePostSearchDTO.setLikes(rs.getInt("likes"));
+		
 		return facePostSearchDTO;
 	}
 }

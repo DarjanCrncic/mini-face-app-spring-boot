@@ -64,10 +64,12 @@ public class FacePostServiceImpl implements FacePostService{
 		String id = Long.toString(faceUserId);		
 		System.out.println(placeholder);
 		
-		String query = "select fp.id, fp.title, fp.body, (fu.name || ' ' || fu.surname) as name, fp.type, fp.creator_id, fp.creation_time from face_post fp "
+		String query = "select fp.id, fp.title, fp.body, (fu.name || ' ' || fu.surname) as name, fp.type, fp.creator_id, fp.creation_time, counter.value as likes from face_post fp "
+				+ "inner join (select fp.id, count(distinct liker_id) as value from post_like pl right outer join face_post fp on fp.id = pl.post_id group by fp.id) counter on counter.id = fp.id "
 				+ "inner join face_user fu on fp.creator_id = fu.id and "
 				+ "((fp.creator_id in (select friend_user_id from face_friend where face_user_id = ?)) or fp.creator_id = ?) and fp.type = 1 "
-				+ "order by fp.creation_time DESC";
+				+ placeholder + " order by fp.creation_time DESC" 
+				+ " OFFSET " + (searchDTO.getPageNumber()-1)*searchDTO.getRowNumber() + " ROWS FETCH NEXT " + (searchDTO.getRowNumber()+1) + " ROWS ONLY";
 		
 		return jdbcTemplate.query(query, new Object[] {id, id}, new int[] {Types.INTEGER, Types.INTEGER}, new FacePostDTORowMapper());
 	}

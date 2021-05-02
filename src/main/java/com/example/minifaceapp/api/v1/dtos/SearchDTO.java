@@ -12,6 +12,6 @@ public class SearchDTO {
 	private String logicalOperand;
 	
 	private String wordPosition;
-	private int pageNUmber;
+	private int pageNumber;
 	private int rowNumber;
 }

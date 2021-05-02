@@ -14,4 +14,6 @@ public class FacePostSearchDTO {
 	private Long type;
 	private String creatorName;
 	private Date creationTime;
+	
+	private int likes;
 }

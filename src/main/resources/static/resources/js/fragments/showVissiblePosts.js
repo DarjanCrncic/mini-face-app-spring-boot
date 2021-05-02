@@ -42,6 +42,6 @@ $(document).ready(function() {
 	$("#select-row-number").change(function(){
 		PostsPageObject.rowNumber = $("#select-row-number").val();
 		PostsPageObject.pageNumber = 1;
-		searchFunction(postSuccessFunction, 'ShowPosts', 1, PostsPageObject.rowNumber);
+		searchFunction(postSuccessFunction, 'posts/search', 1, PostsPageObject.rowNumber);
 	});
 });

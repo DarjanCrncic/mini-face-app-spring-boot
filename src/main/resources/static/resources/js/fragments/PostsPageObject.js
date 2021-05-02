@@ -14,7 +14,7 @@ const PostsPageObject = {
 			success: function(data) {
 				if (data.status == 'success') {
 					$('#ajaxShowVissiblePosts').html("");
-					for (var i = 0; i < data.data.length; i++) {
+					for (var i = 0; i < data.data.length-1; i++) {
 						if (data.userID == data.data[i].CREATOR_ID) {
 							$('#ajaxShowVissiblePosts').append(PostsPageObject.createPostHtml(data.data[i]));
 
@@ -135,7 +135,7 @@ const PostsPageObject = {
 		})
 	},
 
-	////////////////////// delete and edit post on click function
+	////////////////////// edit post on click function
 	addEditPostButtonListener: function(data) {
 
 		// configure modal for designated post
@@ -167,25 +167,20 @@ const PostsPageObject = {
 
 	///// listener for adding likes to posts
 	addLikePostListener: function(data, type) {
-		$('#likePost_' + data.ID).click(function() {
+		$('#likePost_' + data.id).click(function() {
 
 			let input = {
-				operation: "likePost",
-				postId: data.ID,
-				type: type
+				postId: data.id,
 			}
 
 			$.ajax({
 				type: "POST",
-				url: 'CRUDPost',
+				url: 'likes/post/new',
 				dataType: 'json',
-				data: input,
+				contentType: 'application/json',
+				data: JSON.stringify(input),
 				success: function(data) {
-					if (data.status == 'success') {
-						PostsPageObject.getLikes({ ID: input.postId }, "postLikes", "likeCounter");
-					} else {
-						alert(data.message);
-					}
+					PostsPageObject.getPostLikes(input.postId, "likeCounter");
 				},
 				error: function() {
 					alert("Something went wrong, try again later");
@@ -335,23 +330,13 @@ const PostsPageObject = {
 	},
 
 	//// ajax call to get likes
-	getLikes: function(data, type, counterID) {
-		let input = {
-			entityID: data.ID,
-			type: type
-		}
+	getPostLikes: function(id, counterID) {
 
 		$.ajax({
 			type: "GET",
-			url: 'CRUDPost',
-			dataType: 'json',
-			data: input,
+			url: 'likes/get/'+id,
 			success: function(data) {
-				if (data.status == 'success') {
-					$('#' + counterID + '_' + input.entityID).text(data.data.LIKES);
-				} else {
-					alert(data.message);
-				}
+					$('#' + counterID + '_' + id).text(data);
 			},
 			error: function() {
 				alert("Something went wrong, try again later");
@@ -415,14 +400,14 @@ const PostsPageObject = {
 	},
 
 	///////////// PAGINATION
-	paginationButtonsInit: function(length, more) {
+	paginationButtonsInit: function(length) {
 		if (PostsPageObject.pageNumber <= 1) {
 			$('#previousButton').click(false);
 			$('#previousButtonListItem').addClass("disabled");
 		} else {
 			$('#previousButtonListItem').removeClass("disabled");
 		}
-		if (length < PostsPageObject.rowNumber || !more) {
+		if (length <= PostsPageObject.rowNumber) {
 			$('#nextButton').click(false);
 			$('#nextButtonListItem').addClass("disabled");
 		} else {
@@ -434,12 +419,12 @@ const PostsPageObject = {
 	initPaginationButtons: function() {
 		$('#nextButton').click(function() {
 			PostsPageObject.pageNumber = PostsPageObject.pageNumber + 1;
-			searchFunction(postSuccessFunction, 'ShowPosts', PostsPageObject.pageNumber, PostsPageObject.rowNumber);
+			searchFunction(postSuccessFunction, 'posts/search', PostsPageObject.pageNumber, PostsPageObject.rowNumber);
 		});
 
 		$('#previousButton').click(function() {
 			PostsPageObject.pageNumber = PostsPageObject.pageNumber - 1;
-			searchFunction(postSuccessFunction, 'ShowPosts', PostsPageObject.pageNumber, PostsPageObject.rowNumber);
+			searchFunction(postSuccessFunction, 'posts/search', PostsPageObject.pageNumber, PostsPageObject.rowNumber);
 		});
 	}
 }

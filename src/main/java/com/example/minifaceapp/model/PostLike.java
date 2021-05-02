@@ -10,12 +10,17 @@ import lombok.Data;
 
 @Data
 @Entity
-public class PostType {
-
+public class PostLike {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "type")
-	private String type;
+	@Column(name = "post_id")
+	private Long postId;
+	
+	@Column(name = "liker_id")
+	private Long likerId;
+	
 }
+

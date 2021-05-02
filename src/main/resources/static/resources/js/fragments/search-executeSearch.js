@@ -58,7 +58,10 @@ function searchFunction(successFunction, backendURL, pageNumber, rowNumber){
 
 function postSuccessFunction(data) {
 	$('#ajaxShowVissiblePosts').html("");
-	for (var i = 0; i < data.length; i++) {
+	
+	const limit = (data.length >= PostsPageObject.rowNumber) ? PostsPageObject.rowNumber : data.length; 
+	
+	for (var i = 0; i < limit; i++) {
 		if (MainObject.user.id == data[i].creatorId) {
 
 			$('#ajaxShowVissiblePosts').append(PostsPageObject.createPostHtml(data[i]));
@@ -67,12 +70,12 @@ function postSuccessFunction(data) {
 		} else {
 			$('#ajaxShowVissiblePosts').append(PostsPageObject.createPostHtmlNotUser(data[i]));
 		}
-		//PostsPageObject.addLikePostListener(data[i], "post");
+		PostsPageObject.addLikePostListener(data[i]);
 		//PostsPageObject.addCommentListener(data[i]);
 		//PostsPageObject.viewCommentListener(data[i]);
 		//PostsPageObject.getComments(data[i]);
 	}
-	PostsPageObject.paginationButtonsInit(data.length, data.more);
+	PostsPageObject.paginationButtonsInit(data.length);
 }
 
 function friendSuccessFunction(data) {
