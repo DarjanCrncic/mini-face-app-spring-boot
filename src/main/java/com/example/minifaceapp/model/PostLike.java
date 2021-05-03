@@ -1,10 +1,15 @@
 package com.example.minifaceapp.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Data;
 
@@ -22,5 +27,12 @@ public class PostLike {
 	@Column(name = "liker_id")
 	private Long likerId;
 	
+	@Column(name = "creation_time")
+	@CreationTimestamp
+	private LocalDateTime creationTime;
+	
+	@Column(name = "update_time")
+	@UpdateTimestamp
+	private LocalDateTime updateTime;
 }
 

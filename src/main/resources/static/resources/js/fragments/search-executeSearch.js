@@ -71,9 +71,9 @@ function postSuccessFunction(data) {
 			$('#ajaxShowVissiblePosts').append(PostsPageObject.createPostHtmlNotUser(data[i]));
 		}
 		PostsPageObject.addLikePostListener(data[i]);
-		//PostsPageObject.addCommentListener(data[i]);
-		//PostsPageObject.viewCommentListener(data[i]);
-		//PostsPageObject.getComments(data[i]);
+		PostsPageObject.addCommentListener(data[i]);
+		PostsPageObject.viewCommentListener(data[i]);
+		PostsPageObject.getComments(data[i]);
 	}
 	PostsPageObject.paginationButtonsInit(data.length);
 }

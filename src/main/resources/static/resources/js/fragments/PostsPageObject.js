@@ -14,7 +14,7 @@ const PostsPageObject = {
 			success: function(data) {
 				if (data.status == 'success') {
 					$('#ajaxShowVissiblePosts').html("");
-					for (var i = 0; i < data.data.length-1; i++) {
+					for (var i = 0; i < data.data.length - 1; i++) {
 						if (data.userID == data.data[i].CREATOR_ID) {
 							$('#ajaxShowVissiblePosts').append(PostsPageObject.createPostHtml(data.data[i]));
 
@@ -50,7 +50,7 @@ const PostsPageObject = {
 				title: $("#newPostTitleInput").val(),
 				body: $("#newPostBodyInput").val(),
 			}
-			if(input.title == "" || input.body == ""){
+			if (input.title == "" || input.body == "") {
 				alert("Post title and body cannot be empty.")
 				return;
 			}
@@ -87,18 +87,18 @@ const PostsPageObject = {
 				body: $("#editModalPostBody").val(),
 				id: $("#editPostModalForm").val(),
 			}
-			if(input.title == "" || input.body == ""){
+			if (input.title == "" || input.body == "") {
 				alert("Post title and body cannot be empty.")
 				return;
 			}
-			
+
 
 			$("#editPostModal").modal('hide');
 
 
 			$.ajax({
 				type: "PATCH",
-				url: 'posts/edit/'+input.id,
+				url: 'posts/edit/' + input.id,
 				dataType: 'json',
 				contentType: 'application/json',
 				data: JSON.stringify(input),
@@ -147,13 +147,13 @@ const PostsPageObject = {
 
 		});
 	},
-	
+
 	addDeletePostButtonListener: function(data, type) {
 		$('#deletePost_' + data.id).click(function() {
 
 			$.ajax({
 				type: "DELETE",
-				url: 'posts/delete/'+data.id,
+				url: 'posts/delete/' + data.id,
 				success: function(data) {
 					searchFunction(postSuccessFunction, 'posts/search', 1, PostsPageObject.rowNumber);
 					//PostsPageObject.showAllVissiblePosts("group", input.groupID);					
@@ -220,28 +220,26 @@ const PostsPageObject = {
 
 	/// listener for adding comments
 	addCommentListener: function(data) {
-		$('#submitComment_' + data.ID).click(function() {
+		$('#submitComment_' + data.id).click(function() {
 
 			let input = {
-				operation: "comment",
-				postId: data.ID,
-				comment: $('#postComment_' + data.ID).val()
+				postId: data.id,
+				body: $('#postComment_' + data.id).val()
 			}
+
+			if (input.body == "") return;
 
 			$.ajax({
 				type: "POST",
-				url: 'CRUDPost',
+				url: 'comments/post/new',
 				dataType: 'json',
-				data: input,
+				contentType: "application/json",
+				data: JSON.stringify(input),
 				success: function(data) {
-					if (data.status == 'success') {
-						$('#postComment_' + input.postId).val('');
-						PostsPageObject.getComments({ ID: input.postId });
-						if ($('#commentsSection_' + input.postId).is(":hidden")) {
-							$('#commentsSection_' + input.postId).show();
-						}
-					} else {
-						alert(data.message);
+					$('#postComment_' + input.postId).val('');
+					PostsPageObject.getComments({ id: input.postId });
+					if ($('#commentsSection_' + input.postId).is(":hidden")) {
+						$('#commentsSection_' + input.postId).show();
 					}
 				},
 				error: function() {
@@ -263,7 +261,7 @@ const PostsPageObject = {
 
 			$.ajax({
 				type: "POST",
-				url: 'CRUDPost',
+				url: 'comments/post/delete',
 				dataType: 'json',
 				data: input,
 				success: function(data) {
@@ -283,11 +281,11 @@ const PostsPageObject = {
 
 	///// listener for viewing comments
 	viewCommentListener: function(data) {
-		$('#viewComments_' + data.ID).click(function() {
-			if ($('#commentsSection_' + data.ID).is(":hidden")) {
-				$('#commentsSection_' + data.ID).show();
+		$('#viewComments_' + data.id).click(function() {
+			if ($('#commentsSection_' + data.id).is(":hidden")) {
+				$('#commentsSection_' + data.id).show();
 			} else {
-				$('#commentsSection_' + data.ID).hide();
+				$('#commentsSection_' + data.id).hide();
 			}
 
 		});
@@ -295,32 +293,29 @@ const PostsPageObject = {
 
 	// ajax call for comments
 	getComments: function(data) {
+		var posterId = data.creatorId;
+		
 		let input = {
-			postId: data.ID,
-			type: "comments"
+			postId: data.id,
 		}
 		$.ajax({
 			type: "GET",
-			url: 'CRUDPost',
+			url: 'comments/post/get/' + data.id,
 			dataType: 'json',
-			data: input,
+			contentType: "application/json",
 			success: function(data) {
-				if (data.status == 'success') {
-					$('#commentsSection_' + input.postId).empty();
-					if (data.data.length == 0) {
-						$('#commentCounter_' + input.postId).text('(0)');
-					} else {
-						$('#commentCounter_' + input.postId).text('(' + data.data.length + ')');
-					}
-					for (var i = 0; i < data.data.length; i++) {
-						$('#commentsSection_' + data.data[i].POST_ID).append(PostsPageObject.createCommentHtml(data.data[i], data.userID));
-						PostsPageObject.addLikeCommentListener(data.data[i], "comment");
-						PostsPageObject.getLikes(data.data[i], "commentLikes", "likeCounterComments");
-						PostsPageObject.deleteCommentListener(data.data[i]);
-					}
 
+				$('#commentsSection_' + input.postId).empty();
+				if (data.length == 0) {
+					$('#commentCounter_' + input.postId).text('(0)');
 				} else {
-					alert(data.message);
+					$('#commentCounter_' + input.postId).text('(' + data.length + ')');
+				}
+				for (var i = 0; i < data.length; i++) {
+					$('#commentsSection_' + data[i].postId).append(PostsPageObject.createCommentHtml(data[i], posterId));
+					//PostsPageObject.addLikeCommentListener(data.data[i], "comment");
+					//PostsPageObject.getLikes(data.data[i], "commentLikes", "likeCounterComments");
+					//PostsPageObject.deleteCommentListener(data.data[i]);
 				}
 			},
 			error: function() {
@@ -334,9 +329,9 @@ const PostsPageObject = {
 
 		$.ajax({
 			type: "GET",
-			url: 'likes/get/'+id,
+			url: 'likes/get/' + id,
 			success: function(data) {
-					$('#' + counterID + '_' + id).text(data);
+				$('#' + counterID + '_' + id).text(data);
 			},
 			error: function() {
 				alert("Something went wrong, try again later");
@@ -384,15 +379,16 @@ const PostsPageObject = {
 		</div></div ></div ></div > ');
 	},
 
-	createCommentHtml: function(data, userID) {
-		return ('<hr style="margin:0; padding:0;"><h5 class="commentPoster" style="display:inline;">' + data.NAME + '</h5>\
-		<div style="display:inline; float:right;"><i class="fas fa-thumbs-up" style="color: #007bff; display:inline;" ></i><p id="likeCounterComments_'+ data.ID + '" style="display: inline; margin-left: 5px"></p>\
-		<button class="far fa-thumbs-up like-button" id="likeComment_'+ data.ID + '"></button>' + deleteOrNot(data, userID)
-			+ '</div><h5 class="commentText" >' + data.POST_COMMENT + '</h5>');
+	createCommentHtml: function(data, posterId) {
+		return ('<hr style="margin:0; padding:0;"><h5 class="commentPoster" style="display:inline;">' + data.faceUserDTO.name +" "+ data.faceUserDTO.surname + '</h5>\
+		<div style="display:inline; float:right;"><i class="fas fa-thumbs-up" style="color: #007bff; display:inline;" ></i><p id="likeCounterComments_'+ data.id + '" style="display: inline; margin-left: 5px"></p>\
+		<button class="far fa-thumbs-up like-button" id="likeComment_'+ data.id + '"></button>' + deleteOrNot(data, posterId)
+			+ '</div><h5 class="commentText" >' + data.body + '</h5>');
 
-		function deleteOrNot(data, userID) {
-			if (data.COMMENT_CREATOR_ID == userID || data.POST_CREATOR_ID == userID) {
-				return '<button class="far fa-trash-alt delete-button" style="padding:0;" id="deleteComment_' + data.ID + '"></button>';
+		function deleteOrNot(data, posterId) {
+			console.log(posterId)
+			if (data.faceUserDTO.id == posterId || data.faceUserDTO.id == MainObject.user.id) {
+				return '<button class="far fa-trash-alt delete-button" style="padding:0;" id="deleteComment_' + data.id + '"></button>';
 			} else {
 				return '';
 			}
