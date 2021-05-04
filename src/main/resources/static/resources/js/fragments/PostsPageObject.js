@@ -190,26 +190,21 @@ const PostsPageObject = {
 	},
 
 	///// listener for adding likes to comments
-	addLikeCommentListener: function(data, type) {
-		$('#likeComment_' + data.ID).click(function() {
+	addLikeCommentListener: function(data) {
+		$('#likeComment_' + data.id).click(function() {
 
 			let input = {
-				operation: "likeComment",
-				commentID: data.ID,
-				type: type
+				commentId: data.id,
 			}
 
 			$.ajax({
 				type: "POST",
-				url: 'CRUDPost',
+				url: 'likes/comment/new',
 				dataType: 'json',
-				data: input,
+				contentType: "application/json",
+				data: JSON.stringify(input),
 				success: function(data) {
-					if (data.status == 'success') {
-						PostsPageObject.getLikes({ ID: input.commentID }, "commentLikes", "likeCounterComments");
-					} else {
-						alert(data.message);
-					}
+					PostsPageObject.getCommentLikes(input.commentId, "likeCounterComments");
 				},
 				error: function() {
 					alert("Something went wrong, try again later");
@@ -300,8 +295,8 @@ const PostsPageObject = {
 				}
 				for (var i = 0; i < data.length; i++) {
 					$('#commentsSection_' + data[i].postId).append(PostsPageObject.createCommentHtml(data[i]));
-					//PostsPageObject.addLikeCommentListener(data.data[i], "comment");
-					//PostsPageObject.getLikes(data.data[i], "commentLikes", "likeCounterComments");
+					PostsPageObject.addLikeCommentListener(data[i]);
+					$('#likeCounterComments_' + data[i].id).text(data[i].likes.length);
 					PostsPageObject.deleteCommentListener(data[i]);
 				}
 			},
@@ -313,7 +308,6 @@ const PostsPageObject = {
 
 	//// ajax call to get likes
 	getPostLikes: function(id, counterID) {
-
 		$.ajax({
 			type: "GET",
 			url: 'likes/get/' + id,
@@ -324,7 +318,20 @@ const PostsPageObject = {
 				alert("Something went wrong, try again later");
 			}
 		});
-
+	},
+	
+	getCommentLikes: function(id, counterID) {
+		$.ajax({
+			type: "GET",
+			url: 'likes/comment/get/' + id,
+			success: function(data) {
+				console.log(data + " " +counterID)
+				$('#' + counterID + '_' + id).text(data);
+			},
+			error: function() {
+				alert("Something went wrong, try again later");
+			}
+		});
 	},
 
 	//////////////////// create html element for post item, created by current user
