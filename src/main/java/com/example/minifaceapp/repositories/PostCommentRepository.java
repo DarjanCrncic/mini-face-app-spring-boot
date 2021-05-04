@@ -8,6 +8,6 @@ import com.example.minifaceapp.model.PostComment;
 
 public interface PostCommentRepository extends JpaRepository<PostComment, Long> {
 
-	ArrayList<PostComment> getAllByPostId(Long id);
+	ArrayList<PostComment> getAllByPostIdOrderByCreationTime(Long id);
 
 }

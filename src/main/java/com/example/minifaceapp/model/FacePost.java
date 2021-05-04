@@ -3,6 +3,7 @@ package com.example.minifaceapp.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,11 +52,11 @@ public class FacePost {
 	@JoinColumn(name="creator_id")
 	private FaceUser creator;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "post_id")
 	private List<PostLike> likes;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "post_id")
 	private List<PostComment> postComments;
 	

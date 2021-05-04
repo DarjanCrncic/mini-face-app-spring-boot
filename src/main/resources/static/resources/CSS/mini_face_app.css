@@ -170,6 +170,11 @@
 	font-size: 1rem;
 }
 
+.commentTime {
+	font-size: 0.8rem;
+	color: gray;
+}
+
 .viewCommentsButton {
 	margin-bottom: 0.25rem;
 	color: gray;

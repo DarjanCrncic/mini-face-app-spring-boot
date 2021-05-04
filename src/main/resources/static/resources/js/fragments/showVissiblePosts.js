@@ -1,3 +1,5 @@
+var postIdToCreator = new Map();
+
 $(document).ready(function() {
 	
 	////// search configuration, configuring dropdowns on page load plus cofiguring filters and search success function
@@ -31,7 +33,6 @@ $(document).ready(function() {
 	PostsPageObject.pageNumber = 1;
 	
 	PostsPageObject.initPaginationButtons();
-	
 	
 	///// row number selector configuration
 	$("#select-row-number").select2({

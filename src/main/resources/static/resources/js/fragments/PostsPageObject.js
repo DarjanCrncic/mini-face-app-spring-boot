@@ -251,26 +251,14 @@ const PostsPageObject = {
 
 	///// delete comments listener
 	deleteCommentListener: function(data) {
-		$('#deleteComment_' + data.ID).click(function() {
-
-			let input = {
-				operation: "deleteComment",
-				commentID: data.ID,
-				postId: data.POST_ID
-			}
+		$('#deleteComment_' + data.id).click(function() {
 
 			$.ajax({
-				type: "POST",
-				url: 'comments/post/delete',
-				dataType: 'json',
-				data: input,
-				success: function(data) {
-					if (data.status == 'success') {
-						$('#postComment_' + input.postId).val('');
-						PostsPageObject.getComments({ ID: input.postId });
-					} else {
-						alert(data.message);
-					}
+				type: "DELETE",
+				url: 'comments/post/delete/'+data.id,
+				success: function() {
+					$('#postComment_' + data.postId).val('');
+					PostsPageObject.getComments({id: data.postId});
 				},
 				error: function() {
 					alert("Something went wrong, try again later");
@@ -293,7 +281,6 @@ const PostsPageObject = {
 
 	// ajax call for comments
 	getComments: function(data) {
-		var posterId = data.creatorId;
 		
 		let input = {
 			postId: data.id,
@@ -312,10 +299,10 @@ const PostsPageObject = {
 					$('#commentCounter_' + input.postId).text('(' + data.length + ')');
 				}
 				for (var i = 0; i < data.length; i++) {
-					$('#commentsSection_' + data[i].postId).append(PostsPageObject.createCommentHtml(data[i], posterId));
+					$('#commentsSection_' + data[i].postId).append(PostsPageObject.createCommentHtml(data[i]));
 					//PostsPageObject.addLikeCommentListener(data.data[i], "comment");
 					//PostsPageObject.getLikes(data.data[i], "commentLikes", "likeCounterComments");
-					//PostsPageObject.deleteCommentListener(data.data[i]);
+					PostsPageObject.deleteCommentListener(data[i]);
 				}
 			},
 			error: function() {
@@ -342,7 +329,6 @@ const PostsPageObject = {
 
 	//////////////////// create html element for post item, created by current user
 	createPostHtml: function(data) {
-		console.log(data)
 		return ('<div id="postDiv_' + data.id + '"><div class="card"><div class="card-header post-card-header"><div class="posterName">' + data.creatorName + '</div><div class="datetime">' + data.creationTime + '</div></div>\
 		<div class="card-body">\
 		<h5 class="card-title"  id="title_' + data.id + '">' + data.title + '</h5>\
@@ -379,15 +365,15 @@ const PostsPageObject = {
 		</div></div ></div ></div > ');
 	},
 
-	createCommentHtml: function(data, posterId) {
-		return ('<hr style="margin:0; padding:0;"><h5 class="commentPoster" style="display:inline;">' + data.faceUserDTO.name +" "+ data.faceUserDTO.surname + '</h5>\
-		<div style="display:inline; float:right;"><i class="fas fa-thumbs-up" style="color: #007bff; display:inline;" ></i><p id="likeCounterComments_'+ data.id + '" style="display: inline; margin-left: 5px"></p>\
-		<button class="far fa-thumbs-up like-button" id="likeComment_'+ data.id + '"></button>' + deleteOrNot(data, posterId)
+	createCommentHtml: function(data) {
+		return ('<hr style="margin:0; padding:0;"><h5 class="commentPoster" style="display:inline;">' + data.faceUserDTO.name +" "+ data.faceUserDTO.surname + ' </h5></div><h3 class="commentTime" style="display: inline-block" >' + formatTimestamp(data.creationTime) + '</h3>\
+		<div style="display:inline; float:right; margin-top: 5%; padding-left: 3%;"><i class="fas fa-thumbs-up" style="color: #007bff; display:inline; " ></i><p id="likeCounterComments_'+ data.id + '" style="display: inline; margin-left: 5px"></p>\
+		<button class="far fa-thumbs-up like-button" id="likeComment_'+ data.id + '"></button>' + deleteOrNot(data)
 			+ '</div><h5 class="commentText" >' + data.body + '</h5>');
 
-		function deleteOrNot(data, posterId) {
-			console.log(posterId)
-			if (data.faceUserDTO.id == posterId || data.faceUserDTO.id == MainObject.user.id) {
+		function deleteOrNot(data) {
+			var posterId = postIdToCreator.get(data.postId);
+			if (MainObject.user.id == posterId || data.faceUserDTO.id == MainObject.user.id) {
 				return '<button class="far fa-trash-alt delete-button" style="padding:0;" id="deleteComment_' + data.id + '"></button>';
 			} else {
 				return '';
@@ -424,3 +410,14 @@ const PostsPageObject = {
 		});
 	}
 }
+
+function formatTimestamp(time){
+	var date = new Date(time);
+	
+	return date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear()+" " 
+	+ date.getHours()+ ":" 
+	+ (date.getMinutes()<10?'0':'') + date.getMinutes()+":" 
+	+ (date.getSeconds()<10?'0':'') + date.getSeconds();
+}
+
+

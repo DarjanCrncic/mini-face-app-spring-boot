@@ -70,10 +70,13 @@ function postSuccessFunction(data) {
 		} else {
 			$('#ajaxShowVissiblePosts').append(PostsPageObject.createPostHtmlNotUser(data[i]));
 		}
+		postIdToCreator.set(data[i].id, data[i].creatorId);
+		
 		PostsPageObject.addLikePostListener(data[i]);
 		PostsPageObject.addCommentListener(data[i]);
 		PostsPageObject.viewCommentListener(data[i]);
 		PostsPageObject.getComments(data[i]);
+				
 	}
 	PostsPageObject.paginationButtonsInit(data.length);
 }
