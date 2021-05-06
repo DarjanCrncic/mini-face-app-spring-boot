@@ -7,14 +7,15 @@ import org.mapstruct.factory.Mappers;
 import com.example.minifaceapp.api.v1.dtos.FacePostDTO;
 import com.example.minifaceapp.model.FacePost;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = FaceUserDTOMapper.class)
 public interface FacePostDTOMapper {
 	
 	FacePostDTOMapper INSTANCE = Mappers.getMapper(FacePostDTOMapper.class);
 	
+	@Mapping(target = "creator", source = "creator")
 	FacePostDTO facePostToFacePostDTOMapper(FacePost facePost);
 	
-	@Mapping(target = "creationTime", ignore = true)
 	@Mapping(target = "updateTime", ignore = true)
+	@Mapping(target = "creator", source = "creator")
 	FacePost facePostDTOToFacePostMapper(FacePostDTO facePostDTO);
 }

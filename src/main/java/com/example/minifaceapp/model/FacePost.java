@@ -2,6 +2,7 @@ package com.example.minifaceapp.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -49,15 +50,15 @@ public class FacePost {
 	private LocalDateTime updateTime;
 	
 	@ManyToOne
-	@JoinColumn(name="creator_id")
+	@JoinColumn(name = "creator_id")
 	private FaceUser creator;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "post_id")
-	private List<PostLike> likes;
+	private Set<PostLike> likes;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "post_id")
-	private List<PostComment> postComments;
+	private List<PostComment> comments;
 	
 }
