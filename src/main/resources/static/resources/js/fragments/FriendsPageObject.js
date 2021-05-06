@@ -4,13 +4,13 @@ const FriendsPageObject = {
 	/////////////////// add friend request listener
 	addFriendRequestListener: function(data, buttonID, url) {
 		$('#' + buttonID + '_' + data.id).on('click', function() {
-			
+
 			let input = {};
 			if (buttonID == "sendRequest") {
 				input = {
 					faceFriendId: data.id
 				}
-			}else{
+			} else {
 				input = {
 					faceUserId: data.id
 				}
@@ -77,15 +77,44 @@ const FriendsPageObject = {
 			dataType: 'json',
 			contentType: "application/json",
 			success: function(data) {
-				$('#friendsTable').append('<tr class="mainFriendsTableRow"> <th style="width: 20%">Name</th> <th style="width: 20%">Last Name</th > <th style="width: 20%">Username</th> </tr>');
+				$('#friendsTable').append('<tr class="mainFriendsTableRow"> <th style="width: 20%">Name</th> <th style="width: 20%">Last Name</th>\
+				 <th style="width: 20%">Username</th><th style="width: 8%;"></th></tr>');
+
 				for (var i = 0; i < data.length; i++) {
-					var row = $('<tr><td>' + data[i].name + '</td><td>' + data[i].surname + '</td><td>' + data[i].username + '</td></tr>');
+					var row = $('<tr><td>' + data[i].name + '</td><td>' + data[i].surname + '</td><td>' + data[i].username + '</td><td>\
+					<button class="btn btn-outline-secondary" id="viewProfile_'+ data[i].id + '">View Profile</button></td></tr>');
+
 					$('#friendsTable').append(row);
+					FriendsPageObject.viewProfileListener(data[i].id);
 				}
 			},
 			error: function() {
 				//alert('Something went wrong, try again later');
 			}
 		});
+	},
+
+	viewProfileListener: function(id) {
+		$('#viewProfile_' + id).click(function() {
+			MainObject.loadSecondary("resources/html/fragments/friendPage.html", false, MainObject.hidePrimary);
+			$.ajax({
+				url: 'profile/friend/' + id,
+				dataType: 'json',
+				success: function(data) {
+					$('#profilePageTitle').text(data.name + '\'s Profile:')					
+					$("#profilePictureOnProfile").attr("src", "data:image/jpg;base64," + data.image);
+					$('#profileName').text(data.name);
+					$('#profileSurname').text(data.surname);
+					$('#profileFullName').text(data.name + " " + data.surname);
+					$('#profileAge').text((data.age != 0) ? data.age : "");
+					$('#profileCity').text(data.city);
+					$('#profileCountry').text(data.country);
+					$('#profileGender').text(data.gender);
+				},
+				error: function() {
+					alert(data.message);
+				}
+			});
+		})
 	}
 }

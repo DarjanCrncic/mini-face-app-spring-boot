@@ -134,7 +134,7 @@
 	background-color: #f8f9fa;
 }
 
-.delete-button, .edit-button, .like-button, .create-button {
+.delete-button, .edit-button, .like-button, .create-button, .view-button {
 	background-color: transparent;
 	border: none;
 	vertical-align: 0;

@@ -148,6 +148,7 @@ const PostsPageObject = {
 		});
 	},
 
+	///////////////////// delete post listener
 	addDeletePostButtonListener: function(data, type) {
 		$('#deletePost_' + data.id).click(function() {
 

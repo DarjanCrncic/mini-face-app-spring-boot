@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,12 @@ public class UserController {
 	public FaceUserDTO updateUserInfo(@RequestBody FaceUserDTO faceUserDTO, @AuthenticationPrincipal CustomUserDetails userDetails) {
 		faceUserDTO.setId(userDetails.getId());		
 		return faceUserService.save(faceUserDTO);
+	}
+	
+	@GetMapping("/friend/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public FaceUserDTO getFriendUserInfo(@PathVariable Long id) {
+		return faceUserService.findById(id);	
 	}
 	
 }
