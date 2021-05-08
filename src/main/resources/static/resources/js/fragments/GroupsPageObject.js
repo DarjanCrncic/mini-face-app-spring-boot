@@ -3,21 +3,17 @@ const GroupsPageObject = {
 	///// show all groups in table
 	displayGroupsTable: function() {
 		$.ajax({
-			url: 'ShowGroups',
+			url: 'groups/get',
+			contentType: 'application/json',
 			dataType: 'json',
-			data: { option: "groups" },
 			success: function(data) {
-				if (data.status == 'success') {
-					$('#groupsTable').html("");
-					$('#groupsTable').append('<tr class="mainFriendsTableRow"> <th style="width: 20%">Name</th> <th style="width: 50%">Description</th > <th style="width: 20%">Owner</th><th style="width: 10%"></th></tr>');
-					for (var i = 0; i < data.data.length; i++) {
-						var row = $('<tr class="groups-table-row"><td>' + data.data[i].NAME + '</td><td>' + data.data[i].DESCRIPTION + '</td><td>' + data.data[i].OWNER + '</td>\
-						<td style="padding: 0.3rem;"><button id="view_' + data.data[i].ID + '" class="btn btn-outline-secondary view-button">View</button></td></tr>');
-						$('#groupsTable').append(row);
-						GroupsPageObject.openGroupOnClick(data.data[i], data.userID);
-					}
-				} else {
-					//alert(data.message);
+				$('#groupsTable').html("");
+				$('#groupsTable').append('<tr class="mainFriendsTableRow"> <th style="width: 20%">Name</th> <th style="width: 50%">Description</th > <th style="width: 20%">Owner</th><th style="width: 10%"></th></tr>');
+				for (var i = 0; i < data.length; i++) {
+					var row = $('<tr class="groups-table-row"><td>' + data[i].name + '</td><td>' + data[i].description + '</td><td>' + data[i].owner.name + " " + data[i].owner.surname + '</td>\
+						<td style="padding: 0.3rem;"><button id="view_' + data[i].id + '" class="btn btn-outline-secondary view-button">View</button></td></tr>');
+					$('#groupsTable').append(row);
+					//GroupsPageObject.openGroupOnClick(data.data[i], data.userID);
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
@@ -36,7 +32,7 @@ const GroupsPageObject = {
 				if (userID == data.OWNER_ID) {
 					$('#viewGroupRightColumn').append('<button class="btn btn-primary addMembersClass" id="addMembers_' + data.ID + '">Add Members</button>');
 					$('#viewGroupRightColumn').append('<button class="btn btn-primary editGroupInfo" id="editGroupInfoButton">Edit Group</button>');
-					GroupsPageObject.newOrEditGroupListener("confirmGroupEditButton",'edit', data.ID);
+					GroupsPageObject.newOrEditGroupListener("confirmGroupEditButton", 'edit', data.ID);
 					GroupsPageObject.initiateBootTable(data);
 				}
 
@@ -113,7 +109,7 @@ const GroupsPageObject = {
 
 	///////////////////// new or edit group button on click action
 	newOrEditGroupListener: function(buttonID, operation, groupID) {
-		$('#'+buttonID).on("click", function(e) {
+		$('#' + buttonID).on("click", function(e) {
 			e.preventDefault();
 			let name = $('#newGroupName').val();
 			let description = $('#newGroupDescription').val();
@@ -122,10 +118,9 @@ const GroupsPageObject = {
 				alert("Invalid data for creating group");
 			} else {
 				let input = {
-					operation: operation,
 					name: name,
 					description: description,
-					groupID: groupID
+					id: groupID
 				}
 
 				$.ajax({
@@ -134,20 +129,48 @@ const GroupsPageObject = {
 					dataType: 'json',
 					data: input,
 					success: function(data) {
-						if (data.status == 'success') {
-							if(operation == "create"){
-								$('#newGroupModal').modal('hide');
-								GroupsPageObject.displayGroupsTable();
-							}
-							if(operation == "edit"){
-								$('#editGroupModal').modal('hide');
-								$('#groupName').text(input.name);
-								$('#groupDescription').text(input.description);
-							}
-							
-						} else {
-							alert(data.message);
+						if (operation == "create") {
+							$('#newGroupModal').modal('hide');
+							GroupsPageObject.displayGroupsTable();
 						}
+						if (operation == "edit") {
+							$('#editGroupModal').modal('hide');
+							$('#groupName').text(input.name);
+							$('#groupDescription').text(input.description);
+						}
+					},
+					error: function(data) {
+						alert("Something went wrong, try again later");
+					}
+				})
+			}
+		});
+	},
+
+	///////////////////// new or edit group button on click action
+	newGroupListener: function(buttonID, operation, groupID) {
+		$('#confirmGroupCreateButton').on("click", function(e) {
+			e.preventDefault();
+			let name = $('#newGroupName').val();
+			let description = $('#newGroupDescription').val();
+
+			if (description == "" || name == "") {
+				alert("Invalid data for creating group");
+			} else {
+				let input = {
+					name: name,
+					description: description,
+				}
+
+				$.ajax({
+					type: "POST",
+					url: 'groups/new',
+					contentType: 'application/json',
+					dataType: 'json',
+					data: JSON.stringify(input),
+					success: function(data) {
+						$('#newGroupModal').modal('hide');
+						GroupsPageObject.displayGroupsTable();
 					},
 					error: function(data) {
 						alert("Something went wrong, try again later");

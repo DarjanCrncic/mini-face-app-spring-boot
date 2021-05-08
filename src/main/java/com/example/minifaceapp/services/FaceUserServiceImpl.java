@@ -123,4 +123,6 @@ public class FaceUserServiceImpl implements FaceUserService {
 	public void deleteById(Long id) {
 		// uniplemented
 	}
+
+	
 }

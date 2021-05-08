@@ -16,7 +16,7 @@
 		<div class="card">
 			<div class="card-header">Register</div>
 			<div class="card-body">
-				<form method="post" action="register" modelAttribute="faceUser">
+				<form method="post" action="register">
 					<div class="form-group">
 						<input type="text" class="form-control" name="name" placeholder="First Name" value="${faceUser.name}">
 					</div>

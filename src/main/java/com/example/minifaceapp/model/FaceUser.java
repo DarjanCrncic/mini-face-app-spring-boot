@@ -98,5 +98,14 @@ public class FaceUser {
 	 uniqueConstraints=@UniqueConstraint(columnNames = {"friend_user_id", "face_user_id"})
 	)
 	private List<FaceUser> friendOf;
+	
+	@ManyToMany
+	@JoinTable(name = "face_group_members",
+	joinColumns = @JoinColumn(name = "user_id"),
+	inverseJoinColumns = @JoinColumn(name = "group_id"),
+	uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "group_id"})
+	)
+	private List<FaceGroup> groups;
+	
 		
 }
