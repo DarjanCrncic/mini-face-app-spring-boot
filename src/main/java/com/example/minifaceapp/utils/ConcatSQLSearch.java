@@ -64,7 +64,9 @@ public class ConcatSQLSearch {
 		str.append(filter + " (");
 		for (int i = 0; i < filters.size(); i++) {
 			if(filters.get(i).toString().contains("+")) {
-				filters.add(i, "(" + filters.get(i).toString().replaceAll("\\+", " || ' ' || ") + ")");
+				String newFilter = "(" + filters.get(i).toString().replaceAll("\\+", " || ' ' || ") + ")";
+				filters.remove(i);
+				filters.add(i, newFilter);
 			}
 			if (filters.get(i).toString().equals("all")) {
 				str.append("(");

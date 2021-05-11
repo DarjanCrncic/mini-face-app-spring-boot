@@ -15,19 +15,19 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Data;
 
-@Data
 @Entity
-public class FaceFriendReq {
-	
+@Data
+public class FaceGroupReq {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(name = "face_user_id")
-	private Long faceUserId;
+	@Column(name = "user_id")
+	private Long userId;
 	
-	@Column(name = "face_friend_id")
-	private Long faceFriendId;
+	@Column(name = "group_id")
+	private Long groupId;
 	
 	@OneToOne
 	@JoinColumn(name = "status", referencedColumnName = "id")

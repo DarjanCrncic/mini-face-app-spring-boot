@@ -1,17 +1,24 @@
 package com.example.minifaceapp.services;
 
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.example.minifaceapp.api.v1.dtos.FaceGroupDTO;
+import com.example.minifaceapp.api.v1.dtos.FaceGroupSearchDTO;
+import com.example.minifaceapp.api.v1.dtos.FaceUserDTO;
+import com.example.minifaceapp.api.v1.dtos.SearchDTO;
 import com.example.minifaceapp.api.v1.mappers.FaceGroupDTOMapper;
+import com.example.minifaceapp.api.v1.mappers.FaceGroupDTORowMapper;
 import com.example.minifaceapp.api.v1.mappers.FaceUserDTOMapper;
 import com.example.minifaceapp.model.FaceGroup;
 import com.example.minifaceapp.model.FaceUser;
 import com.example.minifaceapp.repositories.FaceGroupRepository;
 import com.example.minifaceapp.repositories.FaceUserRepository;
+import com.example.minifaceapp.utils.ConcatSQLSearch;
 
 @Service
 public class FaceGroupServiceImpl implements FaceGroupService{
@@ -19,14 +26,16 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 	FaceGroupRepository faceGroupRepository;
 	FaceGroupDTOMapper faceGroupDTOMapper;
 	FaceUserRepository faceUserRepository;
-	private FaceUserDTOMapper faceUserDTOMapper;
+	FaceUserDTOMapper faceUserDTOMapper;
+	JdbcTemplate jdbcTemplate;
 
 	public FaceGroupServiceImpl(FaceGroupRepository faceGroupRepository, FaceGroupDTOMapper faceGroupDTOMapper,
-			FaceUserRepository faceUserRepository, FaceUserDTOMapper faceUserDTOMapper) {
+			FaceUserRepository faceUserRepository, FaceUserDTOMapper faceUserDTOMapper, JdbcTemplate jdbcTemplate) {
 		this.faceGroupRepository = faceGroupRepository;
 		this.faceGroupDTOMapper = faceGroupDTOMapper;
 		this.faceUserRepository = faceUserRepository;
 		this.faceUserDTOMapper = faceUserDTOMapper;
+		this.jdbcTemplate = jdbcTemplate;
 	}
 
 	@Override
@@ -72,4 +81,33 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 		return faceGroupDTO;
 	}
 
+	@Override
+	public List<FaceGroupSearchDTO> searchGroups(SearchDTO searchDTO, Long faceUserId) {
+		String[] caseAll = { "FG.NAME", "(FU.NAME || ' ' || FU.SURNAME)" };
+		String placeholder = "";
+		if (!searchDTO.getSearchWords().get(0).isBlank()) {
+			placeholder = ConcatSQLSearch.createSQLQueryAddition("and", searchDTO, caseAll);
+		}
+		String id = Long.toString(faceUserId);
+		System.out.println(placeholder);
+		
+		String query = "SELECT fg.id, fg.name, fg.description, fu.name as owner_name, fu.surname as owner_surname, fg.owner_id from face_group fg join " +
+				" face_user fu on fu.id = fg.owner_id join" +
+				" face_group_members fgm on fgm.user_id = ? and fgm.group_id = fg.id " + placeholder + " order by fg.name";
+		return jdbcTemplate.query(query, new Object[] { id }, new int[] { Types.INTEGER },
+				new FaceGroupDTORowMapper());
+	}
+	
+	@Override
+	public List<FaceUserDTO> findFriendsNotMembers(Long userId, Long groupId){
+		List<FaceUser> notMembers = new ArrayList<>();
+		notMembers = faceUserRepository.findById(userId).orElse(null).getFriends();
+		List<FaceUser> members = faceGroupRepository.findById(groupId).orElse(null).getMembers();
+		
+		for(FaceUser member: members) {
+			notMembers.remove(member);
+		}
+		return faceUserDTOMapper.faceUserListToFaceUserDTOList(notMembers);
+	}
+	
 }

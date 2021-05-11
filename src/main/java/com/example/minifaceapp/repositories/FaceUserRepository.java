@@ -13,5 +13,5 @@ public interface FaceUserRepository extends JpaRepository<FaceUser, Long> {
 	FaceUser findByEmail(String email);
 
 	List<FaceUser> findByIdIn(List<Long> ids);
-
+	
 }

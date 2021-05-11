@@ -13,7 +13,7 @@ const GroupsPageObject = {
 					var row = $('<tr class="groups-table-row"><td>' + data[i].name + '</td><td>' + data[i].description + '</td><td>' + data[i].owner.name + " " + data[i].owner.surname + '</td>\
 						<td style="padding: 0.3rem;"><button id="view_' + data[i].id + '" class="btn btn-outline-secondary view-button">View</button></td></tr>');
 					$('#groupsTable').append(row);
-					//GroupsPageObject.openGroupOnClick(data.data[i], data.userID);
+					GroupsPageObject.openGroupOnClick(data[i], data[i].owner.id);
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
@@ -24,23 +24,25 @@ const GroupsPageObject = {
 
 	/// open group window when clicking on view
 	openGroupOnClick: function(data, userID) {
-		$('#view_' + data.ID).click(function() {
-			MainObject.loadSecondary('html/fragments/viewGroup.html', true, function() {
-				$('#viewGroupInside').append('<h2 id="groupName" class="blue-titles">' + data.NAME + '</h2>');
-				$('#viewGroupInside').append('<p id="groupDescription">' + data.DESCRIPTION + '</p>');
-				GroupsPageObject.showGroupMembers(data.ID);
-				if (userID == data.OWNER_ID) {
-					$('#viewGroupRightColumn').append('<button class="btn btn-primary addMembersClass" id="addMembers_' + data.ID + '">Add Members</button>');
+		$('#view_' + data.id).click(function() {
+			MainObject.loadSecondary('resources/html/fragments/viewGroup.html', true, function() {
+				$('#viewGroupInside').append('<h2 id="groupName" class="blue-titles">' + data.name + '</h2>');
+				$('#viewGroupInside').append('<p id="groupDescription">' + data.description + '</p>');
+				
+				GroupsPageObject.showGroupMembers(data.id);
+				
+				if (userID == data.owner.id) {
+					$('#viewGroupRightColumn').append('<button class="btn btn-primary addMembersClass" id="addMembers_' + data.id + '">Add Members</button>');
 					$('#viewGroupRightColumn').append('<button class="btn btn-primary editGroupInfo" id="editGroupInfoButton">Edit Group</button>');
-					GroupsPageObject.newOrEditGroupListener("confirmGroupEditButton", 'edit', data.ID);
+					GroupsPageObject.editGroupListener(data.id);
 					GroupsPageObject.initiateBootTable(data);
 				}
 
-				PostsPageObject.showAllVissiblePosts("group", data.ID);
+				//PostsPageObject.showAllVissiblePosts("group", data.ID);
 
-				PostsPageObject.createPostScriptInit("group", data.ID);
+				//PostsPageObject.createPostScriptInit("group", data.ID);
 
-				PostsPageObject.editPostScriptInit();
+				//PostsPageObject.editPostScriptInit();
 			});
 		});
 	},
@@ -48,19 +50,14 @@ const GroupsPageObject = {
 	/// list all group members
 	showGroupMembers: function(groupID) {
 		$.ajax({
-			url: 'ShowGroups',
+			url: 'groups/members/' + groupID,
 			dataType: 'json',
-			data: {
-				option: "members",
-				groupID: groupID
-			},
+			contentType: 'application/json',
 			success: function(data) {
-				if (data.status == "success") {
-					$('#ajaxShowGroupMembers').append('<tr class="mainFriendsTableRow"> <th style="width: 20%">Name</th> <th style="width: 20%">Last Name</th > <th style="width: 20%">Username</th> </tr>');
-					for (var i = 0; i < data.data.length; i++) {
-						var row = $('<tr><td>' + data.data[i].NAME + '</td><td>' + data.data[i].SURNAME + '</td><td>' + data.data[i].USERNAME + '</td></tr>');
-						$('#ajaxShowGroupMembers').append(row);
-					}
+				$('#ajaxShowGroupMembers').append('<tr class="mainFriendsTableRow"> <th style="width: 20%">Name</th> <th style="width: 20%">Last Name</th > <th style="width: 20%">Username</th> </tr>');
+				for (var i = 0; i < data.length; i++) {
+					var row = $('<tr><td>' + data[i].name + '</td><td>' + data[i].surname + '</td><td>' + data[i].username + '</td></tr>');
+					$('#ajaxShowGroupMembers').append(row);
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
@@ -108,8 +105,8 @@ const GroupsPageObject = {
 	},
 
 	///////////////////// new or edit group button on click action
-	newOrEditGroupListener: function(buttonID, operation, groupID) {
-		$('#' + buttonID).on("click", function(e) {
+	editGroupListener: function(groupID) {
+		$('#confirmGroupEditButton').on("click", function(e) {
 			e.preventDefault();
 			let name = $('#newGroupName').val();
 			let description = $('#newGroupDescription').val();
@@ -125,19 +122,14 @@ const GroupsPageObject = {
 
 				$.ajax({
 					type: "POST",
-					url: 'CRUDGroup',
+					url: 'groups/edit/' + groupID,
+					contentType: 'application/json',
 					dataType: 'json',
-					data: input,
+					data: JSON.stringify(input),
 					success: function(data) {
-						if (operation == "create") {
-							$('#newGroupModal').modal('hide');
-							GroupsPageObject.displayGroupsTable();
-						}
-						if (operation == "edit") {
-							$('#editGroupModal').modal('hide');
-							$('#groupName').text(input.name);
-							$('#groupDescription').text(input.description);
-						}
+						$('#editGroupModal').modal('hide');
+						$('#groupName').text(input.name);
+						$('#groupDescription').text(input.description);
 					},
 					error: function(data) {
 						alert("Something went wrong, try again later");
@@ -148,7 +140,7 @@ const GroupsPageObject = {
 	},
 
 	///////////////////// new or edit group button on click action
-	newGroupListener: function(buttonID, operation, groupID) {
+	newGroupListener: function() {
 		$('#confirmGroupCreateButton').on("click", function(e) {
 			e.preventDefault();
 			let name = $('#newGroupName').val();
@@ -215,23 +207,18 @@ const GroupsPageObject = {
 		var operateEvents = {
 			'click .sendGroupRequest': function(e, value, row, index) {
 				let input = {
-					receiverID: row.ID,
-					groupID: data.ID,
-					operation: 'create',
-					type: 'group'
+					userId: row.id,
+					groupId: data.id,
 				}
 
 				$.ajax({
 					type: "POST",
-					url: 'CRUDRequest',
+					contentType: "application/json",
+					url: 'groups/send',
 					dataType: 'json',
-					data: input,
+					data: JSON.stringify(input),
 					success: function(data) {
-						if (data.status == 'success') {
-							alert("Request sent!");
-						} else {
-							alert(data.message);
-						}
+						alert("Request sent!");
 					},
 					error: function(data) {
 						alert("Something went wrong, try again later");
@@ -247,23 +234,23 @@ const GroupsPageObject = {
 		}
 
 		$('#newMembersTable').bootstrapTable({
-			url: 'ShowGroups?option=notMembers&groupID=' + data.ID,
+			url: 'groups/non-members/' + data.id,
 			dataField: 'data',
 			pagination: true,
 			pageSize: '5',
 			search: true,
 			columns: [{
-				field: 'ID',
+				field: 'id',
 				title: 'ID',
 				visible: false
 			}, {
-				field: 'NAME',
+				field: 'name',
 				title: 'First Name'
 			}, {
-				field: 'SURNAME',
+				field: 'surname',
 				title: 'Last Name'
 			}, {
-				field: 'USERNAME',
+				field: 'username',
 				title: 'Username'
 			}, {
 				field: 'OPERATE',

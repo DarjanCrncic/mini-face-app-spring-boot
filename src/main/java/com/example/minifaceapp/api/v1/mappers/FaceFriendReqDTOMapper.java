@@ -5,6 +5,7 @@ import org.mapstruct.factory.Mappers;
 
 import com.example.minifaceapp.api.v1.dtos.FaceFriendReqDTO;
 import com.example.minifaceapp.model.FaceFriendReq;
+import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface FaceFriendReqDTOMapper {
@@ -13,6 +14,8 @@ public interface FaceFriendReqDTOMapper {
 	
 	FaceFriendReqDTO faceFriendReqToFaceFriendReqDTO(FaceFriendReq faceFriendReq);
 	
+	@Mapping(target = "creationTime", ignore = true)
+	@Mapping(target = "updateTime", ignore = true)
 	FaceFriendReq faceFriendReqDTOToFaceFriendReq(FaceFriendReqDTO faceFriendReqDTO);
 
 }

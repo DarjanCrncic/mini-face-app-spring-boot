@@ -99,11 +99,11 @@ function groupsSuccessFunction(data) {
 	$('#ajaxShowSearchedGroups').html("");
 	$('#ajaxShowSearchedGroups').append('<h2 id="searchResults" class="blue-titles">Search Results:</h2>');
 	$('#ajaxShowSearchedGroups').append('<tr class="mainFriendsTableRow"> <th style="width: 20%">Name</th> <th style="width: 50%">Description</th > <th style="width: 20%">Owner</th><th style="width: 10%"></th></tr>');
-	for (var i = 0; i < data.data.length; i++) {
-		var row = $('<tr class="groups-table-row"><td>' + data.data[i].NAME + '</td><td>' + data.data[i].DESCRIPTION + '</td><td>' + data.data[i].OWNER + '</td>\
-			<td style="padding: 0.3rem;"><button id="view_' + data.data[i].ID + '" class="btn btn-outline-secondary view-button">View</button></td></tr>');
+	for (var i = 0; i < data.length; i++) {
+		var row = $('<tr class="groups-table-row"><td>' + data[i].name + '</td><td>' + data[i].description + '</td><td>' + data[i].owner.name + " " + data[i].owner.surname + '</td>\
+			<td style="padding: 0.3rem;"><button id="view_' + data[i].id + '" class="btn btn-outline-secondary view-button">View</button></td></tr>');
 		$('#ajaxShowSearchedGroups').append(row);
-		GroupsPageObject.openGroupOnClick(data.data[i]);
+		GroupsPageObject.openGroupOnClick(data[i]);
 	}
 }
 
