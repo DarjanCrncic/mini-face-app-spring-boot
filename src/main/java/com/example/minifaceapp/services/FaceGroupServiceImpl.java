@@ -109,5 +109,11 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 		}
 		return faceUserDTOMapper.faceUserListToFaceUserDTOList(notMembers);
 	}
+
+	@Override
+	public List<FaceGroupDTO> findByIdIn(List<Long> ids) {
+		List<FaceGroup> groups = faceGroupRepository.findByIdIn(ids);
+		return faceGroupDTOMapper.faceGroupListToFaceGroupDTOList(groups);
+	}
 	
 }

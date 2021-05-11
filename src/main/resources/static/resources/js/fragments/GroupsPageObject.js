@@ -28,9 +28,9 @@ const GroupsPageObject = {
 			MainObject.loadSecondary('resources/html/fragments/viewGroup.html', true, function() {
 				$('#viewGroupInside').append('<h2 id="groupName" class="blue-titles">' + data.name + '</h2>');
 				$('#viewGroupInside').append('<p id="groupDescription">' + data.description + '</p>');
-				
+
 				GroupsPageObject.showGroupMembers(data.id);
-				
+
 				if (userID == data.owner.id) {
 					$('#viewGroupRightColumn').append('<button class="btn btn-primary addMembersClass" id="addMembers_' + data.id + '">Add Members</button>');
 					$('#viewGroupRightColumn').append('<button class="btn btn-primary editGroupInfo" id="editGroupInfoButton">Edit Group</button>');
@@ -175,24 +175,20 @@ const GroupsPageObject = {
 	/// show all group requests
 	showGroupRequests: function() {
 		$.ajax({
-			url: 'CRUDRequest',
+			url: 'groups/requests',
 			dataType: 'json',
-			data: { type: 'group' },
 			success: function(data) {
-				if (data.status == 'success') {
-					if (data.data.length > 0) {
-						$('#ajaxShowGroupRequests').append('<h2 id="#ajaxShowGroupRequests" class="blue-titles">Group Requests:</h2>');
-					}
-					for (var i = 0; i < data.data.length; i++) {
-						$('#ajaxShowGroupRequests').append('<div class="friendReqDiv" id="requestDiv_' + data.data[i].ID + '">\
-					<div class="requestMessage">'+ data.data[i].OWNER + ' wants you to join his group ' + data.data[i].NAME + '!</div><div class="groupReqButtonsDiv">\
-					<button class="btn btn-outline-secondary" id="acceptRequest_'+ data.data[i].ID + '">Accept</button>\
-					<button class="btn btn-outline-danger" id="declineRequest_'+ data.data[i].ID + '">Decline</button>\
+				if (data.length > 0) {
+					$('#ajaxShowGroupRequests').append('<h2 id="#ajaxShowGroupRequests" class="blue-titles">Group Requests:</h2>');
+				}
+				for (var i = 0; i < data.length; i++) {
+					$('#ajaxShowGroupRequests').append('<div class="friendReqDiv" id="requestDiv_' + data[i].id + '">\
+					<div class="requestMessage">'+ data[i].owner.name + ' wants you to join his group ' + data[i].name + '!</div><div class="groupReqButtonsDiv">\
+					<button class="btn btn-outline-secondary" id="acceptRequest_'+ data[i].id + '">Accept</button>\
+					<button class="btn btn-outline-danger" id="declineRequest_'+ data[i].id + '">Decline</button>\
 					</div></div>');
-						GroupsPageObject.addGroupRequestListener(data.data[i], 'accept', 'acceptRequest');
-						GroupsPageObject.addGroupRequestListener(data.data[i], 'decline', 'declineRequest');
-					}
-				} else {
+					//GroupsPageObject.addGroupRequestListener(data.data[i], 'accept', 'acceptRequest');
+					//GroupsPageObject.addGroupRequestListener(data.data[i], 'decline', 'declineRequest');
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown) {

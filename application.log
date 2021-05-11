@@ -2637,3 +2637,494 @@ javax.validation.UnexpectedTypeException: HV000030: No validator could be found 
 2021-05-11 18:04:01.200  INFO 22124 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2021-05-11 18:04:01.201  INFO 22124 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2021-05-11 18:04:01.202  INFO 22124 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-05-11 18:12:07.035  INFO 22124 --- [Thread-283] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-11 18:12:07.036  INFO 22124 --- [Thread-283] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:12:07.037  INFO 22124 --- [Thread-283] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-11 18:12:07.041  INFO 22124 --- [Thread-283] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-11 18:12:07.129  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 22124 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-11 18:12:07.130  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-11 18:12:07.278  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-11 18:12:07.304  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25 ms. Found 8 JPA repository interfaces.
+2021-05-11 18:12:07.379  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-11 18:12:07.379  INFO 22124 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-11 18:12:07.380  INFO 22124 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-11 18:12:07.448  INFO 22124 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-11 18:12:07.450  INFO 22124 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-11 18:12:07.450  INFO 22124 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 319 ms
+2021-05-11 18:12:07.458  WARN 22124 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [DB428CCCB5354D5FA85DFA4AEBA00BD4]
+2021-05-11 18:12:07.480  INFO 22124 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-11 18:12:07.483  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-11 18:12:07.537  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-11 18:12:07.537  INFO 22124 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-11 18:12:07.922  INFO 22124 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-11 18:12:07.923  INFO 22124 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:12:07.932  INFO 22124 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-11 18:12:08.105  WARN 22124 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-11 18:12:08.123  INFO 22124 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7941d231, org.springframework.security.web.context.SecurityContextPersistenceFilter@6bcae237, org.springframework.security.web.header.HeaderWriterFilter@7cff53bb, org.springframework.security.web.authentication.logout.LogoutFilter@8f0e6bb, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7b4199c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@254e91b6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@232a7c2f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5fdc3901, org.springframework.security.web.session.SessionManagementFilter@2d775bbd, org.springframework.security.web.access.ExceptionTranslationFilter@286cc4dc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6003bcc0]
+2021-05-11 18:12:08.148  INFO 22124 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-11 18:12:08.190  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-11 18:12:08.193  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 1.078 seconds (JVM running for 2875.113)
+2021-05-11 18:12:08.194  INFO 22124 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-11 18:14:15.738  INFO 22124 --- [Thread-314] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-11 18:14:15.739  INFO 22124 --- [Thread-314] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:14:15.740  INFO 22124 --- [Thread-314] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-11 18:14:15.743  INFO 22124 --- [Thread-314] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-11 18:14:15.828  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 22124 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-11 18:14:15.828  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-11 18:14:15.969  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-11 18:14:16.002  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32 ms. Found 8 JPA repository interfaces.
+2021-05-11 18:14:16.075  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-11 18:14:16.075  INFO 22124 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-11 18:14:16.075  INFO 22124 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-11 18:14:16.137  INFO 22124 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-11 18:14:16.138  INFO 22124 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-11 18:14:16.138  INFO 22124 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 309 ms
+2021-05-11 18:14:16.165  INFO 22124 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-11 18:14:16.169  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-11 18:14:16.223  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-11 18:14:16.223  INFO 22124 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-11 18:14:16.596  INFO 22124 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-11 18:14:16.596  INFO 22124 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:14:16.604  INFO 22124 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-11 18:14:16.702  WARN 22124 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'faceGroupController' defined in file [D:\eclipse-spring\minifaceapp\target\classes\com\example\minifaceapp\controllers\FaceGroupController.class]: Unsatisfied dependency expressed through constructor parameter 3; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'faceGroupReqServiceImpl' defined in file [D:\eclipse-spring\minifaceapp\target\classes\com\example\minifaceapp\services\FaceGroupReqServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'faceGroupReqRepository' defined in com.example.minifaceapp.repositories.FaceGroupReqRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.example.minifaceapp.repositories.FaceGroupReqRepository.getPendingGroupRequests(java.lang.Long,com.example.minifaceapp.model.Status)! No property getPendingGroupRequests found for type FaceGroupReq!
+2021-05-11 18:14:16.702  INFO 22124 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:14:16.702  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-11 18:14:16.707  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-11 18:14:16.707  INFO 22124 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2021-05-11 18:14:16.712  INFO 22124 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-05-11 18:14:16.715 ERROR 22124 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'faceGroupController' defined in file [D:\eclipse-spring\minifaceapp\target\classes\com\example\minifaceapp\controllers\FaceGroupController.class]: Unsatisfied dependency expressed through constructor parameter 3; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'faceGroupReqServiceImpl' defined in file [D:\eclipse-spring\minifaceapp\target\classes\com\example\minifaceapp\services\FaceGroupReqServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'faceGroupReqRepository' defined in com.example.minifaceapp.repositories.FaceGroupReqRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.example.minifaceapp.repositories.FaceGroupReqRepository.getPendingGroupRequests(java.lang.Long,com.example.minifaceapp.model.Status)! No property getPendingGroupRequests found for type FaceGroupReq!
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1354) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:564) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918) ~[spring-context-5.3.6.jar:5.3.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.6.jar:5.3.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:144) ~[spring-boot-2.4.5.jar:2.4.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:782) ~[spring-boot-2.4.5.jar:2.4.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:774) ~[spring-boot-2.4.5.jar:2.4.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-2.4.5.jar:2.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:339) ~[spring-boot-2.4.5.jar:2.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1340) ~[spring-boot-2.4.5.jar:2.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1329) ~[spring-boot-2.4.5.jar:2.4.5]
+	at com.example.minifaceapp.MinifaceappApplication.main(MinifaceappApplication.java:10) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.4.5.jar:2.4.5]
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'faceGroupReqServiceImpl' defined in file [D:\eclipse-spring\minifaceapp\target\classes\com\example\minifaceapp\services\FaceGroupReqServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'faceGroupReqRepository' defined in com.example.minifaceapp.repositories.FaceGroupReqRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.example.minifaceapp.repositories.FaceGroupReqRepository.getPendingGroupRequests(java.lang.Long,com.example.minifaceapp.model.Status)! No property getPendingGroupRequests found for type FaceGroupReq!
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1354) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:564) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1380) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1300) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.6.jar:5.3.6]
+	... 25 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'faceGroupReqRepository' defined in com.example.minifaceapp.repositories.FaceGroupReqRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.example.minifaceapp.repositories.FaceGroupReqRepository.getPendingGroupRequests(java.lang.Long,com.example.minifaceapp.model.Status)! No property getPendingGroupRequests found for type FaceGroupReq!
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1380) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1300) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.6.jar:5.3.6]
+	... 39 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.example.minifaceapp.repositories.FaceGroupReqRepository.getPendingGroupRequests(java.lang.Long,com.example.minifaceapp.model.Status)! No property getPendingGroupRequests found for type FaceGroupReq!
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:96) ~[spring-data-jpa-2.4.8.jar:2.4.8]
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:107) ~[spring-data-jpa-2.4.8.jar:2.4.8]
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:218) ~[spring-data-jpa-2.4.8.jar:2.4.8]
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:81) ~[spring-data-jpa-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:100) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:93) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195) ~[na:na]
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133) ~[na:na]
+	at java.base/java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1054) ~[na:na]
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474) ~[na:na]
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578) ~[na:na]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:95) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:85) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at java.base/java.util.Optional.map(Optional.java:265) ~[na:na]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:85) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:303) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:323) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:230) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.util.Lazy.get(Lazy.java:114) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:329) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144) ~[spring-data-jpa-2.4.8.jar:2.4.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1845) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-5.3.6.jar:5.3.6]
+	... 50 common frames omitted
+Caused by: org.springframework.data.mapping.PropertyReferenceException: No property getPendingGroupRequests found for type FaceGroupReq!
+	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:90) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:437) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:413) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:366) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330) ~[na:na]
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:348) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:331) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:249) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177) ~[na:na]
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474) ~[na:na]
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578) ~[na:na]
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:250) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:383) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177) ~[na:na]
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474) ~[na:na]
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578) ~[na:na]
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:384) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:92) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:89) ~[spring-data-jpa-2.4.8.jar:2.4.8]
+	... 76 common frames omitted
+
+2021-05-11 18:14:19.180  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 22124 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-11 18:14:19.180  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-11 18:14:19.337  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-11 18:14:19.359  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 8 JPA repository interfaces.
+2021-05-11 18:14:19.456  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-11 18:14:19.456  INFO 22124 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-11 18:14:19.456  INFO 22124 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-11 18:14:19.509  INFO 22124 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-11 18:14:19.510  INFO 22124 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-11 18:14:19.510  INFO 22124 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 328 ms
+2021-05-11 18:14:19.537  INFO 22124 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-11 18:14:19.540  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-11 18:14:19.596  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-11 18:14:19.596  INFO 22124 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-11 18:14:19.973  INFO 22124 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-11 18:14:19.974  INFO 22124 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:14:19.982  INFO 22124 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-11 18:14:20.108  WARN 22124 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'faceGroupController' defined in file [D:\eclipse-spring\minifaceapp\target\classes\com\example\minifaceapp\controllers\FaceGroupController.class]: Unsatisfied dependency expressed through constructor parameter 3; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'faceGroupReqServiceImpl' defined in file [D:\eclipse-spring\minifaceapp\target\classes\com\example\minifaceapp\services\FaceGroupReqServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'faceGroupReqRepository' defined in com.example.minifaceapp.repositories.FaceGroupReqRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.example.minifaceapp.repositories.FaceGroupReqRepository.getPendingGroupRequests(java.lang.Long,com.example.minifaceapp.model.Status)! No property getPendingGroupRequests found for type FaceGroupReq!
+2021-05-11 18:14:20.109  INFO 22124 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:14:20.109  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-11 18:14:20.113  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-11 18:14:20.113  INFO 22124 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2021-05-11 18:14:20.118  INFO 22124 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-05-11 18:14:20.121 ERROR 22124 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'faceGroupController' defined in file [D:\eclipse-spring\minifaceapp\target\classes\com\example\minifaceapp\controllers\FaceGroupController.class]: Unsatisfied dependency expressed through constructor parameter 3; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'faceGroupReqServiceImpl' defined in file [D:\eclipse-spring\minifaceapp\target\classes\com\example\minifaceapp\services\FaceGroupReqServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'faceGroupReqRepository' defined in com.example.minifaceapp.repositories.FaceGroupReqRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.example.minifaceapp.repositories.FaceGroupReqRepository.getPendingGroupRequests(java.lang.Long,com.example.minifaceapp.model.Status)! No property getPendingGroupRequests found for type FaceGroupReq!
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1354) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:564) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918) ~[spring-context-5.3.6.jar:5.3.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.6.jar:5.3.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:144) ~[spring-boot-2.4.5.jar:2.4.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:782) ~[spring-boot-2.4.5.jar:2.4.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:774) ~[spring-boot-2.4.5.jar:2.4.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-2.4.5.jar:2.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:339) ~[spring-boot-2.4.5.jar:2.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1340) ~[spring-boot-2.4.5.jar:2.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1329) ~[spring-boot-2.4.5.jar:2.4.5]
+	at com.example.minifaceapp.MinifaceappApplication.main(MinifaceappApplication.java:10) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.4.5.jar:2.4.5]
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'faceGroupReqServiceImpl' defined in file [D:\eclipse-spring\minifaceapp\target\classes\com\example\minifaceapp\services\FaceGroupReqServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'faceGroupReqRepository' defined in com.example.minifaceapp.repositories.FaceGroupReqRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.example.minifaceapp.repositories.FaceGroupReqRepository.getPendingGroupRequests(java.lang.Long,com.example.minifaceapp.model.Status)! No property getPendingGroupRequests found for type FaceGroupReq!
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1354) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1204) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:564) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1380) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1300) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.6.jar:5.3.6]
+	... 25 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'faceGroupReqRepository' defined in com.example.minifaceapp.repositories.FaceGroupReqRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.example.minifaceapp.repositories.FaceGroupReqRepository.getPendingGroupRequests(java.lang.Long,com.example.minifaceapp.model.Status)! No property getPendingGroupRequests found for type FaceGroupReq!
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1380) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1300) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.6.jar:5.3.6]
+	... 39 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.example.minifaceapp.repositories.FaceGroupReqRepository.getPendingGroupRequests(java.lang.Long,com.example.minifaceapp.model.Status)! No property getPendingGroupRequests found for type FaceGroupReq!
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:96) ~[spring-data-jpa-2.4.8.jar:2.4.8]
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:107) ~[spring-data-jpa-2.4.8.jar:2.4.8]
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:218) ~[spring-data-jpa-2.4.8.jar:2.4.8]
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:81) ~[spring-data-jpa-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:100) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:93) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195) ~[na:na]
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133) ~[na:na]
+	at java.base/java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1054) ~[na:na]
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474) ~[na:na]
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578) ~[na:na]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:95) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:85) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at java.base/java.util.Optional.map(Optional.java:265) ~[na:na]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:85) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:303) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:323) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:230) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.util.Lazy.get(Lazy.java:114) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:329) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144) ~[spring-data-jpa-2.4.8.jar:2.4.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1845) ~[spring-beans-5.3.6.jar:5.3.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-5.3.6.jar:5.3.6]
+	... 50 common frames omitted
+Caused by: org.springframework.data.mapping.PropertyReferenceException: No property getPendingGroupRequests found for type FaceGroupReq!
+	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:90) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:437) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:413) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:366) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330) ~[na:na]
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:348) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:331) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:249) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177) ~[na:na]
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474) ~[na:na]
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578) ~[na:na]
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:250) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:383) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177) ~[na:na]
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474) ~[na:na]
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578) ~[na:na]
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:384) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:92) ~[spring-data-commons-2.4.8.jar:2.4.8]
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:89) ~[spring-data-jpa-2.4.8.jar:2.4.8]
+	... 76 common frames omitted
+
+2021-05-11 18:15:02.365  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 22124 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-11 18:15:02.365  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-11 18:15:02.513  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-11 18:15:02.551  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 8 JPA repository interfaces.
+2021-05-11 18:15:02.627  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-11 18:15:02.627  INFO 22124 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-11 18:15:02.627  INFO 22124 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-11 18:15:02.690  INFO 22124 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-11 18:15:02.691  INFO 22124 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-11 18:15:02.691  INFO 22124 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 324 ms
+2021-05-11 18:15:02.727  INFO 22124 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-11 18:15:02.731  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-11 18:15:02.808  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-11 18:15:02.808  INFO 22124 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-11 18:15:03.184  INFO 22124 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-11 18:15:03.184  INFO 22124 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:15:03.192  INFO 22124 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-11 18:15:03.368  WARN 22124 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-11 18:15:03.384  INFO 22124 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@647d9937, org.springframework.security.web.context.SecurityContextPersistenceFilter@615c6cf1, org.springframework.security.web.header.HeaderWriterFilter@222b8952, org.springframework.security.web.authentication.logout.LogoutFilter@2655d5a6, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4dfce0f1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7dfa205a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@36547ae, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4589b956, org.springframework.security.web.session.SessionManagementFilter@3252af9b, org.springframework.security.web.access.ExceptionTranslationFilter@716daafa, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6b126a53]
+2021-05-11 18:15:03.409  INFO 22124 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-11 18:15:03.459  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-11 18:15:03.462  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 1.113 seconds (JVM running for 3050.382)
+2021-05-11 18:15:03.463  INFO 22124 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-11 18:17:02.056  INFO 22124 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-11 18:17:02.058  INFO 22124 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-05-11 18:17:02.059  INFO 22124 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-05-11 18:17:29.720  INFO 22124 --- [Thread-320] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-11 18:17:29.721  INFO 22124 --- [Thread-320] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:17:29.722  INFO 22124 --- [Thread-320] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-11 18:17:29.726  INFO 22124 --- [Thread-320] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-11 18:17:29.816  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 22124 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-11 18:17:29.816  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-11 18:17:29.957  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-11 18:17:29.984  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 27 ms. Found 8 JPA repository interfaces.
+2021-05-11 18:17:30.076  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-11 18:17:30.076  INFO 22124 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-11 18:17:30.076  INFO 22124 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-11 18:17:30.125  INFO 22124 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-11 18:17:30.126  INFO 22124 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-11 18:17:30.127  INFO 22124 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 310 ms
+2021-05-11 18:17:30.135  WARN 22124 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [527E9135A7B7AB93E852CAFD8BDBFBC1]
+2021-05-11 18:17:30.156  INFO 22124 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-11 18:17:30.159  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-11 18:17:30.209  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-11 18:17:30.209  INFO 22124 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-11 18:17:30.597  INFO 22124 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-11 18:17:30.597  INFO 22124 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:17:30.607  INFO 22124 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-11 18:17:30.756  WARN 22124 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-11 18:17:30.774  INFO 22124 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@788f5078, org.springframework.security.web.context.SecurityContextPersistenceFilter@5367fc79, org.springframework.security.web.header.HeaderWriterFilter@7af1f226, org.springframework.security.web.authentication.logout.LogoutFilter@5345647, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@a431a0c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@31af363e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@44ba92ef, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@22d8cd7c, org.springframework.security.web.session.SessionManagementFilter@485cb2e3, org.springframework.security.web.access.ExceptionTranslationFilter@21b86241, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2d3e15db]
+2021-05-11 18:17:30.806  INFO 22124 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-11 18:17:30.860  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-11 18:17:30.863  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 1.062 seconds (JVM running for 3197.784)
+2021-05-11 18:17:30.864  INFO 22124 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-11 18:17:41.728  INFO 22124 --- [Thread-336] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-11 18:17:41.731  INFO 22124 --- [Thread-336] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:17:41.732  INFO 22124 --- [Thread-336] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-11 18:17:41.736  INFO 22124 --- [Thread-336] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-11 18:17:41.851  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 22124 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-11 18:17:41.852  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-11 18:17:42.039  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-11 18:17:42.066  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 26 ms. Found 8 JPA repository interfaces.
+2021-05-11 18:17:42.183  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-11 18:17:42.184  INFO 22124 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-11 18:17:42.184  INFO 22124 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-11 18:17:42.260  INFO 22124 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-11 18:17:42.262  INFO 22124 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-11 18:17:42.262  INFO 22124 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 409 ms
+2021-05-11 18:17:42.298  INFO 22124 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-11 18:17:42.303  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-11 18:17:42.375  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-11 18:17:42.375  INFO 22124 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-11 18:17:42.885  INFO 22124 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-11 18:17:42.885  INFO 22124 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:17:42.896  INFO 22124 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-11 18:17:43.163  WARN 22124 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-11 18:17:43.189  INFO 22124 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3d6040, org.springframework.security.web.context.SecurityContextPersistenceFilter@4379584f, org.springframework.security.web.header.HeaderWriterFilter@58de98bf, org.springframework.security.web.authentication.logout.LogoutFilter@ffa1e8f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1a3c8010, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3ffcbbbe, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@134bc79e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4ea46c59, org.springframework.security.web.session.SessionManagementFilter@5a21688, org.springframework.security.web.access.ExceptionTranslationFilter@3769621c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5bba03a4]
+2021-05-11 18:17:43.229  INFO 22124 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-11 18:17:43.294  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-11 18:17:43.298  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 1.467 seconds (JVM running for 3210.219)
+2021-05-11 18:17:43.299  INFO 22124 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-11 18:17:59.268  INFO 22124 --- [Thread-342] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-11 18:17:59.270  INFO 22124 --- [Thread-342] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:17:59.271  INFO 22124 --- [Thread-342] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-11 18:17:59.276  INFO 22124 --- [Thread-342] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-11 18:17:59.374  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 22124 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-11 18:17:59.374  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-11 18:17:59.502  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-11 18:17:59.523  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 8 JPA repository interfaces.
+2021-05-11 18:17:59.610  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-11 18:17:59.610  INFO 22124 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-11 18:17:59.610  INFO 22124 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-11 18:17:59.658  INFO 22124 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-11 18:17:59.659  INFO 22124 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-11 18:17:59.660  INFO 22124 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 285 ms
+2021-05-11 18:17:59.686  INFO 22124 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-11 18:17:59.690  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-11 18:17:59.744  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-11 18:17:59.745  INFO 22124 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-11 18:18:00.103  INFO 22124 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-11 18:18:00.103  INFO 22124 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:18:00.111  INFO 22124 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-11 18:18:00.282  WARN 22124 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-11 18:18:00.296  INFO 22124 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5a96f329, org.springframework.security.web.context.SecurityContextPersistenceFilter@3869b30c, org.springframework.security.web.header.HeaderWriterFilter@88ff0d8, org.springframework.security.web.authentication.logout.LogoutFilter@3c1123c3, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@e70505, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1366d9df, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6418f25b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6445373c, org.springframework.security.web.session.SessionManagementFilter@27915630, org.springframework.security.web.access.ExceptionTranslationFilter@68286187, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@12b733c8]
+2021-05-11 18:18:00.317  INFO 22124 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-11 18:18:00.362  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-11 18:18:00.365  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 1.009 seconds (JVM running for 3227.286)
+2021-05-11 18:18:00.366  INFO 22124 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-11 18:19:41.631  INFO 22124 --- [Thread-348] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-11 18:19:41.632  INFO 22124 --- [Thread-348] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:19:41.633  INFO 22124 --- [Thread-348] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-11 18:19:41.636  INFO 22124 --- [Thread-348] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-11 18:19:41.728  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 22124 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-11 18:19:41.728  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-11 18:19:41.864  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-11 18:19:41.888  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 8 JPA repository interfaces.
+2021-05-11 18:19:41.985  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-11 18:19:41.986  INFO 22124 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-11 18:19:41.986  INFO 22124 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-11 18:19:42.034  INFO 22124 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-11 18:19:42.036  INFO 22124 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-11 18:19:42.036  INFO 22124 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 307 ms
+2021-05-11 18:19:42.062  INFO 22124 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-11 18:19:42.066  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-11 18:19:42.121  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-11 18:19:42.121  INFO 22124 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-11 18:19:42.469  INFO 22124 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-11 18:19:42.469  INFO 22124 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:19:42.477  INFO 22124 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-11 18:19:42.653  WARN 22124 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-11 18:19:42.668  INFO 22124 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2816ab6f, org.springframework.security.web.context.SecurityContextPersistenceFilter@3e117a66, org.springframework.security.web.header.HeaderWriterFilter@54631325, org.springframework.security.web.authentication.logout.LogoutFilter@35b43f59, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@57494b72, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@60c4cc6c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2cf2016a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@164d22ca, org.springframework.security.web.session.SessionManagementFilter@6c2816a7, org.springframework.security.web.access.ExceptionTranslationFilter@1bd8ba62, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1c311fee]
+2021-05-11 18:19:42.689  INFO 22124 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-11 18:19:42.739  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-11 18:19:42.742  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 1.029 seconds (JVM running for 3329.663)
+2021-05-11 18:19:42.743  INFO 22124 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-11 18:20:14.093  INFO 22124 --- [Thread-354] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-11 18:20:14.095  INFO 22124 --- [Thread-354] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:20:14.095  INFO 22124 --- [Thread-354] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-11 18:20:14.099  INFO 22124 --- [Thread-354] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-11 18:20:14.193  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 22124 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-11 18:20:14.193  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-11 18:20:14.332  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-11 18:20:14.354  INFO 22124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 8 JPA repository interfaces.
+2021-05-11 18:20:14.442  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-11 18:20:14.443  INFO 22124 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-11 18:20:14.443  INFO 22124 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-11 18:20:14.496  INFO 22124 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-11 18:20:14.497  INFO 22124 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-11 18:20:14.497  INFO 22124 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 303 ms
+2021-05-11 18:20:14.523  INFO 22124 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-11 18:20:14.527  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-11 18:20:14.605  INFO 22124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-11 18:20:14.605  INFO 22124 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-11 18:20:14.942  INFO 22124 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-11 18:20:14.942  INFO 22124 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-11 18:20:14.952  INFO 22124 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-11 18:20:15.159  WARN 22124 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-11 18:20:15.176  INFO 22124 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7afef282, org.springframework.security.web.context.SecurityContextPersistenceFilter@7367ae9b, org.springframework.security.web.header.HeaderWriterFilter@5f2b672d, org.springframework.security.web.authentication.logout.LogoutFilter@171c51dc, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6b2e4b25, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@122e7425, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@16386b42, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@27ed2b7a, org.springframework.security.web.session.SessionManagementFilter@43b190fc, org.springframework.security.web.access.ExceptionTranslationFilter@d4d9cbe, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@64592090]
+2021-05-11 18:20:15.203  INFO 22124 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-11 18:20:15.256  INFO 22124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-11 18:20:15.260  INFO 22124 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 1.083 seconds (JVM running for 3362.181)
+2021-05-11 18:20:15.261  INFO 22124 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-11 18:20:20.988  INFO 22124 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-11 18:20:20.989  INFO 22124 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-05-11 18:20:20.990  INFO 22124 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

@@ -19,7 +19,7 @@ $(document).ready(function() {
 	addFilters([{ id: "all", text: "All" }, { id: "fg.name", text: "Group Name" }, { id: "fu.name+fu.surname", text: "Group Owner" }]);
 	prepareExecuteSearch(groupsSuccessFunction, 'groups/search');
 	
-	//GroupsPageObject.showGroupRequests();
+	GroupsPageObject.showGroupRequests();
 	GroupsPageObject.displayGroupsTable();
 	GroupsPageObject.newGroupListener("confirmGroupCreateButton",'create', null);
 	

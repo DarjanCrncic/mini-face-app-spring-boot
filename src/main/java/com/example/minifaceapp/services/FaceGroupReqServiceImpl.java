@@ -8,17 +8,21 @@ import org.springframework.stereotype.Service;
 import com.example.minifaceapp.api.v1.dtos.FaceGroupReqDTO;
 import com.example.minifaceapp.api.v1.mappers.FaceGroupReqDTOMapper;
 import com.example.minifaceapp.model.FaceGroupReq;
+import com.example.minifaceapp.model.Status;
 import com.example.minifaceapp.repositories.FaceGroupReqRepository;
+import com.example.minifaceapp.repositories.StatusRepository;
 
 @Service
 public class FaceGroupReqServiceImpl implements FaceGroupReqService{
 	
-	FaceGroupReqDTOMapper faceGroupReqDTOMapper;
-	FaceGroupReqRepository faceGroupReqRepository;
+	private FaceGroupReqDTOMapper faceGroupReqDTOMapper;
+	private FaceGroupReqRepository faceGroupReqRepository;
+	private StatusRepository statusRepository;
 	
-	public FaceGroupReqServiceImpl(FaceGroupReqDTOMapper faceGroupReqDTOMapper, FaceGroupReqRepository faceGroupReqRepository) {
+	public FaceGroupReqServiceImpl(FaceGroupReqDTOMapper faceGroupReqDTOMapper, FaceGroupReqRepository faceGroupReqRepository, StatusRepository statusRepository) {
 		this.faceGroupReqDTOMapper = faceGroupReqDTOMapper;
 		this.faceGroupReqRepository = faceGroupReqRepository;
+		this.statusRepository = statusRepository;
 	}
 
 	@Override
@@ -43,6 +47,12 @@ public class FaceGroupReqServiceImpl implements FaceGroupReqService{
 
 	@Override
 	public void deleteById(Long id) {
+	}
+
+	@Override
+	public List<Long> findAllByFaceUserId(Long id) {
+		Status status = statusRepository.findById(1L).orElse(null);
+		return faceGroupReqRepository.getPendingGroupRequests(id, status);
 	}
 
 }

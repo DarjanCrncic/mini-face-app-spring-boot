@@ -87,4 +87,11 @@ public class FaceGroupController {
 		faceGroupReqDTO.setStatus(statusService.findById(1L));
 		return faceGroupReqService.save(faceGroupReqDTO);	
 	}
+	
+	@GetMapping(value = "/requests", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public List<FaceGroupDTO> getPendingReqs(@AuthenticationPrincipal CustomUserDetails userDetails){
+		List<Long> ids = faceGroupReqService.findAllByFaceUserId(userDetails.getId());		
+		return faceGroupService.findByIdIn(ids);
+	}
 }
