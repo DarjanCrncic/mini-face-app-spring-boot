@@ -13,4 +13,6 @@ public interface FaceGroupReqRepository extends JpaRepository<FaceGroupReq, Long
 	@Query("select distinct fgr.groupId from FaceGroupReq fgr where fgr.userId = ?1 and fgr.status = ?2")
 	List<Long> getPendingGroupRequests(Long id, Status status);
 
+	List<FaceGroupReq> findAllByUserIdAndGroupId(Long userId, Long groupId);
+
 }

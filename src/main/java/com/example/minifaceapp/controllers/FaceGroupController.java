@@ -94,4 +94,20 @@ public class FaceGroupController {
 		List<Long> ids = faceGroupReqService.findAllByFaceUserId(userDetails.getId());		
 		return faceGroupService.findByIdIn(ids);
 	}
+	
+	@PostMapping(value = "/accept", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public FaceGroupReqDTO acceptFriendReq(@RequestBody FaceGroupReqDTO faceGroupReqDTO, @AuthenticationPrincipal CustomUserDetails userDetails) {
+		faceGroupReqDTO.setUserId(userDetails.getId());
+		faceGroupReqDTO.setStatus(statusService.findById(2L));
+		return faceGroupReqService.updateToAccepted(faceGroupReqDTO);
+	}
+	
+	@PostMapping(value = "/decline", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public FaceGroupReqDTO declineFriendReq(@RequestBody FaceGroupReqDTO faceGroupReqDTO, @AuthenticationPrincipal CustomUserDetails userDetails) {
+		faceGroupReqDTO.setUserId(userDetails.getId());
+		faceGroupReqDTO.setStatus(statusService.findById(2L));
+		return faceGroupReqService.updateToDecline(faceGroupReqDTO);
+	}
 }

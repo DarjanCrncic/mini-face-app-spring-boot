@@ -8,4 +8,8 @@ public interface FaceGroupReqService extends CrudService<FaceGroupReqDTO, Long>{
 
 	List<Long> findAllByFaceUserId(Long id);
 
+	FaceGroupReqDTO updateToAccepted(FaceGroupReqDTO faceGroupReqDTO);
+
+	FaceGroupReqDTO updateToDecline(FaceGroupReqDTO faceGroupReqDTO);
+
 }
