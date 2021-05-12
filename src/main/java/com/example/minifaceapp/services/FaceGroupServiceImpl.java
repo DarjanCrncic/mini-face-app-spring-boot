@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.minifaceapp.api.v1.dtos.FaceGroupDTO;
 import com.example.minifaceapp.api.v1.dtos.FaceGroupSearchDTO;
+import com.example.minifaceapp.api.v1.dtos.FaceGroupViewDTO;
 import com.example.minifaceapp.api.v1.dtos.FaceUserDTO;
 import com.example.minifaceapp.api.v1.dtos.SearchDTO;
 import com.example.minifaceapp.api.v1.mappers.FaceGroupDTOMapper;
@@ -114,6 +115,11 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 	public List<FaceGroupDTO> findByIdIn(List<Long> ids) {
 		List<FaceGroup> groups = faceGroupRepository.findByIdIn(ids);
 		return faceGroupDTOMapper.faceGroupListToFaceGroupDTOList(groups);
+	}
+
+	@Override
+	public FaceGroupViewDTO getGroupDetailsAndPosts(Long id) {
+		return faceGroupDTOMapper.faceGroupToFaceGroupViewDTO(faceGroupRepository.findById(id).orElse(null));
 	}
 	
 }

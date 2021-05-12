@@ -38,11 +38,11 @@ const GroupsPageObject = {
 					GroupsPageObject.initiateBootTable(data);
 				}
 
-				//PostsPageObject.showAllVissiblePosts("group", data.ID);
+				PostsPageObject.showAllVissiblePosts(data.id);
 
-				//PostsPageObject.createPostScriptInit("group", data.ID);
+				PostsPageObject.createPostScriptInit("group", data.id);
 
-				//PostsPageObject.editPostScriptInit();
+				PostsPageObject.editPostScriptInit(data.id);
 			});
 		});
 	},

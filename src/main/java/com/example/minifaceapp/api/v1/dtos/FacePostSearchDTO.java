@@ -1,6 +1,8 @@
 package com.example.minifaceapp.api.v1.dtos;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+
+import com.example.minifaceapp.model.PostType;
 
 import lombok.Data;
 
@@ -10,10 +12,9 @@ public class FacePostSearchDTO {
 	private Long id;
 	private String title;
 	private String body;
-	private Long creatorId;
-	private Long type;
-	private String creatorName;
-	private Date creationTime;
+	private FaceUserDTO creator;
+	private PostType type;
+	private Timestamp creationTime;
 	
 	private int likes;
 }

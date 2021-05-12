@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -56,9 +55,24 @@ public class FacePostController {
 		facePostService.deleteById(id);
 	}
 	
-	@PatchMapping(value = "edit/{id}")
+	@PostMapping(value = "edit/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public FacePostDTO editPost(@PathVariable Long id, @RequestBody FacePostDTO facePostDTO) {
 		return facePostService.edit(id, facePostDTO);
+	}
+	
+	@PostMapping(value = "/new/group/{groupId}", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public FacePostDTO createNewGroupPost(@RequestBody FacePostDTO facePostDTO, @PathVariable Long groupId, @AuthenticationPrincipal CustomUserDetails userDetails) {
+		facePostDTO.setCreator(faceUserService.findById(userDetails.getId()));
+		facePostDTO.setType(postTypeService.findById(2L));
+		facePostDTO = facePostService.save(facePostDTO);
+		return facePostService.saveGroup(facePostDTO, groupId);
+	}
+	
+	@DeleteMapping(value = "/delete/group/{groupId}/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public void deleteGroupPost(@PathVariable Long groupId, @PathVariable Long id) {
+		facePostService.deleteGroupPostById(groupId, id);
 	}
 }

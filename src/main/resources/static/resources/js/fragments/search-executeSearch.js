@@ -56,22 +56,32 @@ function searchFunction(successFunction, backendURL, pageNumber, rowNumber){
 }
 
 
-function postSuccessFunction(data) {
+function postSuccessFunction(data, groupId) {
+	
 	$('#ajaxShowVissiblePosts').html("");
 	
 	const limit = (data.length >= PostsPageObject.rowNumber) ? PostsPageObject.rowNumber : data.length; 
 	
 	for (var i = 0; i < limit; i++) {
-		if (MainObject.user.id == data[i].creatorId) {
+		if(data[i].type.id == 2) {
+			data[i].likes = data[i].likes.length;
+		}
+		
+		if (MainObject.user.id == data[i].creator.id) {
 
 			$('#ajaxShowVissiblePosts').append(PostsPageObject.createPostHtml(data[i]));
 			PostsPageObject.addEditPostButtonListener(data[i]);
-			PostsPageObject.addDeletePostButtonListener(data[i]);
+			if(data[i].type.id == 1) {
+				PostsPageObject.addDeletePostButtonListener(data[i]);
+			} else {
+				PostsPageObject.addDeleteGroupPostButtonListener(data[i], groupId);
+			}
+			
 		} else {
 			$('#ajaxShowVissiblePosts').append(PostsPageObject.createPostHtmlNotUser(data[i]));
 		}
-		postIdToCreator.set(data[i].id, data[i].creatorId);
-		
+		postIdToCreator.set(data[i].id, data[i].creator.id);
+			
 		PostsPageObject.addLikePostListener(data[i]);
 		PostsPageObject.addCommentListener(data[i]);
 		PostsPageObject.viewCommentListener(data[i]);

@@ -5,36 +5,14 @@ const PostsPageObject = {
 	rowNumber: 5,
 
 	/////////////////////// show all vissible posts on page load // !!!!!!!!!! NOT USED ANYMORE, EVERYTHING THROUGH SEARCH !!!! USED IN GROUP POSTS
-	showAllVissiblePosts: function(type, groupID) {
+	showAllVissiblePosts: function(groupId) {
 		$.ajax({
-			url: 'ShowPosts',
+			url: 'groups/posts/'+groupId,
 			dataType: 'json',
-			data: { type: type, groupID: groupID, pageNumber: PostsPageObject.pageNumber },
+			contentType: "application/json",
 			type: "GET",
 			success: function(data) {
-				if (data.status == 'success') {
-					$('#ajaxShowVissiblePosts').html("");
-					for (var i = 0; i < data.data.length - 1; i++) {
-						if (data.userID == data.data[i].CREATOR_ID) {
-							$('#ajaxShowVissiblePosts').append(PostsPageObject.createPostHtml(data.data[i]));
-
-							if (data.data[i].TYPE == "user")
-								PostsPageObject.addDeleteEditPostButtonListener(data.data[i], "user");
-							if (data.data[i].TYPE == "group")
-								PostsPageObject.addDeleteEditPostButtonListener(data.data[i], "group", groupID);
-
-						} else {
-							$('#ajaxShowVissiblePosts').append(PostsPageObject.createPostHtmlNotUser(data.data[i]));
-						}
-						PostsPageObject.addLikePostListener(data.data[i], "post");
-						PostsPageObject.addCommentListener(data.data[i]);
-						PostsPageObject.viewCommentListener(data.data[i]);
-						PostsPageObject.getComments(data.data[i]);
-					}
-					PostsPageObject.paginationButtonsInit(data.data.length);
-				} else {
-
-				}
+				postSuccessFunction(data.posts, groupId)
 			},
 			error: function() {
 				alert('Something went wrong, try again later');
@@ -43,7 +21,7 @@ const PostsPageObject = {
 	},
 
 	//////////////////// create post script	
-	createPostScriptInit: function(type, groupID) {
+	createPostScriptInit: function(type, groupId) {
 		$("#newPostButton").on("click", function() {
 
 			let input = {
@@ -57,7 +35,7 @@ const PostsPageObject = {
 
 			$.ajax({
 				type: "POST",
-				url: 'posts/new/user',
+				url: 'posts/new/' + type + "/" + groupId,
 				dataType: 'json',
 				contentType: "application/json",
 				data: JSON.stringify(input),
@@ -65,7 +43,7 @@ const PostsPageObject = {
 					$("#newPostTitleInput").val('');
 					$("#newPostBodyInput").val('');
 					if (type == "group") {
-						PostsPageObject.showAllVissiblePosts("group", groupID);
+						PostsPageObject.showAllVissiblePosts(groupId);
 					}
 					if (type == "user") {
 						searchFunction(postSuccessFunction, 'posts/search', 1, PostsPageObject.rowNumber);
@@ -78,7 +56,7 @@ const PostsPageObject = {
 		});
 	},
 	//////////////////////// on click modal function for confirming post edit
-	editPostScriptInit: function() {
+	editPostScriptInit: function(groupId) {
 		$('#confirmEditButton').click(function(e) {
 			e.preventDefault();
 
@@ -97,15 +75,16 @@ const PostsPageObject = {
 
 
 			$.ajax({
-				type: "PATCH",
+				type: "POST",
 				url: 'posts/edit/' + input.id,
 				dataType: 'json',
 				contentType: 'application/json',
 				data: JSON.stringify(input),
 				success: function(data) {
-
-					searchFunction(postSuccessFunction, 'posts/search', 1, PostsPageObject.rowNumber);
-					//PostsPageObject.showAllVissiblePosts("group", input.groupID);								
+					if(data.type.id == 1)
+						searchFunction(postSuccessFunction, 'posts/search', 1, PostsPageObject.rowNumber);
+					else
+						PostsPageObject.showAllVissiblePosts(groupId);								
 				},
 				error: function() {
 					alert("Something went wrong, try again later");
@@ -149,15 +128,31 @@ const PostsPageObject = {
 	},
 
 	///////////////////// delete post listener
-	addDeletePostButtonListener: function(data, type) {
+	addDeletePostButtonListener: function(data) {
 		$('#deletePost_' + data.id).click(function() {
 
 			$.ajax({
 				type: "DELETE",
 				url: 'posts/delete/' + data.id,
 				success: function(data) {
-					searchFunction(postSuccessFunction, 'posts/search', 1, PostsPageObject.rowNumber);
-					//PostsPageObject.showAllVissiblePosts("group", input.groupID);					
+						searchFunction(postSuccessFunction, 'posts/search', 1, PostsPageObject.rowNumber);				
+				},
+				error: function() {
+					alert("Something went wrong, try again later");
+				}
+			})
+		});
+	},
+	
+	///////////////////// delete post listener
+	addDeleteGroupPostButtonListener: function(data, groupId) {
+		$('#deletePost_' + data.id).click(function() {
+
+			$.ajax({
+				type: "DELETE",
+				url: 'posts/delete/group/' + groupId + "/" + data.id,
+				success: function(data) {
+					   PostsPageObject.showAllVissiblePosts(groupId);					
 				},
 				error: function() {
 					alert("Something went wrong, try again later");
@@ -337,7 +332,7 @@ const PostsPageObject = {
 
 	//////////////////// create html element for post item, created by current user
 	createPostHtml: function(data) {
-		return ('<div id="postDiv_' + data.id + '"><div class="card"><div class="card-header post-card-header"><div class="posterName">' + data.creatorName + '</div><div class="datetime">' + data.creationTime + '</div></div>\
+		return ('<div id="postDiv_' + data.id + '"><div class="card"><div class="card-header post-card-header"><div class="posterName">' + data.creator.name + " " + data.creator.surname + '</div><div class="datetime">' + formatTimestamp(data.creationTime) + '</div></div>\
 		<div class="card-body">\
 		<h5 class="card-title"  id="title_' + data.id + '">' + data.title + '</h5>\
 		<p class="card-text" id="body_'+ data.id + '">' + data.body + '</p>\
@@ -357,7 +352,7 @@ const PostsPageObject = {
 	},
 	//////////////////// create html element for post item, not created by current user
 	createPostHtmlNotUser: function(data) {
-		return ('<div id="postDiv_' + data.id + '"><div class="card"><div class="card-header post-card-header"><div class="posterName">' + data.creatorName + '</div><div class="datetime">' + data.creationTime + '</div></div>\
+		return ('<div id="postDiv_' + data.id + '"><div class="card"><div class="card-header post-card-header"><div class="posterName">' + data.creator.name + " " + data.creator.surname + '</div><div class="datetime">' + formatTimestamp(data.creationTime) + '</div></div>\
 		<div class="card-body">\
 		<h5 class="card-title"  id="title_' + data.id + '">' + data.title + '</h5>\
 		<p class="card-text" id="body_'+ data.id + '">' + data.body + '</p>\

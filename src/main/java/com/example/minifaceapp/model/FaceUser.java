@@ -99,6 +99,7 @@ public class FaceUser {
 	)
 	private List<FaceUser> friendOf;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "face_group_members",
 	joinColumns = @JoinColumn(name = "user_id"),

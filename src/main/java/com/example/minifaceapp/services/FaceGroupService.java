@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.minifaceapp.api.v1.dtos.FaceGroupDTO;
 import com.example.minifaceapp.api.v1.dtos.FaceGroupSearchDTO;
+import com.example.minifaceapp.api.v1.dtos.FaceGroupViewDTO;
 import com.example.minifaceapp.api.v1.dtos.FaceUserDTO;
 import com.example.minifaceapp.api.v1.dtos.SearchDTO;
 import com.example.minifaceapp.model.FaceUser;
@@ -19,5 +20,7 @@ public interface FaceGroupService extends CrudService<FaceGroupDTO, Long> {
 	List<FaceUserDTO> findFriendsNotMembers(Long userId, Long groupId);
 
 	List<FaceGroupDTO> findByIdIn(List<Long> ids);
+
+	FaceGroupViewDTO getGroupDetailsAndPosts(Long id);
 
 }

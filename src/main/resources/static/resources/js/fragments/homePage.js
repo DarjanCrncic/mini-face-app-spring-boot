@@ -1,6 +1,7 @@
 /**
  * 
  */
+var postIdToCreator = new Map();
 
 $(document).ready(function() {
 

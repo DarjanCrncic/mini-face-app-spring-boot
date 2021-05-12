@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.minifaceapp.api.v1.dtos.FaceGroupDTO;
 import com.example.minifaceapp.api.v1.dtos.FaceGroupReqDTO;
 import com.example.minifaceapp.api.v1.dtos.FaceGroupSearchDTO;
+import com.example.minifaceapp.api.v1.dtos.FaceGroupViewDTO;
 import com.example.minifaceapp.api.v1.dtos.FaceUserDTO;
 import com.example.minifaceapp.api.v1.dtos.SearchDTO;
 import com.example.minifaceapp.model.FaceUser;
@@ -110,4 +111,11 @@ public class FaceGroupController {
 		faceGroupReqDTO.setStatus(statusService.findById(2L));
 		return faceGroupReqService.updateToDecline(faceGroupReqDTO);
 	}
+	
+	@GetMapping(value = "/posts/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public FaceGroupViewDTO getGroupDetailsAndPosts(@PathVariable Long id) {
+		return faceGroupService.getGroupDetailsAndPosts(id);
+	}
+	
 }

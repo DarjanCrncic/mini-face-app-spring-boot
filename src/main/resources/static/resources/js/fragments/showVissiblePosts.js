@@ -1,4 +1,4 @@
-var postIdToCreator = new Map();
+
 
 $(document).ready(function() {
 	
@@ -26,7 +26,7 @@ $(document).ready(function() {
 	PostsPageObject.rowNumber = 5;
 	searchFunction(postSuccessFunction, 'posts/search', 1, PostsPageObject.rowNumber);
 
-	PostsPageObject.createPostScriptInit("user", 0);
+	PostsPageObject.createPostScriptInit("user", "");
 
 	PostsPageObject.editPostScriptInit();
 	
