@@ -55,11 +55,7 @@ public class PostCommentServiceImpl implements PostCommentService {
 	@Override
 	public List<PostCommentDTO> getAllCommentsForPost(Long id) {
 		ArrayList<PostComment> comments = postCommentRepository.getAllByPostIdOrderByCreationTime(id);
-		ArrayList<PostCommentDTO> dtos = new ArrayList<>();
-		for(PostComment comment: comments) {
-			dtos.add(postCommentDTOMapper.postCommentToPostCommentDTOMapper(comment));
-		}
-		return dtos;
+		return postCommentDTOMapper.postCommentListToPostCommentDTOList(comments);
 	}
 
 	@Override

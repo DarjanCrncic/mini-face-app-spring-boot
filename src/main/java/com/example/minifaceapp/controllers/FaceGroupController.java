@@ -57,11 +57,9 @@ public class FaceGroupController {
 	
 	@PostMapping(value = "/edit/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public FaceGroupDTO editGroup(@RequestBody FaceGroupDTO faceGroupDTO, @PathVariable Long id) {
-		FaceGroupDTO oldGroup = faceGroupService.findById(id);
-		oldGroup.setName(faceGroupDTO.getName());
-		oldGroup.setDescription(faceGroupDTO.getDescription());
-		return faceGroupService.save(oldGroup);
+	public FaceGroupDTO editGroup(@RequestBody FaceGroupDTO faceGroupDTO, @PathVariable Long id) {		
+		faceGroupDTO.setId(id);
+		return faceGroupService.save(faceGroupDTO);
 	}
 	
 	@PostMapping(value = "/search", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)

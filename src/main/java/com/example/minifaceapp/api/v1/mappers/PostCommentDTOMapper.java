@@ -1,5 +1,7 @@
 package com.example.minifaceapp.api.v1.mappers;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -18,4 +20,6 @@ public interface PostCommentDTOMapper {
 	@Mapping(target = "updateTime", ignore = true)
 	@Mapping(target = "faceUser", source = "faceUserDTO")
 	PostComment postCommentDTOToPostCommentMapper(PostCommentDTO postCommentDTO);
+	
+	List<PostCommentDTO> postCommentListToPostCommentDTOList(List<PostComment> list);
 }

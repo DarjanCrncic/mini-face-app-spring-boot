@@ -1,6 +1,5 @@
 package com.example.minifaceapp.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -33,11 +32,7 @@ public class FaceFriendReqServiceImpl implements FaceFriendReqService {
 	@Override
 	public List<FaceFriendReqDTO> findAll() {
 		List<FaceFriendReq> reqs = faceFriendReqRepostory.findAll();
-		List<FaceFriendReqDTO> dtos = new ArrayList<>();
-		for(FaceFriendReq req : reqs) {
-			dtos.add(faceFriendReqDTOMapper.faceFriendReqToFaceFriendReqDTO(req));
-		}
-		return dtos;
+		return faceFriendReqDTOMapper.faceFriendReqListToFaceFriendReqDTOList(reqs);
 	}
 
 	@Override
@@ -47,8 +42,8 @@ public class FaceFriendReqServiceImpl implements FaceFriendReqService {
 
 	@Override
 	public FaceFriendReqDTO save(FaceFriendReqDTO faceFriendReqDTO) {
-		faceFriendReqRepostory.save(faceFriendReqDTOMapper.faceFriendReqDTOToFaceFriendReq(faceFriendReqDTO));
-		return faceFriendReqDTO;
+		FaceFriendReq saved = faceFriendReqRepostory.save(faceFriendReqDTOMapper.faceFriendReqDTOToFaceFriendReq(faceFriendReqDTO));
+		return faceFriendReqDTOMapper.faceFriendReqToFaceFriendReqDTO(saved);
 	}
 
 	@Override

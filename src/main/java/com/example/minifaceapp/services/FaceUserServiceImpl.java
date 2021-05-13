@@ -1,7 +1,6 @@
 package com.example.minifaceapp.services;
 
 import java.sql.Types;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -42,19 +41,15 @@ public class FaceUserServiceImpl implements FaceUserService {
 			faceUserDTO.setUsername(faceUser.getUsername());
 			faceUserDTO.setEmail(faceUser.getEmail());
 			faceUserDTOMapper.updateFaceUserFromDTO(faceUserDTO, faceUser);
-			faceUserRepository.save(faceUser);
+			faceUser = faceUserRepository.save(faceUser);
 		}
-		return faceUserDTO;
+		return faceUserDTOMapper.faceUserToFaceUserDTOMapper(faceUser);
 	}
 
 	@Override
 	public List<FaceUserDTO> findAll() {
 		List<FaceUser> users = faceUserRepository.findAll();
-		List<FaceUserDTO> dtos = new ArrayList<>();
-		for (FaceUser user : users) {
-			dtos.add(faceUserDTOMapper.faceUserToFaceUserDTOMapper(user));
-		}
-		return dtos;
+		return faceUserDTOMapper.faceUserListToFaceUserDTOList(users);
 	}
 
 	@Override
@@ -92,21 +87,13 @@ public class FaceUserServiceImpl implements FaceUserService {
 	@Override
 	public List<FaceUserDTO> findFriends(FaceUser faceUser) {
 		List<FaceUser> users = faceUser.getFriends();
-		List<FaceUserDTO> dtos = new ArrayList<>();
-		for (FaceUser user : users) {
-			dtos.add(faceUserDTOMapper.faceUserToFaceUserDTOMapper(user));
-		}
-		return dtos;
+		return faceUserDTOMapper.faceUserListToFaceUserDTOList(users);
 	}
 
 	@Override
 	public List<FaceUserDTO> findByIdIn(List<Long> ids) {
 		List<FaceUser> users = faceUserRepository.findByIdIn(ids);
-		List<FaceUserDTO> dtos = new ArrayList<>();
-		for (FaceUser user : users) {
-			dtos.add(faceUserDTOMapper.faceUserToFaceUserDTOMapper(user));
-		}
-		return dtos;
+		return faceUserDTOMapper.faceUserListToFaceUserDTOList(users);
 	}
 
 	@Override
@@ -116,12 +103,10 @@ public class FaceUserServiceImpl implements FaceUserService {
 
 	@Override
 	public void delete(FaceUserDTO object) {
-		// uniplemented
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		// uniplemented
 	}
 
 	

@@ -51,8 +51,11 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 
 	@Override
 	public FaceGroupDTO save(FaceGroupDTO faceGroupDTO) {
-		FaceGroup saved = faceGroupRepository.save(faceGroupDTOMapper.faceGroupDTOToFaceGroup(faceGroupDTO));
-		return faceGroupDTOMapper.faceGroupToFaceGroupDTO(saved);
+		FaceGroup oldGroup = faceGroupRepository.findById(faceGroupDTO.getId()).orElse(null);
+		oldGroup.setName(faceGroupDTO.getName());
+		oldGroup.setDescription(faceGroupDTO.getDescription());
+		faceGroupRepository.save(oldGroup);
+		return faceGroupDTOMapper.faceGroupToFaceGroupDTO(oldGroup);
 	}
 
 	@Override
