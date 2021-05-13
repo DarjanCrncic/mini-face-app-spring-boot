@@ -2,7 +2,7 @@
 const MainObject = {
 
 	loadPrimary: function(HTMLName, unloadSecondary, callback) {
-		
+		this.showPrimary();
 		$("#primary").load(HTMLName, function() {
 			if (callback) callback();
 		});
@@ -10,17 +10,19 @@ const MainObject = {
 			$("#secondary").empty();
 		}
 
-		MainObject.hideTertiary();
+		//MainObject.hideTertiary();
 	},
 
-	loadSecondary: function(HTMLName, unloadPrimary, callback) {
-		$("#secondary").load(HTMLName, function() {
+	loadSecondary: function(HTMLName, hidePrimary, callback) {
+		if (hidePrimary) {
+			$("#primary").hide();
+		}
+		$("#secondary").load(HTMLName, function(){
 			if (callback) callback();
 		});
-		if (unloadPrimary) {
-			$("#primary").empty();
-		}
-		MainObject.hideTertiary();
+		
+		
+		//MainObject.hideTertiary();
 	},
 
 	loadTertiary: function(HTMLName, unloadSecondary, callback) {

@@ -4,10 +4,15 @@ $(document).ready(function() {
 		$('#addMembersModal').modal('show');
 	});
 	
-	$('.editGroupInfo').click(function(){
+	$('.editGroupInfo').click(function(e){
+		e.preventDefault();
 		$('#editGroupModal').modal('show');
-		$('#newGroupName').val($('#groupName').text());
-		$('#newGroupDescription').val($('#groupDescription').text());
+		$('#editGroupName').val($('#groupName').text());
+		$('#editGroupDescription').val($('#groupDescription').text());
+	});
+	
+	$('#returnButton').click(function(){
+		MainObject.unloadSecondary(true);
 	});
 
 });
