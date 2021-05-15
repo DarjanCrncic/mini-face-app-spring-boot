@@ -26,9 +26,9 @@ const GroupsPageObject = {
 	openGroupOnClick: function(data, userID) {
 		$('#view_' + data.id).click(function() {
 			MainObject.loadSecondary('resources/html/fragments/viewGroup.html', true, function() {
-				$('#viewGroupInside').append('<h2 id="groupName" class="blue-titles" style="display: inline-block;">' + data.name + '</h2>');
-				$('#viewGroupInside').append('<button id="returnButton" class="btn btn-outline-danger float-right" style="margin-top: 30px">Go Back</button>');
-				$('#viewGroupInside').append('<p id="groupDescription" >' + data.description + '</p>');
+				$('#viewGroupInside').append('<div class="container"><h2 id="groupName" class="blue-titles" style="display: inline-block;">' + data.name + '</h2>\
+				<button id="returnButton" class="btn btn-outline-danger float-right" style="margin-top: 30px">Go Back</button>\
+				<p id="groupDescription" >' + data.description + '</p></div>');
 				
 				GroupsPageObject.showGroupMembers(data.id);
 
