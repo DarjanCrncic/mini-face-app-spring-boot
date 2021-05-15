@@ -1,14 +1,21 @@
 package com.example.minifaceapp.services;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Types;
+import java.util.Base64;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.minifaceapp.api.v1.dtos.FaceUserDTO;
 import com.example.minifaceapp.api.v1.dtos.SearchDTO;
@@ -107,6 +114,61 @@ public class FaceUserServiceImpl implements FaceUserService {
 
 	@Override
 	public void deleteById(Long id) {
+	}
+
+	@Override
+	public FaceUserDTO saveImage(MultipartFile multipartFile, Long id) {
+		  try {
+	            FaceUser faceUser = faceUserRepository.findById(id).get();
+
+	            Byte[] byteObjects = new Byte[multipartFile.getBytes().length];
+
+	            int i = 0;
+
+	            for (byte b : multipartFile.getBytes()){
+	                byteObjects[i++] = b;
+	            }
+
+	            faceUser.setImage(byteObjects);
+	            faceUserRepository.save(faceUser);
+	            
+	       } catch (IOException e) {
+	            e.printStackTrace();
+	       }
+		  return null;
+	}
+
+	// for getting raw image
+	@Override
+	public void getImage(Long id, HttpServletResponse response) throws IOException {
+		FaceUser faceUser = faceUserRepository.findById(id).get();
+
+        if (faceUser.getImage() != null) {
+            byte[] byteArray = new byte[faceUser.getImage().length];
+            int i = 0;
+
+            for (Byte wrappedByte : faceUser.getImage()){
+                byteArray[i++] = wrappedByte; //auto unboxing
+            }
+
+            response.setContentType("image/jpeg");
+            InputStream is = new ByteArrayInputStream(byteArray);
+            IOUtils.copy(is, response.getOutputStream());
+        }
+	}
+
+	// for getting image as base64 String 
+	@Override
+	public String getImageAsString(Long id) {
+		Byte[] imageBytes = faceUserRepository.findById(id).get().getImage();
+		
+		byte[] bytes = new byte[imageBytes.length];
+		
+		int j=0;
+		for(Byte b: imageBytes)
+		    bytes[j++] = b.byteValue();
+		
+		return Base64.getEncoder().encodeToString(bytes);
 	}
 
 	

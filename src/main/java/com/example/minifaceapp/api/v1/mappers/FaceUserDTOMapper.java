@@ -1,5 +1,6 @@
 package com.example.minifaceapp.api.v1.mappers;
 
+import java.util.Base64;
 import java.util.List;
 
 import org.mapstruct.Mapper;
@@ -14,9 +15,9 @@ import com.example.minifaceapp.model.FaceUser;
 public interface FaceUserDTOMapper {
 
 	FaceUserDTOMapper INSTANCE = Mappers.getMapper(FaceUserDTOMapper.class);
-	
+
 	FaceUserDTO faceUserToFaceUserDTOMapper(FaceUser faceUser);
-	
+
 	@Mapping(target = "creationTime", ignore = true)
 	@Mapping(target = "friendOf", ignore = true)
 	@Mapping(target = "friends", ignore = true)
@@ -25,7 +26,7 @@ public interface FaceUserDTOMapper {
 	@Mapping(target = "password", ignore = true)
 	@Mapping(target = "updateTime", ignore = true)
 	FaceUser faceUserDTOToFaceUserMapper(FaceUserDTO faceUserDTO);
-	
+
 	@Mapping(target = "creationTime", ignore = true)
 	@Mapping(target = "friendOf", ignore = true)
 	@Mapping(target = "friends", ignore = true)
@@ -34,6 +35,19 @@ public interface FaceUserDTOMapper {
 	@Mapping(target = "password", ignore = true)
 	@Mapping(target = "updateTime", ignore = true)
 	void updateFaceUserFromDTO(FaceUserDTO faceUserDTO, @MappingTarget FaceUser faceUser);
-	
+
 	List<FaceUserDTO> faceUserListToFaceUserDTOList(List<FaceUser> list);
+
+	default String convertImageToBase64(Byte[] imageBytes) {
+		if (imageBytes != null) {
+			byte[] bytes = new byte[imageBytes.length];
+
+			int j = 0;
+			for (Byte b : imageBytes)
+				bytes[j++] = b.byteValue();
+
+			return Base64.getEncoder().encodeToString(bytes);
+		}
+		return null;
+	}
 }

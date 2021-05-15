@@ -17,7 +17,7 @@
 	<properties>
 		<java.version>11</java.version>
 
-      	<m2e.apt.activation>jdt_apt</m2e.apt.activation>
+		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
 
 	</properties>
 	<dependencies>
@@ -84,6 +84,17 @@
 			<version>1.4.2.Final</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20210307</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

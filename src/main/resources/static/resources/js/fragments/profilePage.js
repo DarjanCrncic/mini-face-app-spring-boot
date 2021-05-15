@@ -13,14 +13,16 @@ $(document).ready(function() {
 	});
 
 	$('#saveEditedInfo').click(function() {
-		let input = 
-		{name: $('#editedNameInput').val(),
-		surname: $('#editedSurnameInput').val(),
-		country: $('#editedCountryInput').val(),
-		city: $('#editedCityInput').val(),
-		age: $('#editedAgeInput').val(),
-		gender: $('#editedGenderInput').val()}
-				
+		let input =
+		{
+			name: $('#editedNameInput').val(),
+			surname: $('#editedSurnameInput').val(),
+			country: $('#editedCountryInput').val(),
+			city: $('#editedCityInput').val(),
+			age: $('#editedAgeInput').val(),
+			gender: $('#editedGenderInput').val()
+		}
+
 		$.ajax({
 			type: "POST",
 			url: 'profile/update',
@@ -42,7 +44,7 @@ $(document).ready(function() {
 			url: 'profile/info',
 			dataType: 'json',
 			success: function(data) {
-				$("#profilePicture").attr("src", "data:image/jpg;base64," + data.image);
+				//$("#profilePicture").attr("src", "data:image/jpg;base64," + data.image);
 				$("#profilePictureOnProfile").attr("src", "data:image/jpg;base64," + data.image);
 				$('#profileName').text(data.name);
 				$('#profileSurname').text(data.surname);
@@ -94,5 +96,4 @@ $(document).ready(function() {
 			}
 		});
 	});
-
 });

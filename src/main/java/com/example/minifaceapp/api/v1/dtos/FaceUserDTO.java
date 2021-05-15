@@ -15,4 +15,5 @@ public class FaceUserDTO {
 	private String email;
 	private String username;
 	private Boolean notify;
+	private String image;
 }

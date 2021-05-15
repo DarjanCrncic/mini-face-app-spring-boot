@@ -9,5 +9,4 @@ public class MinifaceappApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MinifaceappApplication.class, args);
 	}
-
 }

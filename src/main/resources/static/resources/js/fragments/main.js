@@ -10,10 +10,11 @@ const MainObject = {
 			$("#secondary").empty();
 		}
 
-		//MainObject.hideTertiary();
+		MainObject.hideTertiary();
 	},
 
 	loadSecondary: function(HTMLName, hidePrimary, callback) {
+		this.showSecondary();
 		if (hidePrimary) {
 			$("#primary").hide();
 		}
@@ -21,18 +22,16 @@ const MainObject = {
 			if (callback) callback();
 		});
 		
-		
-		//MainObject.hideTertiary();
+		MainObject.hideTertiary();
 	},
 
-	loadTertiary: function(HTMLName, unloadSecondary, callback) {
+	loadTertiary: function(HTMLName, hideSecondary, callback) {
+		if (hideSecondary) {
+			$("#secondary").hide();
+		}
 		$("#tertiary").load(HTMLName, function() {
 			if (callback) callback();
 		});
-		if (unloadSecondary) {
-			$("#secondary").empty();
-		}
-
 	},
 
 	unloadPrimary: function() {
@@ -79,8 +78,6 @@ const MainObject = {
 	},
 	hideTertiary: function() {
 		$("#tertiary").hide();
-		MainObject.showPrimary();
-		MainObject.showSecondary();
 	},
 	
 	hidePrimary: function(){

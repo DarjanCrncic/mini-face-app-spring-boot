@@ -7,7 +7,7 @@
 
 		<img id="profilePictureOnProfile" class="profileImage" />
 
-		<form method="post" action="ProfilePage" enctype="multipart/form-data"
+		<form method="post" id="imageForm" action="profile/image" enctype="multipart/form-data"
 			target="_self" style="width: 300px">
 			<div class="fileInputContainer">
 				<div class="input-group">
@@ -19,8 +19,7 @@
 						<input type="hidden" name="type" value="updateImage">
 					</div>
 					<div class="input-group-append">
-						<input class="btn btn-primary" type="submit"
-							id="customFileInputButton" value="Submit" />
+						<input class="btn btn-primary" type="submit" id="customFileInputButton" value="Submit" />
 					</div>
 				</div>
 			</div>

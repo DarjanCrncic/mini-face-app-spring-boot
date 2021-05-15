@@ -1,5 +1,9 @@
 package com.example.minifaceapp.controllers;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -8,8 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.minifaceapp.api.v1.dtos.FaceUserDTO;
 import com.example.minifaceapp.api.v1.mappers.FaceUserListDTO;
@@ -50,5 +56,19 @@ public class UserController {
 	public FaceUserDTO getFriendUserInfo(@PathVariable Long id) {
 		return faceUserService.findById(id);	
 	}
+	
+	@PostMapping("/image")
+	@ResponseStatus(HttpStatus.OK)
+	public void uploadPhoto(@RequestParam("image") MultipartFile multipartFile, @AuthenticationPrincipal CustomUserDetails userDetails, HttpServletResponse response) throws IOException {
+		faceUserService.saveImage(multipartFile, userDetails.getId());
+		response.sendRedirect("/miniFaceApp/main");
+	}
+	
+	@GetMapping("/image/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public String renderImageFromDB(@PathVariable Long id, HttpServletResponse response) throws IOException {
+		return faceUserService.getImageAsString(id);
+	}
+	
 	
 }

@@ -1,4 +1,4 @@
-//MainObject.loadTertiary("resources/html/fragments/chatroom.html");
+MainObject.loadTertiary("resources/html/fragments/chatroom.html");
 
 let $loading = $('.loader').hide();
 $(document).ajaxStart(function() {

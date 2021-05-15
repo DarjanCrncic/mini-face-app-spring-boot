@@ -1,6 +1,5 @@
 package com.example.minifaceapp.model;
 
-import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -11,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
@@ -70,8 +70,9 @@ public class FaceUser {
 	@Column(name = "gender")
 	private String gender;
 	
+	@Lob
 	@Column(name = "image")
-	private Blob image;
+	private Byte[] image;
 	
 	@Column(name = "age")
 	@ColumnDefault("0")
