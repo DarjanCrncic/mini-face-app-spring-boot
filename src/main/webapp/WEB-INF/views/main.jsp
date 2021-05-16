@@ -37,7 +37,7 @@
 						<button class="nav-link nav-button navigation" id="showVissiblePosts" onclick="MainObject.navigationPage(this.id)">Posts</button>		
 				</li>
 				<li class="nav-item">
-						<button class="nav-link nav-button navigation" id="chatroom" onclick="MainObject.showTertiary(this.id)">Chat</button>		
+						<button class="nav-link nav-button navigation" id="chatroom" onclick="$('#hideShowChatButton').trigger('click')">Chat</button>		
 				</li>
 				<li class="nav-item">
 						<button class="nav-link nav-button navigation" id="reportPage" onclick="MainObject.navigationPage(this.id)">Report</button>		

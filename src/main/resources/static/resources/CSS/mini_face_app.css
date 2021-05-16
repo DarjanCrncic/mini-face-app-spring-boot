@@ -316,22 +316,20 @@
 	position:fixed;
     right: 0;
     bottom: 0;
-    width: 30%;
-    height: 50%;
+    width: 28%;
+    height: 32rem;
 }
 
-.left-column-chat {
-	width: 20%;
-	background-color: white;
-}
-
-.right-column-chat {
-	width: 80%;
+#wholeChatDiv{
+	background: white;
+	border: 2px solid #b0a8a8;
+	border-radius: 6px;
+	height: 100%; 
+	padding:5px;
 }
 
 #topHolderDiv{
 	display:flex; 
-	height: calc(100% - 1.5em - .75rem - 5px );
 }
 
 #messageDiv{
@@ -342,7 +340,6 @@
 }
 
 #usersDiv{
-	height: 100%;
 	width: 20%;
 	display: inline;
 	overflow: auto;	
@@ -350,10 +347,17 @@
 }
 
 #bottomHolderDiv {
-	position: absolute; 
-	width: 96.5%;
-	bottom: 0;
-	right: 5px;
+	display: flex;
+}
+
+#messageText{
+	margin-top: 5px;
+	width: 80%;
+}
+
+#sendMessageButton{
+	margin-top: 5px;
+	width: 20%;
 }
 
 .chatWindows{
@@ -376,17 +380,6 @@
 	width: 100%;
 }
 
-#messageText{
-	margin-top: 10px;
-	width: 78%;
-	display: inline-block;
-}
-
-#sendMessageButton{
-	width: 20%;
-	margin-bottom: 5px;
-	display: inline-block;
-}
 
 /* report page*/
 .blue-titles-report{
