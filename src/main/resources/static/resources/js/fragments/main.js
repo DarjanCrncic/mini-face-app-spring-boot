@@ -10,7 +10,7 @@ const MainObject = {
 			$("#secondary").empty();
 		}
 
-		MainObject.hideTertiary();
+		//MainObject.hideTertiary();
 	},
 
 	loadSecondary: function(HTMLName, hidePrimary, callback) {
@@ -22,7 +22,7 @@ const MainObject = {
 			if (callback) callback();
 		});
 		
-		MainObject.hideTertiary();
+		//MainObject.hideTertiary();
 	},
 
 	loadTertiary: function(HTMLName, hideSecondary, callback) {

@@ -57,7 +57,7 @@
 	<div class="loader"></div>
 	<div id="primary" class="container"></div>
 	<div id="secondary" class="container"></div>
-	<div id="tertiary" class="container"></div>
+	<div id="tertiary"></div>
 
 	
 	<%@ include file="partials/footer.jsp"%>
