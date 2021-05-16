@@ -12,13 +12,13 @@ $('#datepickerStart').datepicker("setDate", "01/02/2021");
 
 $(".select2-div").select2({
 	theme: "bootstrap",
-	data: [{ id: ">=", text: ">=" }, { id: "<=", text: "<=" }, { id: ">", text: ">" }, { id: "<", text: "<" }, { id: "==", text: "==" }]
+	data: [{ id: ">=", text: ">=" }, { id: "<=", text: "<=" }, { id: ">", text: ">" }, { id: "<", text: "<" }, { id: "=", text: "==" }]
 });
 
 $('#createPDFButton').click(function() {
 
 	$('.loader').show();
-	
+
 	let commentOperations = [];
 	let commentNumbers = [];
 	let likeOperations = [];
@@ -35,6 +35,11 @@ $('#createPDFButton').click(function() {
 		likeOperations.push(object.value);
 		likeNumbers.push($("#likeCount_" + IdNumber).val());
 	});
+	
+	var newDate = $('#datepickerEnd').datepicker('getDate');
+    if (newDate) { // Not null
+        newDate.setDate(newDate.getDate() + 1);
+    }
 
 	let input = {
 		titleKeyword: $('#title-keyword-input').val(),
@@ -43,23 +48,23 @@ $('#createPDFButton').click(function() {
 		likeNumbers: likeNumbers,
 		likeOperations: likeOperations,
 		startDate: $('#datepickerStart').datepicker("getDate").toLocaleDateString("en-US"),
-		endDate: $('#datepickerEnd').datepicker("getDate").toLocaleDateString("en-US"),
+		endDate: newDate.toLocaleDateString("en-US"),
 	}
-	
+
 	$.ajax({
 		type: "POST",
-		url: "ReportPage",
+		url: "posts/report",
 		dataType: 'json',
 		contentType: "application/json",
 		data: JSON.stringify(input),
 		success: function(response) {
-			
-			
-			var a = document.createElement('a');
-			a.href = "ReportPage";
-			a.download = 'test.pdf';
-			a.click();
-			$('.loader').hide();
+			const linkSource = 'data:application/pdf;base64,' + response.data;
+			const downloadLink = document.createElement("a");
+			const fileName = "post_report.pdf";
+
+			downloadLink.href = linkSource;
+			downloadLink.download = fileName;
+			downloadLink.click();
 		},
 		error: function() {
 			alert("Something went wrong, please try again later");

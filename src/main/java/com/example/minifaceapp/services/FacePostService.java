@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.minifaceapp.api.v1.dtos.FacePostDTO;
 import com.example.minifaceapp.api.v1.dtos.FacePostSearchDTO;
+import com.example.minifaceapp.api.v1.dtos.ReportDTO;
 import com.example.minifaceapp.api.v1.dtos.SearchDTO;
 
 public interface FacePostService extends CrudService<FacePostDTO, Long> {
@@ -15,5 +16,7 @@ public interface FacePostService extends CrudService<FacePostDTO, Long> {
 	FacePostDTO saveGroup(FacePostDTO facePostDTO, Long groupId);
 
 	void deleteGroupPostById(Long groupId, Long id);
+
+	String generateReportQuery(ReportDTO reportDTO);
 
 }

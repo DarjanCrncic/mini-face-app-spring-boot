@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.minifaceapp.api.v1.dtos.FacePostDTO;
 import com.example.minifaceapp.api.v1.dtos.FacePostSearchDTO;
+import com.example.minifaceapp.api.v1.dtos.ReportDTO;
 import com.example.minifaceapp.api.v1.dtos.SearchDTO;
 import com.example.minifaceapp.api.v1.mappers.FacePostDTOMapper;
 import com.example.minifaceapp.api.v1.mappers.FacePostDTORowMapper;
@@ -51,18 +52,18 @@ public class FacePostServiceImpl implements FacePostService {
 	}
 
 	@Override
-	public void delete(FacePostDTO facePostDTO) {		
+	public void delete(FacePostDTO facePostDTO) {
 		facePostRepository.delete(facePostDTOMapper.facePostDTOToFacePostMapper(facePostDTO));
 	}
 
 	@Override
 	public void deleteById(Long id) {
 		FacePost facePost = facePostRepository.findById(id).orElse(null);
-		if(facePost.getType().getId() == 1)
+		if (facePost.getType().getId() == 1)
 			facePostRepository.deleteById(id);
-		
+
 	}
-	
+
 	@Override
 	public void deleteGroupPostById(Long groupId, Long id) {
 		FaceGroup group = faceGroupRepository.findById(groupId).orElse(null);
@@ -94,13 +95,13 @@ public class FacePostServiceImpl implements FacePostService {
 
 	@Override
 	public FacePostDTO edit(Long id, FacePostDTO facePostDTO) {
-		FacePost facePost = facePostRepository.findById(id).orElse(null);	
+		FacePost facePost = facePostRepository.findById(id).orElse(null);
 		if (facePost != null) {
 			facePost.setBody(facePostDTO.getBody());
-			facePost.setTitle(facePostDTO.getTitle());	
+			facePost.setTitle(facePostDTO.getTitle());
 			facePostRepository.save(facePost);
 		}
-		
+
 		return this.findById(id);
 	}
 
@@ -112,6 +113,30 @@ public class FacePostServiceImpl implements FacePostService {
 		return facePostDTO;
 	}
 
-	
-	
+	@Override
+	public String generateReportQuery(ReportDTO reportDTO) {
+		StringBuilder str = new StringBuilder();
+
+		if (!reportDTO.getTitleKeyword().isEmpty() && !reportDTO.getTitleKeyword().isBlank()) {
+			str.append(" AND ");
+			str.append("UPPER(fp.title) LIKE '%" + reportDTO.getTitleKeyword().toUpperCase() + "%'");
+		}
+
+		for (int i = 0; i < reportDTO.getCommentOperations().size(); i++) {
+			str.append(" AND comment_counter.value ");
+			str.append(reportDTO.getCommentOperations().get(i) + " " + reportDTO.getCommentNumbers().get(i));
+		}
+
+		for (int i = 0; i < reportDTO.getLikeOperations().size(); i++) {
+			str.append(" AND counter.value ");
+			str.append(reportDTO.getLikeOperations().get(i) + " " + reportDTO.getLikeNumbers().get(i));
+		}
+
+		str.append(" AND ");
+		str.append("(fp.creation_time BETWEEN to_date('" + reportDTO.getStartDate() + "', 'MM/DD/YYYY') AND to_date('"
+				+ reportDTO.getEndDate() + "', 'MM/DD/YYYY'))");
+
+		return str.toString();
+	}
+
 }
