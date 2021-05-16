@@ -12,6 +12,7 @@ import java.util.Map;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
 import com.example.minifaceapp.api.v1.dtos.FacePostDTO;
 import com.example.minifaceapp.api.v1.dtos.FacePostSearchDTO;
@@ -132,7 +133,8 @@ public class FacePostServiceImpl implements FacePostService {
 
 		try (ByteArrayOutputStream outStream = new ByteArrayOutputStream(); Connection connection = jdbcTemplate.getDataSource().getConnection();) {
 		
-			JasperDesign jasperDesign = JRXmlLoader.load("D:\\eclipse-spring\\minifaceapp\\src\\main\\resources\\PostReport.jrxml");
+			//JasperDesign jasperDesign = JRXmlLoader.load("D:\\eclipse-spring\\minifaceapp\\src\\main\\resources\\PostReport.jrxml");
+			JasperDesign jasperDesign = JRXmlLoader.load(ResourceUtils.getFile("classpath:PostReport.jrxml"));
 			JasperReport report = JasperCompileManager.compileReport(jasperDesign);
 
 			String query = ConcatSQLSearch.generateReportQuery(reportDTO);
