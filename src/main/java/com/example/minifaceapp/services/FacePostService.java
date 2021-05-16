@@ -1,9 +1,11 @@
 package com.example.minifaceapp.services;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.example.minifaceapp.api.v1.dtos.FacePostDTO;
 import com.example.minifaceapp.api.v1.dtos.FacePostSearchDTO;
+import com.example.minifaceapp.api.v1.dtos.FaceUserDTO;
 import com.example.minifaceapp.api.v1.dtos.ReportDTO;
 import com.example.minifaceapp.api.v1.dtos.SearchDTO;
 
@@ -17,6 +19,6 @@ public interface FacePostService extends CrudService<FacePostDTO, Long> {
 
 	void deleteGroupPostById(Long groupId, Long id);
 
-	String generateReportQuery(ReportDTO reportDTO);
+	String exportPDF(ReportDTO reportDTO, FaceUserDTO faceUserDTO) throws IOException;
 
 }

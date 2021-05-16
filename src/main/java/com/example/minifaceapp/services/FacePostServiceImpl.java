@@ -1,14 +1,21 @@
 package com.example.minifaceapp.services;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.sql.Connection;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.example.minifaceapp.api.v1.dtos.FacePostDTO;
 import com.example.minifaceapp.api.v1.dtos.FacePostSearchDTO;
+import com.example.minifaceapp.api.v1.dtos.FaceUserDTO;
 import com.example.minifaceapp.api.v1.dtos.ReportDTO;
 import com.example.minifaceapp.api.v1.dtos.SearchDTO;
 import com.example.minifaceapp.api.v1.mappers.FacePostDTOMapper;
@@ -18,6 +25,14 @@ import com.example.minifaceapp.model.FacePost;
 import com.example.minifaceapp.repositories.FaceGroupRepository;
 import com.example.minifaceapp.repositories.FacePostRepository;
 import com.example.minifaceapp.utils.ConcatSQLSearch;
+
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 @Service
 public class FacePostServiceImpl implements FacePostService {
@@ -114,29 +129,33 @@ public class FacePostServiceImpl implements FacePostService {
 	}
 
 	@Override
-	public String generateReportQuery(ReportDTO reportDTO) {
-		StringBuilder str = new StringBuilder();
+	public String exportPDF(ReportDTO reportDTO, FaceUserDTO faceUserDTO) throws IOException {
 
-		if (!reportDTO.getTitleKeyword().isEmpty() && !reportDTO.getTitleKeyword().isBlank()) {
-			str.append(" AND ");
-			str.append("UPPER(fp.title) LIKE '%" + reportDTO.getTitleKeyword().toUpperCase() + "%'");
+		try (ByteArrayOutputStream outStream = new ByteArrayOutputStream()) {
+			Connection connection = jdbcTemplate.getDataSource().getConnection();
+			JasperDesign jasperDesign = JRXmlLoader
+					.load("D:\\eclipse-spring\\minifaceapp\\src\\main\\resources\\PostReport.jrxml");
+			JasperReport report = JasperCompileManager.compileReport(jasperDesign);
+
+			String query = ConcatSQLSearch.generateReportQuery(reportDTO);
+
+			Map<String, Object> parameters = new HashMap<>();
+			parameters.put("user_id", Integer.valueOf(faceUserDTO.getId().toString()));
+			parameters.put("username", faceUserDTO.getUsername());
+			parameters.put("user_full_name", faceUserDTO.getName() + " " + faceUserDTO.getSurname());
+			parameters.put("placeholder", query);
+
+			JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, connection);
+			JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+
+			byte[] pdf = outStream.toByteArray();
+			String base64Pdf = Base64.getEncoder().encodeToString(pdf);
+			return base64Pdf;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
-
-		for (int i = 0; i < reportDTO.getCommentOperations().size(); i++) {
-			str.append(" AND comment_counter.value ");
-			str.append(reportDTO.getCommentOperations().get(i) + " " + reportDTO.getCommentNumbers().get(i));
-		}
-
-		for (int i = 0; i < reportDTO.getLikeOperations().size(); i++) {
-			str.append(" AND counter.value ");
-			str.append(reportDTO.getLikeOperations().get(i) + " " + reportDTO.getLikeNumbers().get(i));
-		}
-
-		str.append(" AND ");
-		str.append("(fp.creation_time BETWEEN to_date('" + reportDTO.getStartDate() + "', 'MM/DD/YYYY') AND to_date('"
-				+ reportDTO.getEndDate() + "', 'MM/DD/YYYY'))");
-
-		return str.toString();
 	}
 
 }
