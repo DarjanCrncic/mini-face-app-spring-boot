@@ -2,6 +2,7 @@ package com.example.minifaceapp.api.v1.mappers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Base64;
 
 import org.springframework.jdbc.core.RowMapper;
 
@@ -26,6 +27,9 @@ public class FacePostDTORowMapper implements RowMapper<FacePostSearchDTO>{
 		faceUser.setId(rs.getLong("creator_id"));
 		faceUser.setName(rs.getString("name"));
 		faceUser.setSurname(rs.getString("surname"));
+		faceUser.setImage(Base64.getEncoder().encodeToString(rs.getBytes("image")));
+		//Byte[] imageBytes = ("image");
+		
 		facePostSearchDTO.setCreator(faceUser);
 		
 		type.setId(rs.getLong("type"));

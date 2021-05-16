@@ -332,7 +332,10 @@ const PostsPageObject = {
 
 	//////////////////// create html element for post item, created by current user
 	createPostHtml: function(data) {
-		return ('<div id="postDiv_' + data.id + '"><div class="card"><div class="card-header post-card-header"><div class="posterName">' + data.creator.name + " " + data.creator.surname + '</div><div class="datetime">' + formatTimestamp(data.creationTime) + '</div></div>\
+		return ('<div id="postDiv_' + data.id + '"><div class="card"><div class="card-header post-card-header">\
+		<div ><img class="postImage" src="data:image/jpg;base64,' + data.creator.image + '"/></div>\
+		<div class="posterName">' + data.creator.name + " " + data.creator.surname + '</div><div class="datetime">' + formatTimestamp(data.creationTime) + '</div>\
+		</div>\
 		<div class="card-body">\
 		<h5 class="card-title"  id="title_' + data.id + '">' + data.title + '</h5>\
 		<p class="card-text" id="body_'+ data.id + '">' + data.body + '</p>\
@@ -352,7 +355,9 @@ const PostsPageObject = {
 	},
 	//////////////////// create html element for post item, not created by current user
 	createPostHtmlNotUser: function(data) {
-		return ('<div id="postDiv_' + data.id + '"><div class="card"><div class="card-header post-card-header"><div class="posterName">' + data.creator.name + " " + data.creator.surname + '</div><div class="datetime">' + formatTimestamp(data.creationTime) + '</div></div>\
+		return ('<div id="postDiv_' + data.id + '"><div class="card"><div class="card-header post-card-header">\
+		<div ><img class="postImage" src="data:image/jpg;base64,' + data.creator.image + '"/></div>\
+		<div class="posterName">' + data.creator.name + " " + data.creator.surname + '</div><div class="datetime">' + formatTimestamp(data.creationTime) + '</div></div>\
 		<div class="card-body">\
 		<h5 class="card-title"  id="title_' + data.id + '">' + data.title + '</h5>\
 		<p class="card-text" id="body_'+ data.id + '">' + data.body + '</p>\
@@ -369,7 +374,9 @@ const PostsPageObject = {
 	},
 
 	createCommentHtml: function(data) {
-		return ('<hr style="margin:0; padding:0;"><h5 class="commentPoster" style="display:inline;">' + data.faceUserDTO.name +" "+ data.faceUserDTO.surname + ' </h5></div><h3 class="commentTime" style="display: inline-block" >' + formatTimestamp(data.creationTime) + '</h3>\
+		return ('<hr style="margin:0; padding:0;">\
+		<div ><img class="commentImage" src="data:image/jpg;base64,' + data.faceUserDTO.image + '"/></div>\
+		<h5 class="commentPoster" style="display:inline;">' + data.faceUserDTO.name +" "+ data.faceUserDTO.surname + ' </h5></div><h3 class="commentTime" style="display: inline-block" >' + formatTimestamp(data.creationTime) + '</h3>\
 		<div style="display:inline; float:right; margin-top: 5%; padding-left: 3%;"><i class="fas fa-thumbs-up" style="color: #007bff; display:inline; " ></i><p id="likeCounterComments_'+ data.id + '" style="display: inline; margin-left: 5px"></p>\
 		<button class="far fa-thumbs-up like-button" id="likeComment_'+ data.id + '"></button>' + deleteOrNot(data)
 			+ '</div><h5 class="commentText" >' + data.body + '</h5>');

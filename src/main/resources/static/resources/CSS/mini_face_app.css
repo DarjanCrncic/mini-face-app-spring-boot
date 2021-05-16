@@ -156,6 +156,24 @@
 	float: left;
 }
 
+.postImage {
+	display: inline;
+	float: left;
+	border-radius: 50%;
+	height: 2.5rem;
+	width: 2.5rem;
+	margin-right: 5px;
+}
+
+.commentImage {
+	display: inline;
+	float: left;
+	border-radius: 50%;
+	height: 1.4rem;
+	width: 1.4rem;
+	margin-right: 5px;
+}
+
 .post-card-header {
 	text-align: right;
 }
