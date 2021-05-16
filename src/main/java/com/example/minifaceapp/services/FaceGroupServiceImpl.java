@@ -93,8 +93,7 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 			placeholder = ConcatSQLSearch.createSQLQueryAddition("and", searchDTO, caseAll);
 		}
 		String id = Long.toString(faceUserId);
-		System.out.println(placeholder);
-		
+	
 		String query = "SELECT fg.id, fg.name, fg.description, fu.name as owner_name, fu.surname as owner_surname, fg.owner_id from face_group fg join " +
 				" face_user fu on fu.id = fg.owner_id join" +
 				" face_group_members fgm on fgm.user_id = ? and fgm.group_id = fg.id " + placeholder + " order by fg.name";
@@ -104,8 +103,7 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 	
 	@Override
 	public List<FaceUserDTO> findFriendsNotMembers(Long userId, Long groupId){
-		List<FaceUser> notMembers = new ArrayList<>();
-		notMembers = faceUserRepository.findById(userId).orElse(null).getFriends();
+		List <FaceUser> notMembers = faceUserRepository.findById(userId).orElse(null).getFriends();
 		List<FaceUser> members = faceGroupRepository.findById(groupId).orElse(null).getMembers();
 		
 		for(FaceUser member: members) {

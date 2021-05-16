@@ -1,7 +1,6 @@
 package com.example.minifaceapp.controllers;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,8 +26,6 @@ import com.example.minifaceapp.security.CustomUserDetails;
 import com.example.minifaceapp.services.FacePostService;
 import com.example.minifaceapp.services.FaceUserService;
 import com.example.minifaceapp.services.PostTypeService;
-
-import net.sf.jasperreports.engine.JRException;
 
 @RestController
 @RequestMapping("/posts")
@@ -87,7 +84,7 @@ public class FacePostController {
 	
 	@PostMapping(value = "/report", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public Object generatePdfReportOnPosts(@RequestBody ReportDTO reportDTO, @AuthenticationPrincipal CustomUserDetails userDetails, HttpServletResponse response) throws JRException, IOException, SQLException {
+	public Object generatePdfReportOnPosts(@RequestBody ReportDTO reportDTO, @AuthenticationPrincipal CustomUserDetails userDetails, HttpServletResponse response) throws IOException {
 	
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/pdf");

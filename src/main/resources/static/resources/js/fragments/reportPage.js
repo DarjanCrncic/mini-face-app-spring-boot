@@ -24,13 +24,13 @@ $('#createPDFButton').click(function() {
 	let likeOperations = [];
 	let likeNumbers = [];
 
-	$('.select2-comments').each(function(index, object) {
+	$('.select2-comments').each(function(_index, object) {
 		const IdNumber = object.id.replace(/[^0-9]/g, '');
 		commentOperations.push(object.value);
 		commentNumbers.push($("#commentCount_" + IdNumber).val());
 	});
 
-	$('.select2-likes').each(function(index, object) {
+	$('.select2-likes').each(function(_index, object) {
 		const IdNumber = object.id.replace(/[^0-9]/g, '');
 		likeOperations.push(object.value);
 		likeNumbers.push($("#likeCount_" + IdNumber).val());

@@ -94,7 +94,6 @@ public class FacePostServiceImpl implements FacePostService {
 			placeholder = ConcatSQLSearch.createSQLQueryAddition("and", searchDTO, caseAll);
 		}
 		String id = Long.toString(faceUserId);
-		System.out.println(placeholder);
 
 		String query = "select fp.id, fp.title, fp.body, fu.name, fu.surname, fu.image, fp.type, fp.creator_id, fp.creation_time, counter.value as likes from face_post fp "
 				+ "inner join (select fp.id, count(distinct liker_id) as value from post_like pl right outer join face_post fp on fp.id = pl.post_id group by fp.id) counter on counter.id = fp.id "
@@ -131,10 +130,9 @@ public class FacePostServiceImpl implements FacePostService {
 	@Override
 	public String exportPDF(ReportDTO reportDTO, FaceUserDTO faceUserDTO) throws IOException {
 
-		try (ByteArrayOutputStream outStream = new ByteArrayOutputStream()) {
-			Connection connection = jdbcTemplate.getDataSource().getConnection();
-			JasperDesign jasperDesign = JRXmlLoader
-					.load("D:\\eclipse-spring\\minifaceapp\\src\\main\\resources\\PostReport.jrxml");
+		try (ByteArrayOutputStream outStream = new ByteArrayOutputStream(); Connection connection = jdbcTemplate.getDataSource().getConnection();) {
+		
+			JasperDesign jasperDesign = JRXmlLoader.load("D:\\eclipse-spring\\minifaceapp\\src\\main\\resources\\PostReport.jrxml");
 			JasperReport report = JasperCompileManager.compileReport(jasperDesign);
 
 			String query = ConcatSQLSearch.generateReportQuery(reportDTO);
@@ -149,9 +147,8 @@ public class FacePostServiceImpl implements FacePostService {
 			JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
 
 			byte[] pdf = outStream.toByteArray();
-			String base64Pdf = Base64.getEncoder().encodeToString(pdf);
-			return base64Pdf;
-
+			return Base64.getEncoder().encodeToString(pdf);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

@@ -66,7 +66,7 @@ public class UserController {
 	
 	@GetMapping("/image/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public String renderImageFromDB(@PathVariable Long id, HttpServletResponse response) throws IOException {
+	public String renderImageFromDB(@PathVariable Long id, HttpServletResponse response) {
 		return faceUserService.getImageAsString(id);
 	}
 	

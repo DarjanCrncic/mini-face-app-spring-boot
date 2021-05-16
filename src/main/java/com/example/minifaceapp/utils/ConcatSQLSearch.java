@@ -7,54 +7,10 @@ import com.example.minifaceapp.api.v1.dtos.SearchDTO;
 
 public class ConcatSQLSearch {
 
-	public static String concatenate(String originalQuery, SearchDTO searchDTO, String[] caseAll) {
-
-		String wordPosition = searchDTO.getWordPosition();
-		ArrayList<String> words = searchDTO.getSearchWords();
-		ArrayList<String> filters = searchDTO.getSearchParams();
-		String logicalOperand = searchDTO.getLogicalOperand();
-
-		StringBuilder str = new StringBuilder();
-
-		str.append("SELECT * FROM( ");
-		str.append(originalQuery);
-		str.append(") WHERE ");
-
-		for (int i = 0; i < filters.size(); i++) {
-			if (filters.get(i).toString().equals("all")) {
-				str.append("(");
-				for (int j = 0; j < caseAll.length; j++) {
-					if (wordPosition.equals("back")) {
-						str.append("UPPER(" + caseAll[j] + ") LIKE '%" + words.get(i).toString().toUpperCase() + "' ");
-					} else if (wordPosition.equals("front")) {
-						str.append("UPPER(" + caseAll[j] + ") LIKE '" + words.get(i).toString().toUpperCase() + "%' ");
-					} else {
-						str.append("UPPER(" + caseAll[j] + ") LIKE '%" + words.get(i).toString().toUpperCase() + "%' ");
-					}
-					if (j < caseAll.length - 1) {
-						str.append("OR ");
-					}
-				}
-				str.append(")");
-			} else {
-				if (wordPosition.equals("back")) {
-					str.append("UPPER(" + filters.get(i).toString() + ") LIKE '%"
-							+ words.get(i).toString().toUpperCase() + "' ");
-				} else if (wordPosition.equals("front")) {
-					str.append("UPPER(" + filters.get(i).toString() + ") LIKE '" + words.get(i).toString().toUpperCase()
-							+ "%' ");
-				} else {
-					str.append("UPPER(" + filters.get(i).toString() + ") LIKE '%"
-							+ words.get(i).toString().toUpperCase() + "%' ");
-				}
-			}
-
-			if (i < filters.size() - 1) {
-				str.append(logicalOperand.toUpperCase() + " ");
-			}
-		}
-
-		return str.toString();
+	private static String definePosition(String word, String position) {
+		if (position.equals("front")) return word + "%";
+		if (position.equals("back")) return "%" + word;
+		return "%" + word + "%";
 	}
 
 	public static String createSQLQueryAddition(String filter, SearchDTO searchDTO, String[] caseAll) {
@@ -67,37 +23,24 @@ public class ConcatSQLSearch {
 		StringBuilder str = new StringBuilder();
 		str.append(filter + " (");
 		for (int i = 0; i < filters.size(); i++) {
-			if (filters.get(i).toString().contains("+")) {
-				String newFilter = "(" + filters.get(i).toString().replaceAll("\\+", " || ' ' || ") + ")";
+			if (filters.get(i).contains("+")) {
+				String newFilter = "(" + filters.get(i).replace("\\+", " || ' ' || ") + ")";
 				filters.remove(i);
 				filters.add(i, newFilter);
 			}
-			if (filters.get(i).toString().equals("all")) {
+			if (filters.get(i).equals("all")) {
 				str.append("(");
 				for (int j = 0; j < caseAll.length; j++) {
-					if (wordPosition.equals("back")) {
-						str.append("UPPER(" + caseAll[j] + ") LIKE '%" + words.get(i).toString().toUpperCase() + "' ");
-					} else if (wordPosition.equals("front")) {
-						str.append("UPPER(" + caseAll[j] + ") LIKE '" + words.get(i).toString().toUpperCase() + "%' ");
-					} else {
-						str.append("UPPER(" + caseAll[j] + ") LIKE '%" + words.get(i).toString().toUpperCase() + "%' ");
-					}
+					
+					str.append("UPPER(" + caseAll[j] + ") LIKE '" + definePosition(words.get(i).toUpperCase(), wordPosition) + "' ");
+					
 					if (j < caseAll.length - 1) {
 						str.append("OR ");
 					}
 				}
 				str.append(")");
 			} else {
-				if (wordPosition.equals("back")) {
-					str.append("UPPER(" + filters.get(i).toString() + ") LIKE '%"
-							+ words.get(i).toString().toUpperCase() + "' ");
-				} else if (wordPosition.equals("front")) {
-					str.append("UPPER(" + filters.get(i).toString() + ") LIKE '" + words.get(i).toString().toUpperCase()
-							+ "%' ");
-				} else {
-					str.append("UPPER(" + filters.get(i).toString() + ") LIKE '%"
-							+ words.get(i).toString().toUpperCase() + "%' ");
-				}
+				str.append("UPPER(" + filters.get(i) + ") LIKE '" + definePosition(words.get(i).toUpperCase(), wordPosition) + "' ");
 			}
 
 			if (i < filters.size() - 1) {
