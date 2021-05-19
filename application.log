@@ -1217,3 +1217,375 @@ java.io.EOFException: null
 2021-05-19 21:39:58.036  INFO 12964 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2021-05-19 21:39:58.037  INFO 12964 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2021-05-19 21:39:58.038  INFO 12964 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-05-19 21:42:35.848  INFO 12964 --- [Thread-213] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:42:35.849  INFO 12964 --- [Thread-213] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:42:35.849  INFO 12964 --- [Thread-213] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-19 21:42:35.853  INFO 12964 --- [Thread-213] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-19 21:42:35.931  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 12964 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-19 21:42:35.931  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-19 21:42:36.071  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-19 21:42:36.093  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 8 JPA repository interfaces.
+2021-05-19 21:42:36.175  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-19 21:42:36.176  INFO 12964 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-19 21:42:36.176  INFO 12964 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-19 21:42:36.247  INFO 12964 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-19 21:42:36.249  INFO 12964 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-19 21:42:36.249  INFO 12964 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 317 ms
+2021-05-19 21:42:36.260  WARN 12964 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [062CAD62B4A27B45BD8CB8310D1205B4]
+2021-05-19 21:42:36.284  INFO 12964 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-19 21:42:36.289  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-19 21:42:36.336  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-19 21:42:36.337  INFO 12964 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-19 21:42:36.701  INFO 12964 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-19 21:42:36.701  INFO 12964 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:42:36.711  INFO 12964 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-19 21:42:36.837  INFO 12964 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:42:36.879  WARN 12964 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-19 21:42:36.901  INFO 12964 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1967a8d9, org.springframework.security.web.context.SecurityContextPersistenceFilter@24c7ec0b, org.springframework.security.web.header.HeaderWriterFilter@53404fc6, org.springframework.security.web.authentication.logout.LogoutFilter@39a938d4, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@181b6b23, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@14cbe3f5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4524a0d5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1728c3e6, org.springframework.security.web.session.SessionManagementFilter@339a9989, org.springframework.security.web.access.ExceptionTranslationFilter@5c6bf51, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2e7f088c]
+2021-05-19 21:42:36.988  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-19 21:42:36.991  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 1.077 seconds (JVM running for 9383.05)
+2021-05-19 21:42:36.992  INFO 12964 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-19 21:43:00.132  INFO 12964 --- [Thread-245] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:43:00.133  INFO 12964 --- [Thread-245] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:43:00.134  INFO 12964 --- [Thread-245] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-19 21:43:00.137  INFO 12964 --- [Thread-245] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-19 21:43:00.217  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 12964 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-19 21:43:00.217  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-19 21:43:00.358  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-19 21:43:00.381  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 8 JPA repository interfaces.
+2021-05-19 21:43:00.469  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-19 21:43:00.469  INFO 12964 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-19 21:43:00.469  INFO 12964 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-19 21:43:00.545  INFO 12964 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-19 21:43:00.546  INFO 12964 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-19 21:43:00.546  INFO 12964 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 328 ms
+2021-05-19 21:43:00.574  INFO 12964 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-19 21:43:00.578  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-19 21:43:00.647  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-19 21:43:00.647  INFO 12964 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-19 21:43:01.043  INFO 12964 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-19 21:43:01.043  INFO 12964 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:43:01.052  INFO 12964 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-19 21:43:01.170  INFO 12964 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:43:01.214  WARN 12964 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-19 21:43:01.233  INFO 12964 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1587f011, org.springframework.security.web.context.SecurityContextPersistenceFilter@21cfa3d5, org.springframework.security.web.header.HeaderWriterFilter@5d9b9a8b, org.springframework.security.web.authentication.logout.LogoutFilter@252d582e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@17929344, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2a0c1496, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2b428c9e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@46edacbd, org.springframework.security.web.session.SessionManagementFilter@56108416, org.springframework.security.web.access.ExceptionTranslationFilter@cd0e311, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@77197192]
+2021-05-19 21:43:01.311  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-19 21:43:01.314  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 1.115 seconds (JVM running for 9407.372)
+2021-05-19 21:43:01.315  INFO 12964 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-19 21:43:10.153  INFO 12964 --- [Thread-251] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:43:10.154  INFO 12964 --- [Thread-251] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:43:10.154  INFO 12964 --- [Thread-251] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-19 21:43:10.158  INFO 12964 --- [Thread-251] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-19 21:43:10.234  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 12964 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-19 21:43:10.234  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-19 21:43:10.377  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-19 21:43:10.400  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 8 JPA repository interfaces.
+2021-05-19 21:43:10.483  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-19 21:43:10.484  INFO 12964 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-19 21:43:10.484  INFO 12964 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-19 21:43:10.561  INFO 12964 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-19 21:43:10.562  INFO 12964 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-19 21:43:10.562  INFO 12964 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 326 ms
+2021-05-19 21:43:10.592  INFO 12964 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-19 21:43:10.596  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-19 21:43:10.651  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-19 21:43:10.652  INFO 12964 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-19 21:43:11.036  INFO 12964 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-19 21:43:11.037  INFO 12964 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:43:11.046  INFO 12964 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-19 21:43:11.200  INFO 12964 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-19 21:43:11.241  WARN 12964 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-19 21:43:11.262  INFO 12964 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@47ae3c7c, org.springframework.security.web.context.SecurityContextPersistenceFilter@58f1e3a3, org.springframework.security.web.header.HeaderWriterFilter@66b6fb9f, org.springframework.security.web.authentication.logout.LogoutFilter@338f6091, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3daf35d3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4b2a32ac, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1a115255, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6eda381c, org.springframework.security.web.session.SessionManagementFilter@6f122929, org.springframework.security.web.access.ExceptionTranslationFilter@53980a03, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4b5cfe7b]
+2021-05-19 21:43:11.343  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-19 21:43:11.346  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 1.128 seconds (JVM running for 9417.404)
+2021-05-19 21:43:11.348  INFO 12964 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+   TaskExecutionAutoConfiguration#applicationTaskExecutor matched:
+      - @ConditionalOnMissingBean (types: java.util.concurrent.Executor; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+    None
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2021-05-19 21:43:24.286  INFO 12964 --- [Thread-257] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-19 21:43:24.287  INFO 12964 --- [Thread-257] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:43:24.288  INFO 12964 --- [Thread-257] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-19 21:43:24.291  INFO 12964 --- [Thread-257] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-19 21:43:24.369  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 12964 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-19 21:43:24.369  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-19 21:43:24.515  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-19 21:43:24.538  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 8 JPA repository interfaces.
+2021-05-19 21:43:24.623  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-19 21:43:24.623  INFO 12964 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-19 21:43:24.623  INFO 12964 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-19 21:43:24.699  INFO 12964 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-19 21:43:24.701  INFO 12964 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-19 21:43:24.701  INFO 12964 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 330 ms
+2021-05-19 21:43:24.730  INFO 12964 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-19 21:43:24.735  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-19 21:43:24.786  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-19 21:43:24.786  INFO 12964 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-19 21:43:25.140  INFO 12964 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-19 21:43:25.141  INFO 12964 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:43:25.148  INFO 12964 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-19 21:43:25.267  INFO 12964 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-19 21:43:25.305  WARN 12964 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-19 21:43:25.324  INFO 12964 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7d06b9b2, org.springframework.security.web.context.SecurityContextPersistenceFilter@30935a09, org.springframework.security.web.header.HeaderWriterFilter@5ef768e3, org.springframework.security.web.authentication.logout.LogoutFilter@26b83fc6, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@516330e5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@565b411c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@330e9b44, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3c0b742f, org.springframework.security.web.session.SessionManagementFilter@23f38270, org.springframework.security.web.access.ExceptionTranslationFilter@5ab79334, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@19c79409]
+2021-05-19 21:43:25.405  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-19 21:43:25.409  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 1.056 seconds (JVM running for 9431.466)
+2021-05-19 21:43:25.410  INFO 12964 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-19 21:43:28.126  INFO 12964 --- [Thread-263] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-19 21:43:28.127  INFO 12964 --- [Thread-263] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:43:28.128  INFO 12964 --- [Thread-263] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-19 21:43:28.131  INFO 12964 --- [Thread-263] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-19 21:43:28.214  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 12964 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-19 21:43:28.214  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-19 21:43:28.363  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-19 21:43:28.387  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 8 JPA repository interfaces.
+2021-05-19 21:43:28.469  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-19 21:43:28.470  INFO 12964 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-19 21:43:28.470  INFO 12964 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-19 21:43:28.545  INFO 12964 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-19 21:43:28.547  INFO 12964 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-19 21:43:28.547  INFO 12964 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 332 ms
+2021-05-19 21:43:28.576  INFO 12964 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-19 21:43:28.580  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-19 21:43:28.628  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-19 21:43:28.628  INFO 12964 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-19 21:43:29.008  INFO 12964 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-19 21:43:29.008  INFO 12964 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:43:29.017  INFO 12964 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-19 21:43:29.136  INFO 12964 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:43:29.174  WARN 12964 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-19 21:43:29.192  INFO 12964 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1a8b4cde, org.springframework.security.web.context.SecurityContextPersistenceFilter@67850fe7, org.springframework.security.web.header.HeaderWriterFilter@159471f2, org.springframework.security.web.authentication.logout.LogoutFilter@354e28c2, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@139d43dc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2eb53212, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1818cdd7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@36bae19c, org.springframework.security.web.session.SessionManagementFilter@2c45ac, org.springframework.security.web.access.ExceptionTranslationFilter@307f30dd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5a71f12a]
+2021-05-19 21:43:29.266  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-19 21:43:29.269  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 1.075 seconds (JVM running for 9435.328)
+2021-05-19 21:43:29.270  INFO 12964 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+    None
+
+
+Negative matches:
+-----------------
+
+   TaskExecutionAutoConfiguration#applicationTaskExecutor:
+      Did not match:
+         - @ConditionalOnMissingBean (types: java.util.concurrent.Executor; SearchStrategy: all) found beans of type 'java.util.concurrent.Executor' threadPoolTaskExecutor (OnBeanCondition)
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2021-05-19 21:43:37.078  INFO 12964 --- [Thread-269] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:43:37.079  INFO 12964 --- [Thread-269] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:43:37.080  INFO 12964 --- [Thread-269] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-19 21:43:37.083  INFO 12964 --- [Thread-269] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-19 21:43:37.164  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 12964 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-19 21:43:37.165  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-19 21:43:37.306  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-19 21:43:37.329  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 8 JPA repository interfaces.
+2021-05-19 21:43:37.453  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-19 21:43:37.454  INFO 12964 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-19 21:43:37.454  INFO 12964 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-19 21:43:37.550  INFO 12964 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-19 21:43:37.552  INFO 12964 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-19 21:43:37.552  INFO 12964 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 386 ms
+2021-05-19 21:43:37.598  INFO 12964 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-19 21:43:37.602  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-19 21:43:37.655  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-19 21:43:37.655  INFO 12964 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-19 21:43:38.068  INFO 12964 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-19 21:43:38.068  INFO 12964 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:43:38.076  INFO 12964 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-19 21:43:38.196  INFO 12964 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:43:38.232  WARN 12964 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-19 21:43:38.248  INFO 12964 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3373c477, org.springframework.security.web.context.SecurityContextPersistenceFilter@5e9f3f6b, org.springframework.security.web.header.HeaderWriterFilter@bbe999d, org.springframework.security.web.authentication.logout.LogoutFilter@1cb81fdc, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5eee15e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@234f319c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5cc23619, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@c5cb8d1, org.springframework.security.web.session.SessionManagementFilter@19cd856, org.springframework.security.web.access.ExceptionTranslationFilter@33e9c88c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7ade8382]
+2021-05-19 21:43:38.324  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-19 21:43:38.327  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 1.179 seconds (JVM running for 9444.385)
+2021-05-19 21:43:38.328  INFO 12964 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-19 21:43:39.988  INFO 12964 --- [Thread-275] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:43:39.989  INFO 12964 --- [Thread-275] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:43:39.990  INFO 12964 --- [Thread-275] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-19 21:43:39.993  INFO 12964 --- [Thread-275] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-19 21:43:40.075  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 12964 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-19 21:43:40.075  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-19 21:43:40.215  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-19 21:43:40.238  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 8 JPA repository interfaces.
+2021-05-19 21:43:40.323  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-19 21:43:40.324  INFO 12964 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-19 21:43:40.324  INFO 12964 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-19 21:43:40.403  INFO 12964 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-19 21:43:40.404  INFO 12964 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-19 21:43:40.405  INFO 12964 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 328 ms
+2021-05-19 21:43:40.435  INFO 12964 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-19 21:43:40.440  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-19 21:43:40.492  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-19 21:43:40.492  INFO 12964 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-19 21:43:40.852  INFO 12964 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-19 21:43:40.853  INFO 12964 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:43:40.863  INFO 12964 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-19 21:43:40.989  INFO 12964 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:43:41.034  WARN 12964 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-19 21:43:41.057  INFO 12964 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5030c729, org.springframework.security.web.context.SecurityContextPersistenceFilter@c2a43dd, org.springframework.security.web.header.HeaderWriterFilter@12da18f1, org.springframework.security.web.authentication.logout.LogoutFilter@3078c409, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7372179a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3371359e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@71aebe91, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@730a115e, org.springframework.security.web.session.SessionManagementFilter@5289a55c, org.springframework.security.web.access.ExceptionTranslationFilter@6ababbd5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@700d8a4d]
+2021-05-19 21:43:41.145  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-19 21:43:41.148  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 1.089 seconds (JVM running for 9447.206)
+2021-05-19 21:43:41.149  INFO 12964 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-19 21:49:27.285  INFO 12964 --- [Thread-281] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:49:27.286  INFO 12964 --- [Thread-281] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:49:27.286  INFO 12964 --- [Thread-281] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-19 21:49:27.290  INFO 12964 --- [Thread-281] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-19 21:49:27.374  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 12964 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-19 21:49:27.374  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-19 21:49:27.523  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-19 21:49:27.547  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 8 JPA repository interfaces.
+2021-05-19 21:49:27.632  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-19 21:49:27.632  INFO 12964 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-19 21:49:27.633  INFO 12964 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-19 21:49:27.709  INFO 12964 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-19 21:49:27.710  INFO 12964 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-19 21:49:27.710  INFO 12964 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 334 ms
+2021-05-19 21:49:27.740  INFO 12964 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-19 21:49:27.745  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-19 21:49:27.827  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-19 21:49:27.827  INFO 12964 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-19 21:49:30.277  INFO 12964 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-19 21:49:30.278  INFO 12964 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:49:30.288  INFO 12964 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-19 21:49:30.418  INFO 12964 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:49:30.462  WARN 12964 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-19 21:49:30.487  INFO 12964 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@76e8fdf3, org.springframework.security.web.context.SecurityContextPersistenceFilter@6b29d1d0, org.springframework.security.web.header.HeaderWriterFilter@4e72ea29, org.springframework.security.web.authentication.logout.LogoutFilter@1a4dd783, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2445df45, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@78653f97, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@219fa110, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@79bec746, org.springframework.security.web.session.SessionManagementFilter@de26585, org.springframework.security.web.access.ExceptionTranslationFilter@4dbbdc8e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@40c388eb]
+2021-05-19 21:49:30.574  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-19 21:49:30.577  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 3.219 seconds (JVM running for 9796.635)
+2021-05-19 21:49:30.578  INFO 12964 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-19 21:51:05.261  INFO 12964 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-19 21:51:05.262  INFO 12964 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-05-19 21:51:05.262  INFO 12964 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2021-05-19 21:59:01.291  INFO 12964 --- [Thread-287] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:59:01.291  INFO 12964 --- [Thread-287] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:59:01.292  INFO 12964 --- [Thread-287] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-19 21:59:01.297  INFO 12964 --- [Thread-287] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-19 21:59:01.408  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 12964 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-19 21:59:01.409  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-19 21:59:01.585  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-19 21:59:01.609  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 8 JPA repository interfaces.
+2021-05-19 21:59:01.700  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-19 21:59:01.700  INFO 12964 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-19 21:59:01.700  INFO 12964 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-19 21:59:01.785  INFO 12964 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-19 21:59:01.786  INFO 12964 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-19 21:59:01.786  INFO 12964 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 375 ms
+2021-05-19 21:59:01.799  WARN 12964 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [923F7C5E4688F6876F52D7E2DE652608]
+2021-05-19 21:59:01.827  INFO 12964 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-19 21:59:01.832  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-19 21:59:01.972  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-19 21:59:01.973  INFO 12964 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-19 21:59:04.796  INFO 12964 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-19 21:59:04.796  INFO 12964 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:59:04.807  INFO 12964 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-19 21:59:04.953  INFO 12964 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:59:04.995  WARN 12964 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-19 21:59:05.020  INFO 12964 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@18ed4dac, org.springframework.security.web.context.SecurityContextPersistenceFilter@d1f3237, org.springframework.security.web.header.HeaderWriterFilter@78f8e375, org.springframework.security.web.authentication.logout.LogoutFilter@1a75768, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@46b636c9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3af6159f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@52aaaff, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@450d9ef8, org.springframework.security.web.session.SessionManagementFilter@5a055044, org.springframework.security.web.access.ExceptionTranslationFilter@585de073, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4b963460]
+2021-05-19 21:59:05.106  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-19 21:59:05.110  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 3.723 seconds (JVM running for 10371.168)
+2021-05-19 21:59:05.111  INFO 12964 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-19 21:59:06.788  INFO 12964 --- [Thread-320] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:59:06.789  INFO 12964 --- [Thread-320] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:59:06.790  INFO 12964 --- [Thread-320] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-19 21:59:06.794  INFO 12964 --- [Thread-320] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-19 21:59:06.878  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 12964 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-19 21:59:06.878  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-19 21:59:07.027  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-19 21:59:07.051  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 8 JPA repository interfaces.
+2021-05-19 21:59:07.149  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-19 21:59:07.150  INFO 12964 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-19 21:59:07.150  INFO 12964 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-19 21:59:07.233  INFO 12964 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-19 21:59:07.234  INFO 12964 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-19 21:59:07.234  INFO 12964 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 354 ms
+2021-05-19 21:59:07.269  INFO 12964 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-19 21:59:07.273  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-19 21:59:07.322  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-19 21:59:07.323  INFO 12964 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-19 21:59:07.726  INFO 12964 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-19 21:59:07.726  INFO 12964 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 21:59:07.738  INFO 12964 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-19 21:59:07.887  INFO 12964 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 21:59:07.932  WARN 12964 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-19 21:59:07.956  INFO 12964 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@13b3a9cf, org.springframework.security.web.context.SecurityContextPersistenceFilter@3adf336c, org.springframework.security.web.header.HeaderWriterFilter@512c45ce, org.springframework.security.web.authentication.logout.LogoutFilter@5fea6cde, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@51309563, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3d157ac3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@ea44a9a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5daca71c, org.springframework.security.web.session.SessionManagementFilter@5f19a85a, org.springframework.security.web.access.ExceptionTranslationFilter@36163b77, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2986d3fb]
+2021-05-19 21:59:08.051  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-19 21:59:08.054  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 1.192 seconds (JVM running for 10374.112)
+2021-05-19 21:59:08.056  INFO 12964 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-19 22:01:36.499  INFO 12964 --- [Thread-326] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 22:01:36.500  INFO 12964 --- [Thread-326] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 22:01:36.501  INFO 12964 --- [Thread-326] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown initiated...
+2021-05-19 22:01:36.503  INFO 12964 --- [Thread-326] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Shutdown completed.
+2021-05-19 22:01:36.586  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Starting MinifaceappApplication using Java 11.0.10 on DESKTOP-OO5E1GI with PID 12964 (D:\eclipse-spring\minifaceapp\target\classes started by Darjan in D:\eclipse-spring\minifaceapp)
+2021-05-19 22:01:36.586  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : No active profile set, falling back to default profiles: default
+2021-05-19 22:01:36.729  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-19 22:01:36.754  INFO 12964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 8 JPA repository interfaces.
+2021-05-19 22:01:36.836  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-19 22:01:36.837  INFO 12964 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-19 22:01:36.837  INFO 12964 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-19 22:01:36.912  INFO 12964 --- [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-05-19 22:01:36.913  INFO 12964 --- [restartedMain] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring embedded WebApplicationContext
+2021-05-19 22:01:36.913  INFO 12964 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 325 ms
+2021-05-19 22:01:36.942  INFO 12964 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-19 22:01:36.946  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Starting...
+2021-05-19 22:01:37.087  INFO 12964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolBooks - Start completed.
+2021-05-19 22:01:37.087  INFO 12964 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-05-19 22:01:39.577  INFO 12964 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-19 22:01:39.577  INFO 12964 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-19 22:01:39.588  INFO 12964 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-19 22:01:39.725  INFO 12964 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'threadPoolTaskExecutor'
+2021-05-19 22:01:39.768  WARN 12964 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-19 22:01:39.790  INFO 12964 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2f57452d, org.springframework.security.web.context.SecurityContextPersistenceFilter@3716f493, org.springframework.security.web.header.HeaderWriterFilter@19971dff, org.springframework.security.web.authentication.logout.LogoutFilter@1ac43809, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7fbde132, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1fe22817, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3e3bb6f1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3fbb7a4f, org.springframework.security.web.session.SessionManagementFilter@21c0a523, org.springframework.security.web.access.ExceptionTranslationFilter@50ef0660, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@35bcb508]
+2021-05-19 22:01:39.877  INFO 12964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/miniFaceApp'
+2021-05-19 22:01:39.880  INFO 12964 --- [restartedMain] c.e.minifaceapp.MinifaceappApplication   : Started MinifaceappApplication in 3.31 seconds (JVM running for 10525.938)
+2021-05-19 22:01:39.881  INFO 12964 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-19 22:02:54.578  INFO 12964 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/miniFaceApp]   : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-19 22:02:54.579  INFO 12964 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-05-19 22:02:54.580  INFO 12964 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

@@ -171,5 +171,12 @@ public class FaceUserServiceImpl implements FaceUserService {
 		return Base64.getEncoder().encodeToString(bytes);
 	}
 
+	@Override
+	public FaceUserDTO switchNotify(boolean notify, Long id) {
+		FaceUser faceUser = faceUserRepository.findById(id).orElse(null);
+		faceUser.setNotify(notify);
+		return faceUserDTOMapper.faceUserToFaceUserDTOMapper(faceUserRepository.save(faceUser));
+	}
+
 	
 }

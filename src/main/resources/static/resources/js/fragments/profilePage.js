@@ -74,22 +74,11 @@ $(document).ready(function() {
 			notify = false;
 		}
 
-		let input = {
-			type: "updateNotify",
-			notify: notify
-		}
-
 		$.ajax({
-			type: "POST",
-			url: 'ProfilePage',
-			dataType: 'json',
-			data: input,
+			type: "GET",
+			url: 'profile/notify/'+notify,
 			success: function(data) {
-				if (data.status == 'success') {
 
-				} else {
-					alert(data.message);
-				}
 			},
 			error: function() {
 				alert("Something went wrong, try again later");

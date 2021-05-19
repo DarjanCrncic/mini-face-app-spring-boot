@@ -70,5 +70,11 @@ public class UserController {
 		return faceUserService.getImageAsString(id);
 	}
 	
+	@GetMapping("/notify/{notify}")
+	@ResponseStatus(HttpStatus.OK)
+	public FaceUserDTO switchNotify(@PathVariable boolean notify, @AuthenticationPrincipal CustomUserDetails userDetails) {
+		return faceUserService.switchNotify(notify, userDetails.getId());
+	}
+	
 	
 }

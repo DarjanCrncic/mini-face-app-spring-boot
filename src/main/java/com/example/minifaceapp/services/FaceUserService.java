@@ -30,5 +30,7 @@ public interface FaceUserService extends CrudService<FaceUserDTO, Long>{
 
 	String getImageAsString(Long id);
 
+	FaceUserDTO switchNotify(boolean notify, Long id);
+
 
 }
