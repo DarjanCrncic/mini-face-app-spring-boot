@@ -137,7 +137,6 @@ public class FacePostServiceImpl implements FacePostService {
 		faceGroupRepository.save(faceGroup);
 		for (FaceUser user : faceGroup.getMembers()) {
 			taskExecutor.execute(new Runnable() {
-
 				@Override
 				public void run() {
 					sendEmailNotification("minifaceapp@gmail.com", "New group post for " + user.getName(), facePostDTO.getTitle() + ":\n" + facePostDTO.getBody());
