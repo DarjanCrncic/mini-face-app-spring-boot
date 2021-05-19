@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -84,7 +85,7 @@ public class FacePostController {
 	
 	@PostMapping(value = "/report", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public Object generatePdfReportOnPosts(@RequestBody ReportDTO reportDTO, @AuthenticationPrincipal CustomUserDetails userDetails, HttpServletResponse response) throws IOException {
+	public Map<String, String> generatePdfReportOnPosts(@RequestBody ReportDTO reportDTO, @AuthenticationPrincipal CustomUserDetails userDetails, HttpServletResponse response) throws IOException {
 	
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/pdf");
@@ -93,6 +94,14 @@ public class FacePostController {
 		String pdf = facePostService.exportPDF(reportDTO, faceUserService.findById(userDetails.getId()));
 		Map<String, String> returnMap = new HashMap<>(); // have to use map so it is interpreted as valid json on frontend
 		returnMap.put("data", pdf);
+		return returnMap;
+	}
+	
+	@GetMapping(value = "/report/word/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public Map<String, String> generateWordDoc(@PathVariable Long id) {
+		Map<String, String> returnMap = new HashMap<>(); // have to use map so it is interpreted as valid json on frontend
+		returnMap.put("data", facePostService.exportWord(id));
 		return returnMap;
 	}
 	

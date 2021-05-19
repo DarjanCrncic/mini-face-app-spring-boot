@@ -27,7 +27,7 @@ public class Websocket {
 	static Map<String, Session> users = new HashMap<>();
 	
 	@OnOpen
-	public void onOpen(Session session) throws IOException, EncodeException {	
+	public void onOpen(Session session) {	
 		peers.add(session);		
 	}
 	

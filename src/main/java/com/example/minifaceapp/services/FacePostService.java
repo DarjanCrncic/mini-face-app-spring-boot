@@ -21,4 +21,6 @@ public interface FacePostService extends CrudService<FacePostDTO, Long> {
 
 	String exportPDF(ReportDTO reportDTO, FaceUserDTO faceUserDTO) throws IOException;
 
+	String exportWord(Long id);
+
 }

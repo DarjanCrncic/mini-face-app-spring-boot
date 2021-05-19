@@ -95,15 +95,11 @@ const PostsPageObject = {
 
 	//////////////////////// document download
 	addCreateWordDocListener: function(data) {
-		$('#createWord_' + data.ID).click(function() {
+		$('#createWord_' + data.id).click(function() {
 
-			let input = {
-				postID: data.ID,
-			}
 			$.ajax({
-				type: "POST",
-				url: 'WordServlet',
-				data: input,
+				type: "GET",
+				url: 'posts/report/word/'+data.id,
 				success: function(data) {
 					window.open("data:application/msword;base64, " + data.data, '_blank');
 				},
