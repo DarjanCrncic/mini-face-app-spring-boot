@@ -10,7 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
@@ -23,6 +26,7 @@ import com.example.minifaceapp.api.v1.mappers.FacePostDTOMapper;
 import com.example.minifaceapp.api.v1.mappers.FacePostDTORowMapper;
 import com.example.minifaceapp.model.FaceGroup;
 import com.example.minifaceapp.model.FacePost;
+import com.example.minifaceapp.model.FaceUser;
 import com.example.minifaceapp.repositories.FaceGroupRepository;
 import com.example.minifaceapp.repositories.FacePostRepository;
 import com.example.minifaceapp.utils.ConcatSQLSearch;
@@ -39,17 +43,22 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
 @Service
 public class FacePostServiceImpl implements FacePostService {
 
-	FacePostRepository facePostRepository;
-	FacePostDTOMapper facePostDTOMapper;
-	JdbcTemplate jdbcTemplate;
-	FaceGroupRepository faceGroupRepository;
+	private FacePostRepository facePostRepository;
+	private FacePostDTOMapper facePostDTOMapper;
+	private JdbcTemplate jdbcTemplate;
+	private FaceGroupRepository faceGroupRepository;
+	private JavaMailSender emailSender;
+	private TaskExecutor taskExecutor;
 
 	public FacePostServiceImpl(FacePostRepository facePostRepository, FacePostDTOMapper facePostDTOMapper,
-			JdbcTemplate jdbcTemplate, FaceGroupRepository faceGroupRepository) {
+			JdbcTemplate jdbcTemplate, FaceGroupRepository faceGroupRepository, JavaMailSender emailSender,
+			TaskExecutor taskExecutor) {
 		this.facePostRepository = facePostRepository;
 		this.facePostDTOMapper = facePostDTOMapper;
 		this.jdbcTemplate = jdbcTemplate;
 		this.faceGroupRepository = faceGroupRepository;
+		this.emailSender = emailSender;
+		this.taskExecutor = taskExecutor;
 	}
 
 	@Override
@@ -122,19 +131,40 @@ public class FacePostServiceImpl implements FacePostService {
 	}
 
 	@Override
-	public FacePostDTO saveGroup(FacePostDTO facePostDTO, Long groupId) {
+	public FacePostDTO saveGroupPost(FacePostDTO facePostDTO, Long groupId) {
 		FaceGroup faceGroup = faceGroupRepository.findById(groupId).orElse(null);
 		faceGroup.getPosts().add(facePostDTOMapper.facePostDTOToFacePostMapper(facePostDTO));
 		faceGroupRepository.save(faceGroup);
+		for (FaceUser user : faceGroup.getMembers()) {
+			taskExecutor.execute(new Runnable() {
+
+				@Override
+				public void run() {
+					sendEmailNotification("minifaceapp@gmail.com", "New group post for " + user.getName(), facePostDTO.getTitle() + ":\n" + facePostDTO.getBody());
+				}
+			});
+		}
+
 		return facePostDTO;
+	}
+
+	private void sendEmailNotification(String to, String subject, String text) {
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom("minifaceapp@gmail.com");
+		message.setTo(to);
+		message.setSubject(subject);
+		message.setText(text);
+		emailSender.send(message);
 	}
 
 	@Override
 	public String exportPDF(ReportDTO reportDTO, FaceUserDTO faceUserDTO) throws IOException {
 
-		try (ByteArrayOutputStream outStream = new ByteArrayOutputStream(); Connection connection = jdbcTemplate.getDataSource().getConnection();) {
-		
-			//JasperDesign jasperDesign = JRXmlLoader.load("D:\\eclipse-spring\\minifaceapp\\src\\main\\resources\\PostReport.jrxml");
+		try (ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+				Connection connection = jdbcTemplate.getDataSource().getConnection();) {
+
+			// JasperDesign jasperDesign =
+			// JRXmlLoader.load("D:\\eclipse-spring\\minifaceapp\\src\\main\\resources\\PostReport.jrxml");
 			JasperDesign jasperDesign = JRXmlLoader.load(ResourceUtils.getFile("classpath:PostReport.jrxml"));
 			JasperReport report = JasperCompileManager.compileReport(jasperDesign);
 
@@ -151,7 +181,7 @@ public class FacePostServiceImpl implements FacePostService {
 
 			byte[] pdf = outStream.toByteArray();
 			return Base64.getEncoder().encodeToString(pdf);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -160,14 +190,14 @@ public class FacePostServiceImpl implements FacePostService {
 
 	@Override
 	public String exportWord(Long id) {
-		try(ByteArrayOutputStream baos = new ByteArrayOutputStream();){
+		try (ByteArrayOutputStream baos = new ByteArrayOutputStream();) {
 			WordDocument.createDocumentDocx4j(baos, this.findById(id));
-	    	byte[] doc = baos.toByteArray();
-	    	return Base64.getEncoder().encodeToString(doc);
+			byte[] doc = baos.toByteArray();
+			return Base64.getEncoder().encodeToString(doc);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
-		}		 	
+		}
 	}
 
 }

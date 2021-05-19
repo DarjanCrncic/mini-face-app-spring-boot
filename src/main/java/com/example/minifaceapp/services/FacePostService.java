@@ -15,7 +15,7 @@ public interface FacePostService extends CrudService<FacePostDTO, Long> {
 
 	FacePostDTO edit(Long id, FacePostDTO facePostDTO);
 
-	FacePostDTO saveGroup(FacePostDTO facePostDTO, Long groupId);
+	FacePostDTO saveGroupPost(FacePostDTO facePostDTO, Long groupId);
 
 	void deleteGroupPostById(Long groupId, Long id);
 

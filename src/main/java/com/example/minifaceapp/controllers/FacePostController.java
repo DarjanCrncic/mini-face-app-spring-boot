@@ -74,7 +74,7 @@ public class FacePostController {
 		facePostDTO.setCreator(faceUserService.findById(userDetails.getId()));
 		facePostDTO.setType(postTypeService.findById(2L));
 		facePostDTO = facePostService.save(facePostDTO);
-		return facePostService.saveGroup(facePostDTO, groupId);
+		return facePostService.saveGroupPost(facePostDTO, groupId);
 	}
 	
 	@DeleteMapping(value = "/delete/group/{groupId}/{id}")
