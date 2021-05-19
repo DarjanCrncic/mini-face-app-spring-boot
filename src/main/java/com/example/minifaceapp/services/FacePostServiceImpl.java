@@ -136,12 +136,14 @@ public class FacePostServiceImpl implements FacePostService {
 		faceGroup.getPosts().add(facePostDTOMapper.facePostDTOToFacePostMapper(facePostDTO));
 		faceGroupRepository.save(faceGroup);
 		for (FaceUser user : faceGroup.getMembers()) {
-			taskExecutor.execute(new Runnable() {
-				@Override
-				public void run() {
-					sendEmailNotification("minifaceapp@gmail.com", "New group post for " + user.getName(), facePostDTO.getTitle() + ":\n" + facePostDTO.getBody());
-				}
-			});
+			if(user.isNotify() && user.getId() != facePostDTO.getCreator().getId()) {
+				taskExecutor.execute(new Runnable() {
+					@Override
+					public void run() {
+						sendEmailNotification("minifaceapp@gmail.com", "New group post for " + user.getName(), facePostDTO.getTitle() + ":\n" + facePostDTO.getBody());
+					}
+				});
+			}
 		}
 
 		return facePostDTO;
