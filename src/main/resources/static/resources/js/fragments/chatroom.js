@@ -89,3 +89,17 @@ $.ajax({
 	}
 });
 
+$('#topHolderDiv').css("height", "calc(30rem - " + $('#bottomHolderDiv').height() + "px - 11px) ")
+var showing = true;
+
+function hideShowChat() {
+	if(showing){
+		var height =  -$("#tertiary").height() + $('#hideShowChatButton').height();
+		$('#tertiary').css("bottom", height);
+		showing = false;
+	}else{
+		$('#tertiary').css("bottom", 0);
+		showing = true;
+	}
+}
+

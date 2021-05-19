@@ -77,6 +77,8 @@ function postSuccessFunction(data, groupId) {
 				PostsPageObject.addDeleteGroupPostButtonListener(data[i], groupId);
 			}
 			
+			PostsPageObject.addCreateWordDocListener(data[i]);	
+			
 		} else {
 			$('#ajaxShowVissiblePosts').append(PostsPageObject.createPostHtmlNotUser(data[i]));
 		}

@@ -1,26 +1,25 @@
-<h3 id="profilePageTitle">Chatroom</h3>
+<div style="text-align:right;">
+	<button class="btn btn-primary" 
+			id="hideShowChatButton"
+			style="font-size: 1.4rem; padding: 0 35px 0 35px;"
+			onClick="hideShowChat()"
+	>Chat</button>	
+</div>
 
-<div class="splitColumnsRowChat">
-	<div class="left-column-chat">
-		<div id="usersDiv"></div>
-	</div>
 
-	<div class="right-column-chat">
+<div id="wholeChatDiv">
+	
+	<div id="topHolderDiv">
+		<div id="usersDiv"></div>					
 		<div id="messageDiv"></div>
-		<table style="width: 100%">
-			<tr>
-			<th class="td" style="width: 90%">
-				<input type="text" id="messageText" class="form-control" />
-			</th>
-			<th class="td" style="width: 10%; text-align:center;">
-				<input type="button" id="sendMessageButton" value="Send" class="btn btn-primary" /> 
-			</th>
-			</tr>
-		</table>
-		<input type="hidden" id="hiddenInput" />
 	</div>
 
-
+	<input  type="hidden" id="hiddenInput" />
+	
+	<div id="bottomHolderDiv">
+		<input type="text" id="messageText" class="form-control" />		
+		<input type="button" id="sendMessageButton" value="Send" class="btn btn-primary" />			
+	</div>
 </div>
 
 

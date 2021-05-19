@@ -310,29 +310,54 @@
 	font-size: 1.2rem;
 }
 
-/*chatroom*/
+/*////////////////////////////////////////            chatroom          ///////////////////////////////////////////////*/
 
-.left-column-chat {
-	float: left;
-	width: 10%;
-	background-color: white;
+#tertiary{
+	position:fixed;
+    right: 0;
+    bottom: 0;
+    width: 28%;
+    height: 32rem;
 }
 
-.right-column-chat {
-	float: left;
-	width: 90%;
+#wholeChatDiv{
+	background: white;
+	border: 2px solid #b0a8a8;
+	border-radius: 6px;
+	height: 100%; 
+	padding:5px;
+}
+
+#topHolderDiv{
+	display:flex; 
 }
 
 #messageDiv{
-	height: 20rem;
+	width: 78%;
 	color: blue;
 	overflow: scroll;
-	background-color: #ECECEC;	
+	background-color: #ECECEC;		
 }
 
 #usersDiv{
-	height: 20rem;
+	width: 20%;
+	display: inline;
 	overflow: auto;	
+	margin-right: 5px;
+}
+
+#bottomHolderDiv {
+	display: flex;
+}
+
+#messageText{
+	margin-top: 5px;
+	width: 80%;
+}
+
+#sendMessageButton{
+	margin-top: 5px;
+	width: 20%;
 }
 
 .chatWindows{
@@ -355,14 +380,6 @@
 	width: 100%;
 }
 
-#messageText{
-	margin-top: 10px;
-}
-
-#sendMessageButton{
-	width: 100%;
-	margin-top: 10px;
-}
 
 /* report page*/
 .blue-titles-report{

@@ -26,6 +26,7 @@ import com.example.minifaceapp.model.FacePost;
 import com.example.minifaceapp.repositories.FaceGroupRepository;
 import com.example.minifaceapp.repositories.FacePostRepository;
 import com.example.minifaceapp.utils.ConcatSQLSearch;
+import com.example.minifaceapp.utils.WordDocument;
 
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -155,6 +156,18 @@ public class FacePostServiceImpl implements FacePostService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	@Override
+	public String exportWord(Long id) {
+		try(ByteArrayOutputStream baos = new ByteArrayOutputStream();){
+			WordDocument.createDocumentDocx4j(baos, this.findById(id));
+	    	byte[] doc = baos.toByteArray();
+	    	return Base64.getEncoder().encodeToString(doc);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}		 	
 	}
 
 }
