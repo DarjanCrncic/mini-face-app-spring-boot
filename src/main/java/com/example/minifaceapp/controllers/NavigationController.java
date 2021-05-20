@@ -49,6 +49,11 @@ public class NavigationController {
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String encodedPassword = passwordEncoder.encode(faceUser.getPassword());
+		
+		if (faceUser.getUsername().contains(" ")) {
+			model.addAttribute("constraintError", "Username contains invalid characters");
+			return REGISTER_USER;
+		}
 
 		if (faceUserService.findByUsername(faceUser.getUsername()) != null) {
 			model.addAttribute("constraintError", "Already used username");

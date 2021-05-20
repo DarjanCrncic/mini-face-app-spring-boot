@@ -70,6 +70,12 @@ public class UserController {
 		return faceUserService.getImageAsString(id);
 	}
 	
+	@GetMapping("/image/username/{username}")
+	@ResponseStatus(HttpStatus.OK)
+	public String renderImageFromDB(@PathVariable String username, HttpServletResponse response) {
+		return faceUserService.getImageAsString(faceUserService.findByUsername(username).getId());
+	}
+	
 	@GetMapping("/notify/{notify}")
 	@ResponseStatus(HttpStatus.OK)
 	public FaceUserDTO switchNotify(@PathVariable boolean notify, @AuthenticationPrincipal CustomUserDetails userDetails) {

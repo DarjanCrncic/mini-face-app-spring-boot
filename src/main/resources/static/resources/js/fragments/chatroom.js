@@ -16,7 +16,7 @@ function sendMessage(websocket, sender, receiver, init) {
 	// hidden input is used to save username of the user client is currently chatting with 
 	$('#hiddenInput').val(receiver);
 	$('#' + receiver).show();
-	$('#' + receiver).append('<p style="color: black" class="chatline">You: ' + input.content + '</p>');
+	$('#' + receiver).append('<div style="color: black" class="chatline">You: ' + input.content + '</div>');
 }
 
 $.ajax({
@@ -41,8 +41,11 @@ $.ajax({
 						$('#messageDiv').append('<div id="' + userArr[i] + '" class="chatWindows"><h5>' + userArr[i] + '</h5><hr class="horizontalSep"></div>');
 						$('#' + userArr[i]).hide();
 					}
-					$('#usersDiv').prepend('<button id="switchChat_' + userArr[i] + '" class="btn btn-outline-primary onlineUsersButton">' + userArr[i] + '</button>');
-
+					$('#usersDiv').prepend('<button id="switchChat_' + userArr[i] + '" class="btn btn-outline-primary onlineUsersButton">\
+						<img class="commentImage" id="chatImage_'+ userArr[i] +'"/>' + userArr[i] + '</button>');
+						
+					getUserImg(userArr[i]);	
+						
 					$('#switchChat_' + userArr[i]).click(function() {
 						$('.chatWindows').hide();
 						$('#' + userArr[i]).show();
@@ -53,9 +56,13 @@ $.ajax({
 
 			// regular message, show the apropriate message window and append the message content
 			if (JSON.parse(message.data).init == "false") {
-				$(('#' + JSON.parse(message.data).sender)).show();
+				
+				if(!showing) hideShowChat();
+				
+				$('.chatWindows').hide();				
 				if (JSON.parse(message.data).sender != JSON.parse(message.data).receiver)
-					$(('#' + JSON.parse(message.data).sender)).append('<p class="chatline">' + JSON.parse(message.data).sender + ': ' + JSON.parse(message.data).content + '</p>');
+					$(('#' + JSON.parse(message.data).sender)).append('<div class="chatline">' + JSON.parse(message.data).sender + ': ' + JSON.parse(message.data).content + '</div>');
+				$(('#' + JSON.parse(message.data).sender)).show();
 				$('#hiddenInput').val(JSON.parse(message.data).sender);
 			}
 
@@ -101,5 +108,18 @@ function hideShowChat() {
 		$('#tertiary').css("bottom", 0);
 		showing = true;
 	}
+}
+
+
+function getUserImg(username) {
+	$.ajax({
+		url: 'profile/image/username/' + username,
+		success: function(data) {
+			$("#chatImage_"+ username).attr("src", "data:image/jpg;base64," + data);
+		},
+		error: function() {
+			//alert(data.message);
+		}
+	});
 }
 
