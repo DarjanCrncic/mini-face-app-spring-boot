@@ -30,6 +30,7 @@ import com.example.minifaceapp.model.FaceUser;
 import com.example.minifaceapp.repositories.FaceGroupRepository;
 import com.example.minifaceapp.repositories.FacePostRepository;
 import com.example.minifaceapp.utils.ConcatSQLSearch;
+import com.example.minifaceapp.utils.QueryHolder;
 import com.example.minifaceapp.utils.WordDocument;
 
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -49,16 +50,18 @@ public class FacePostServiceImpl implements FacePostService {
 	private FaceGroupRepository faceGroupRepository;
 	private JavaMailSender emailSender;
 	private TaskExecutor taskExecutor;
+	private QueryHolder queryHolder;
 
 	public FacePostServiceImpl(FacePostRepository facePostRepository, FacePostDTOMapper facePostDTOMapper,
 			JdbcTemplate jdbcTemplate, FaceGroupRepository faceGroupRepository, JavaMailSender emailSender,
-			TaskExecutor taskExecutor) {
+			TaskExecutor taskExecutor, QueryHolder queryHolder) {
 		this.facePostRepository = facePostRepository;
 		this.facePostDTOMapper = facePostDTOMapper;
 		this.jdbcTemplate = jdbcTemplate;
 		this.faceGroupRepository = faceGroupRepository;
 		this.emailSender = emailSender;
 		this.taskExecutor = taskExecutor;
+		this.queryHolder = queryHolder;
 	}
 
 	@Override
@@ -105,11 +108,8 @@ public class FacePostServiceImpl implements FacePostService {
 			placeholder = ConcatSQLSearch.createSQLQueryAddition("and", searchDTO, caseAll);
 		}
 		String id = Long.toString(faceUserId);
-
-		String query = "select fp.id, fp.title, fp.body, fu.name, fu.surname, fu.image, fp.type, fp.creator_id, fp.creation_time, counter.value as likes from face_post fp "
-				+ "inner join (select fp.id, count(distinct liker_id) as value from post_like pl right outer join face_post fp on fp.id = pl.post_id group by fp.id) counter on counter.id = fp.id "
-				+ "inner join face_user fu on fp.creator_id = fu.id and "
-				+ "((fp.creator_id in (select friend_user_id from face_friend where face_user_id = ?)) or fp.creator_id = ?) and fp.type = 1 "
+		
+		String query = queryHolder.getQueries().get("vissible-posts")
 				+ placeholder + " order by fp.creation_time DESC" + " OFFSET "
 				+ (searchDTO.getPageNumber() - 1) * searchDTO.getRowNumber() + " ROWS FETCH NEXT "
 				+ (searchDTO.getRowNumber() + 1) + " ROWS ONLY";

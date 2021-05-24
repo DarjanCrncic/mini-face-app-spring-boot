@@ -24,6 +24,7 @@ import com.example.minifaceapp.api.v1.mappers.FaceUserDTORowMapper;
 import com.example.minifaceapp.model.FaceUser;
 import com.example.minifaceapp.repositories.FaceUserRepository;
 import com.example.minifaceapp.utils.ConcatSQLSearch;
+import com.example.minifaceapp.utils.QueryHolder;
 
 @Service
 public class FaceUserServiceImpl implements FaceUserService {
@@ -32,12 +33,14 @@ public class FaceUserServiceImpl implements FaceUserService {
 	private JdbcTemplate jdbcTemplate;
 	@Autowired
 	private FaceUserDTOMapper faceUserDTOMapper;
+	private QueryHolder queryHolder;
 
 	public FaceUserServiceImpl(FaceUserRepository faceUserRepository, JdbcTemplate jdbcTemplate,
-			FaceUserDTOMapper faceUserDTOMapper) {
+			FaceUserDTOMapper faceUserDTOMapper, QueryHolder queryHolder) {
 		this.faceUserRepository = faceUserRepository;
 		this.jdbcTemplate = jdbcTemplate;
 		this.faceUserDTOMapper = faceUserDTOMapper;
+		this.queryHolder = queryHolder;
 	}
 
 	@Override
@@ -79,11 +82,8 @@ public class FaceUserServiceImpl implements FaceUserService {
 			placeholder = ConcatSQLSearch.createSQLQueryAddition("and", searchDTO, caseAll);
 		}
 		String id = Long.toString(faceUserId);
-		System.out.println(placeholder);
 
-		String query = "select * from face_user fu where id not in "
-				+ "(select friend_user_id from face_friend where face_user_id = ?) "
-				+ "and id not in (select face_user_id from face_friend where friend_user_id = ?) and id != ? "
+		String query = queryHolder.getQueries().get("search-users")
 				+ placeholder + " order by upper(name), upper(surname) ";
 
 		return jdbcTemplate.query(query, new Object[] { id, id, id },

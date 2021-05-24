@@ -20,6 +20,7 @@ import com.example.minifaceapp.model.FaceUser;
 import com.example.minifaceapp.repositories.FaceGroupRepository;
 import com.example.minifaceapp.repositories.FaceUserRepository;
 import com.example.minifaceapp.utils.ConcatSQLSearch;
+import com.example.minifaceapp.utils.QueryHolder;
 
 @Service
 public class FaceGroupServiceImpl implements FaceGroupService{
@@ -29,14 +30,17 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 	FaceUserRepository faceUserRepository;
 	FaceUserDTOMapper faceUserDTOMapper;
 	JdbcTemplate jdbcTemplate;
+	QueryHolder queryHolder;
 
 	public FaceGroupServiceImpl(FaceGroupRepository faceGroupRepository, FaceGroupDTOMapper faceGroupDTOMapper,
-			FaceUserRepository faceUserRepository, FaceUserDTOMapper faceUserDTOMapper, JdbcTemplate jdbcTemplate) {
+			FaceUserRepository faceUserRepository, FaceUserDTOMapper faceUserDTOMapper, JdbcTemplate jdbcTemplate,
+			QueryHolder queryHolder) {
 		this.faceGroupRepository = faceGroupRepository;
 		this.faceGroupDTOMapper = faceGroupDTOMapper;
 		this.faceUserRepository = faceUserRepository;
 		this.faceUserDTOMapper = faceUserDTOMapper;
 		this.jdbcTemplate = jdbcTemplate;
+		this.queryHolder = queryHolder;
 	}
 
 	@Override
@@ -94,9 +98,7 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 		}
 		String id = Long.toString(faceUserId);
 	
-		String query = "SELECT fg.id, fg.name, fg.description, fu.name as owner_name, fu.surname as owner_surname, fg.owner_id from face_group fg join " +
-				" face_user fu on fu.id = fg.owner_id join" +
-				" face_group_members fgm on fgm.user_id = ? and fgm.group_id = fg.id " + placeholder + " order by fg.name";
+		String query =  queryHolder.getQueries().get("search-groups") + placeholder + " order by fg.name";
 		return jdbcTemplate.query(query, new Object[] { id }, new int[] { Types.INTEGER },
 				new FaceGroupDTORowMapper());
 	}
