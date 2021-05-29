@@ -25,22 +25,22 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><button class="nav-link nav-button navigation" id="homePage" onclick="MainObject.navigationPage(this.id)">Home 
+				<li class="nav-item"><a class="nav-link nav-button navigation" id="homePage" onclick="MainObject.navigationPage(this.id)">Home 
 					<span class="sr-only">(current)</span>
-				</button></li>
+				</a></li>
 				
-				<li class="nav-item"><button class="nav-link nav-button navigation" id="showFriends" onclick="MainObject.navigationPage(this.id)">Friends</button></li>
+				<li class="nav-item"><a class="nav-link nav-button navigation" id="showFriends" onclick="MainObject.navigationPage(this.id)">Friends</a></li>
 				
-				<li class="nav-item"><button class="nav-link nav-button navigation" id="showGroups" onclick="MainObject.navigationPage(this.id)">Groups</button></li>
+				<li class="nav-item"><a class="nav-link nav-button navigation" id="showGroups" onclick="MainObject.navigationPage(this.id)">Groups</a></li>
 
 				<li class="nav-item">
-						<button class="nav-link nav-button navigation" id="showVissiblePosts" onclick="MainObject.navigationPage(this.id)">Posts</button>		
+						<a class="nav-link nav-button navigation" id="showVissiblePosts" onclick="MainObject.navigationPage(this.id)">Posts</a>		
 				</li>
 				<li class="nav-item">
-						<button class="nav-link nav-button navigation" id="chatroom" onclick="$('#hideShowChatButton').trigger('click')">Chat</button>		
+						<a class="nav-link nav-button navigation" id="chatroom" onclick="$('#hideShowChatButton').trigger('click')">Chat</a>		
 				</li>
 				<li class="nav-item">
-						<button class="nav-link nav-button navigation" id="reportPage" onclick="MainObject.navigationPage(this.id)">Report</button>		
+						<a class="nav-link nav-button navigation" id="reportPage" onclick="MainObject.navigationPage(this.id)">Report</a>		
 				</li>	
 			</ul>
 		<div class="dropdown">

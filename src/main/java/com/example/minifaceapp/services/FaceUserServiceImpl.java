@@ -162,13 +162,16 @@ public class FaceUserServiceImpl implements FaceUserService {
 	public String getImageAsString(Long id) {
 		Byte[] imageBytes = faceUserRepository.findById(id).get().getImage();
 		
-		byte[] bytes = new byte[imageBytes.length];
-		
-		int j=0;
-		for(Byte b: imageBytes)
-		    bytes[j++] = b.byteValue();
-		
-		return Base64.getEncoder().encodeToString(bytes);
+		if(imageBytes != null) {
+			byte[] bytes = new byte[imageBytes.length];
+			
+			int j=0;
+			for(Byte b: imageBytes)
+			    bytes[j++] = b.byteValue();
+			
+			return Base64.getEncoder().encodeToString(bytes);
+		}
+		return null;
 	}
 
 	@Override

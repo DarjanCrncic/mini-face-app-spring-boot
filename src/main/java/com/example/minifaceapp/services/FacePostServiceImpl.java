@@ -109,13 +109,10 @@ public class FacePostServiceImpl implements FacePostService {
 		}
 		String id = Long.toString(faceUserId);
 		
-		String query = queryHolder.getQueries().get("vissible-posts")
-				+ placeholder + " order by fp.creation_time DESC" + " OFFSET "
-				+ (searchDTO.getPageNumber() - 1) * searchDTO.getRowNumber() + " ROWS FETCH NEXT "
-				+ (searchDTO.getRowNumber() + 1) + " ROWS ONLY";
-
-		return jdbcTemplate.query(query, new Object[] { id, id }, new int[] { Types.INTEGER, Types.INTEGER },
-				new FacePostDTORowMapper());
+		String query = queryHolder.getQueries().get("vissible-posts") + placeholder + " order by fp.creation_time DESC " +		
+				" OFFSET " + (searchDTO.getPageNumber() - 1) * searchDTO.getRowNumber() + " ROWS FETCH NEXT " + (searchDTO.getRowNumber() + 1) + " ROWS ONLY";
+		
+		return jdbcTemplate.query(query, new Object[] { id, id }, new int[] { Types.INTEGER, Types.INTEGER }, new FacePostDTORowMapper());
 	}
 
 	@Override
@@ -164,8 +161,6 @@ public class FacePostServiceImpl implements FacePostService {
 		try (ByteArrayOutputStream outStream = new ByteArrayOutputStream();
 				Connection connection = jdbcTemplate.getDataSource().getConnection();) {
 
-			// JasperDesign jasperDesign =
-			// JRXmlLoader.load("D:\\eclipse-spring\\minifaceapp\\src\\main\\resources\\PostReport.jrxml");
 			JasperDesign jasperDesign = JRXmlLoader.load(ResourceUtils.getFile("classpath:PostReport.jrxml"));
 			JasperReport report = JasperCompileManager.compileReport(jasperDesign);
 
