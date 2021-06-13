@@ -48,6 +48,12 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 	@Override
 	public FaceGroupDTO save(FaceGroupDTO faceGroupDTO) {
 		FaceGroup oldGroup = faceGroupRepository.findById(faceGroupDTO.getId()).orElse(null);
+		
+		if(oldGroup == null) {
+        	//throw new NotFoundException("User not found");
+			return null;
+        }
+		
 		oldGroup.setName(faceGroupDTO.getName());
 		oldGroup.setDescription(faceGroupDTO.getDescription());
 		faceGroupRepository.save(oldGroup);
@@ -97,9 +103,17 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 	
 	@Override
 	public List<FaceUserDTO> findFriendsNotMembers(Long userId, Long groupId){
-		List <FaceUser> notMembers = faceUserRepository.findById(userId).orElse(null).getFriends();
-		List<FaceUser> members = faceGroupRepository.findById(groupId).orElse(null).getMembers();
+		FaceUser faceUser = faceUserRepository.findById(userId).orElse(null);
+		FaceGroup faceGroup = faceGroupRepository.findById(groupId).orElse(null);
 		
+		if (faceUser == null || faceGroup == null) {
+			//throw new NotFoundException("User not found");
+			return new ArrayList<>();
+		}
+		
+		List <FaceUser> notMembers = faceUser.getFriends();
+		List<FaceUser> members = faceGroup.getMembers();
+			
 		for(FaceUser member: members) {
 			notMembers.remove(member);
 		}

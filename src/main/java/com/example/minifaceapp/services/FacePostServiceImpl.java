@@ -80,6 +80,12 @@ public class FacePostServiceImpl implements FacePostService {
 	@Override
 	public void deleteById(Long id) {
 		FacePost facePost = facePostRepository.findById(id).orElse(null);
+		
+		if(facePost == null) {
+        	//throw new NotFoundException("User not found");
+        	return;
+        }
+		
 		if (facePost.getType().getId() == 1)
 			facePostRepository.deleteById(id);
 
@@ -124,8 +130,15 @@ public class FacePostServiceImpl implements FacePostService {
 	@Override
 	public FacePostDTO saveGroupPost(FacePostDTO facePostDTO, Long groupId) {
 		FaceGroup faceGroup = faceGroupRepository.findById(groupId).orElse(null);
+		
+		if(faceGroup == null) {
+        	//throw new NotFoundException("User not found");
+			return null;
+        }
+		
 		faceGroup.getPosts().add(facePostDTOMapper.facePostDTOToFacePostMapper(facePostDTO));
 		faceGroupRepository.save(faceGroup);
+		
 		for (FaceUser user : faceGroup.getMembers()) {
 			if(user.isNotify() && !user.getId().equals(facePostDTO.getCreator().getId())) {
 				taskExecutor.execute(new Runnable() {

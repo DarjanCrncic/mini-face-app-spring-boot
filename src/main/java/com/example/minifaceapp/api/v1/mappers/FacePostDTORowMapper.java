@@ -28,7 +28,6 @@ public class FacePostDTORowMapper implements RowMapper<FacePostSearchDTO>{
 		faceUser.setName(rs.getString("name"));
 		faceUser.setSurname(rs.getString("surname"));
 		faceUser.setImage(rs.getBytes("image") != null ? Base64.getEncoder().encodeToString(rs.getBytes("image")) : null);
-		//Byte[] imageBytes = ("image");
 		
 		facePostSearchDTO.setCreator(faceUser);
 		

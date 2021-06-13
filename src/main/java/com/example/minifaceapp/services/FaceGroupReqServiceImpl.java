@@ -46,10 +46,12 @@ public class FaceGroupReqServiceImpl implements FaceGroupReqService{
 
 	@Override
 	public void delete(FaceGroupReqDTO object) {
+		// not implemented
 	}
 
 	@Override
 	public void deleteById(Long id) {
+		// not implemented
 	}
 
 	@Override
@@ -69,6 +71,11 @@ public class FaceGroupReqServiceImpl implements FaceGroupReqService{
 		if(!reqs.isEmpty()) {
 			FaceGroup faceGroup = faceGroupRepository.findById(faceGroupReqDTO.getGroupId()).orElse(null);
 			FaceUser faceUser = faceUserRepository.findById(faceGroupReqDTO.getUserId()).orElse(null);
+			
+			if(faceUser == null || faceGroup == null) {
+            	//throw new NotFoundException("User not found");
+				return null;
+            }
 			
 			faceUser.getGroups().add(faceGroup);	
 			faceGroup.getMembers().add(faceUser);

@@ -43,10 +43,12 @@ public class FaceFriendReqServiceImpl implements FaceFriendReqService {
 
 	@Override
 	public void delete(FaceFriendReqDTO object) {	
+		// not implemented
 	}
 
 	@Override
 	public void deleteById(Long id) {
+		// not implemented
 	}
 
 	@Override
@@ -66,6 +68,11 @@ public class FaceFriendReqServiceImpl implements FaceFriendReqService {
 		if(!reqs.isEmpty()) {
 			FaceUser currentUser = faceUserRepository.findById(faceFriendReqDTO.getFaceFriendId()).orElse(null);
 			FaceUser friendUser = faceUserRepository.findById(faceFriendReqDTO.getFaceUserId()).orElse(null);
+			
+			if(currentUser == null || friendUser == null) {
+            	//throw new NotFoundException("User not found");
+				return null;
+            }
 			
 			currentUser.getFriends().add(friendUser);
 			currentUser.getFriendOf().add(friendUser);			
