@@ -127,7 +127,7 @@ public class FacePostServiceImpl implements FacePostService {
 		faceGroup.getPosts().add(facePostDTOMapper.facePostDTOToFacePostMapper(facePostDTO));
 		faceGroupRepository.save(faceGroup);
 		for (FaceUser user : faceGroup.getMembers()) {
-			if(user.isNotify() && user.getId() != facePostDTO.getCreator().getId()) {
+			if(user.isNotify() && !user.getId().equals(facePostDTO.getCreator().getId())) {
 				taskExecutor.execute(new Runnable() {
 					@Override
 					public void run() {

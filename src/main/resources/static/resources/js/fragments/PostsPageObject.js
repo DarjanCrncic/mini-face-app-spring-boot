@@ -39,7 +39,7 @@ const PostsPageObject = {
 				dataType: 'json',
 				contentType: "application/json",
 				data: JSON.stringify(input),
-				success: function(data) {
+				success: function() {
 					$("#newPostTitleInput").val('');
 					$("#newPostBodyInput").val('');
 					if (type == "group") {
@@ -94,12 +94,12 @@ const PostsPageObject = {
 	},
 
 	//////////////////////// document download
-	addCreateWordDocListener: function(data) {
-		$('#createWord_' + data.id).click(function() {
+	addCreateWordDocListener: function(data_in) {
+		$('#createWord_' + data_in.id).click(function() {
 
 			$.ajax({
 				type: "GET",
-				url: 'posts/report/word/'+data.id,
+				url: 'posts/report/word/'+data_in.id,
 				success: function(data) {
 					window.open("data:application/msword;base64, " + data.data, '_blank');
 				},
@@ -130,7 +130,7 @@ const PostsPageObject = {
 			$.ajax({
 				type: "DELETE",
 				url: 'posts/' + data.id,
-				success: function(data) {
+				success: function() {
 						searchFunction(postSuccessFunction, 'posts/search', 1, PostsPageObject.rowNumber);				
 				},
 				error: function() {
@@ -147,7 +147,7 @@ const PostsPageObject = {
 			$.ajax({
 				type: "DELETE",
 				url: 'posts/group/' + groupId + "/" + data.id,
-				success: function(data) {
+				success: function() {
 					   PostsPageObject.showAllVissiblePosts(groupId);					
 				},
 				error: function() {
@@ -158,7 +158,7 @@ const PostsPageObject = {
 	},
 
 	///// listener for adding likes to posts
-	addLikePostListener: function(data, type) {
+	addLikePostListener: function(data, _type) {
 		$('#likePost_' + data.id).click(function() {
 
 			let input = {
@@ -171,7 +171,7 @@ const PostsPageObject = {
 				dataType: 'json',
 				contentType: 'application/json',
 				data: JSON.stringify(input),
-				success: function(data) {
+				success: function() {
 					PostsPageObject.getPostLikes(input.postId, "likeCounter");
 				},
 				error: function() {
@@ -195,7 +195,7 @@ const PostsPageObject = {
 				dataType: 'json',
 				contentType: "application/json",
 				data: JSON.stringify(input),
-				success: function(data) {
+				success: function() {
 					PostsPageObject.getCommentLikes(input.commentId, "likeCounterComments");
 				},
 				error: function() {
@@ -222,7 +222,7 @@ const PostsPageObject = {
 				dataType: 'json',
 				contentType: "application/json",
 				data: JSON.stringify(input),
-				success: function(data) {
+				success: function() {
 					$('#postComment_' + input.postId).val('');
 					PostsPageObject.getComments({ id: input.postId });
 					if ($('#commentsSection_' + input.postId).is(":hidden")) {
@@ -267,14 +267,14 @@ const PostsPageObject = {
 	},
 
 	// ajax call for comments
-	getComments: function(data) {
+	getComments: function(data_in) {
 		
 		let input = {
-			postId: data.id,
+			postId: data_in.id,
 		}
 		$.ajax({
 			type: "GET",
-			url: 'comments/post/' + data.id,
+			url: 'comments/post/' + data_in.id,
 			dataType: 'json',
 			contentType: "application/json",
 			success: function(data) {
