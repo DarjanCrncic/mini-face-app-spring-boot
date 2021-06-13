@@ -16,7 +16,10 @@ import com.example.minifaceapp.repositories.FaceGroupReqRepository;
 import com.example.minifaceapp.repositories.FaceUserRepository;
 import com.example.minifaceapp.repositories.StatusRepository;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class FaceGroupReqServiceImpl implements FaceGroupReqService{
 	
 	private FaceGroupReqDTOMapper faceGroupReqDTOMapper;
@@ -25,15 +28,6 @@ public class FaceGroupReqServiceImpl implements FaceGroupReqService{
 	private FaceUserRepository faceUserRepository;
 	private FaceGroupRepository faceGroupRepository;
 	
-	public FaceGroupReqServiceImpl(FaceGroupReqDTOMapper faceGroupReqDTOMapper, FaceGroupReqRepository faceGroupReqRepository, StatusRepository statusRepository
-			, FaceUserRepository faceUserRepository, FaceGroupRepository faceGroupRepository) {
-		this.faceGroupReqDTOMapper = faceGroupReqDTOMapper;
-		this.faceGroupReqRepository = faceGroupReqRepository;
-		this.statusRepository = statusRepository;
-		this.faceUserRepository = faceUserRepository;
-		this.faceGroupRepository = faceGroupRepository;
-	}
-
 	@Override
 	public List<FaceGroupReqDTO> findAll() {
 		return new ArrayList<>();

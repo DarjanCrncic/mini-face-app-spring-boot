@@ -22,7 +22,10 @@ import com.example.minifaceapp.repositories.FaceUserRepository;
 import com.example.minifaceapp.utils.ConcatSQLSearch;
 import com.example.minifaceapp.utils.QueryHolder;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class FaceGroupServiceImpl implements FaceGroupService{
 	
 	FaceGroupRepository faceGroupRepository;
@@ -31,17 +34,6 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 	FaceUserDTOMapper faceUserDTOMapper;
 	JdbcTemplate jdbcTemplate;
 	QueryHolder queryHolder;
-
-	public FaceGroupServiceImpl(FaceGroupRepository faceGroupRepository, FaceGroupDTOMapper faceGroupDTOMapper,
-			FaceUserRepository faceUserRepository, FaceUserDTOMapper faceUserDTOMapper, JdbcTemplate jdbcTemplate,
-			QueryHolder queryHolder) {
-		this.faceGroupRepository = faceGroupRepository;
-		this.faceGroupDTOMapper = faceGroupDTOMapper;
-		this.faceUserRepository = faceUserRepository;
-		this.faceUserDTOMapper = faceUserDTOMapper;
-		this.jdbcTemplate = jdbcTemplate;
-		this.queryHolder = queryHolder;
-	}
 
 	@Override
 	public List<FaceGroupDTO> findAll() {

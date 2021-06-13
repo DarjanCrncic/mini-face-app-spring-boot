@@ -19,17 +19,15 @@ import com.example.minifaceapp.security.CustomUserDetails;
 import com.example.minifaceapp.services.FacePostService;
 import com.example.minifaceapp.services.PostCommentService;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping("/likes")
+@AllArgsConstructor
 public class LikeController {
 
 	FacePostService facePostService;
 	PostCommentService postCommentService;
-
-	public LikeController(FacePostService facePostService, PostCommentService postCommentService) {
-		this.facePostService = facePostService;
-		this.postCommentService = postCommentService;
-	}
 
 	@PostMapping(value = "/post/new", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
@@ -46,7 +44,7 @@ public class LikeController {
 		return postLike;
 	}
 
-	@GetMapping(value = "/get/{id}")
+	@GetMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public int getPostLikes(@PathVariable Long id) {
 		FacePostDTO facePostDTO = facePostService.findById(id);
@@ -69,7 +67,7 @@ public class LikeController {
 		return commentLike;
 	}
 
-	@GetMapping(value = "/comment/get/{id}")
+	@GetMapping(value = "/comment/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public int getCommentLikes(@PathVariable Long id) {
 		PostCommentDTO postComment = postCommentService.findById(id);

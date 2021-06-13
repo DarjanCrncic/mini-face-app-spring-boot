@@ -19,17 +19,15 @@ import com.example.minifaceapp.security.CustomUserDetails;
 import com.example.minifaceapp.services.FaceUserService;
 import com.example.minifaceapp.services.PostCommentService;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping("/comments")
+@AllArgsConstructor
 public class CommentController {
 	
 	PostCommentService postCommentService;
 	FaceUserService faceUserService;
-
-	public CommentController(PostCommentService postCommentService, FaceUserService faceUserService) {
-		this.postCommentService = postCommentService;
-		this.faceUserService = faceUserService;
-	}
 
 	@PostMapping(value = "/post/new", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
@@ -37,13 +35,13 @@ public class CommentController {
 		return postCommentService.save(postCommentDTO, faceUserService.findByUsername(userDetails.getUsername()));
 	}
 	
-	@GetMapping(value = "/post/get/{id}")
+	@GetMapping(value = "/post/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public List<PostCommentDTO> getCommentsForPost(@PathVariable Long id){
 		return postCommentService.getAllCommentsForPost(id);
 	}
 	
-	@DeleteMapping("/post/delete/{id}")
+	@DeleteMapping("/post/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void deletePostComment(@PathVariable Long id) {
 		postCommentService.deleteById(id);

@@ -129,7 +129,7 @@ const PostsPageObject = {
 
 			$.ajax({
 				type: "DELETE",
-				url: 'posts/delete/' + data.id,
+				url: 'posts/' + data.id,
 				success: function(data) {
 						searchFunction(postSuccessFunction, 'posts/search', 1, PostsPageObject.rowNumber);				
 				},
@@ -146,7 +146,7 @@ const PostsPageObject = {
 
 			$.ajax({
 				type: "DELETE",
-				url: 'posts/delete/group/' + groupId + "/" + data.id,
+				url: 'posts/group/' + groupId + "/" + data.id,
 				success: function(data) {
 					   PostsPageObject.showAllVissiblePosts(groupId);					
 				},
@@ -242,7 +242,7 @@ const PostsPageObject = {
 
 			$.ajax({
 				type: "DELETE",
-				url: 'comments/post/delete/'+data.id,
+				url: 'comments/post/'+data.id,
 				success: function() {
 					$('#postComment_' + data.postId).val('');
 					PostsPageObject.getComments({id: data.postId});
@@ -274,7 +274,7 @@ const PostsPageObject = {
 		}
 		$.ajax({
 			type: "GET",
-			url: 'comments/post/get/' + data.id,
+			url: 'comments/post/' + data.id,
 			dataType: 'json',
 			contentType: "application/json",
 			success: function(data) {
@@ -302,7 +302,7 @@ const PostsPageObject = {
 	getPostLikes: function(id, counterID) {
 		$.ajax({
 			type: "GET",
-			url: 'likes/get/' + id,
+			url: 'likes/' + id,
 			success: function(data) {
 				$('#' + counterID + '_' + id).text(data);
 			},
@@ -315,7 +315,7 @@ const PostsPageObject = {
 	getCommentLikes: function(id, counterID) {
 		$.ajax({
 			type: "GET",
-			url: 'likes/comment/get/' + id,
+			url: 'likes/comment/' + id,
 			success: function(data) {
 				console.log(data + " " +counterID)
 				$('#' + counterID + '_' + id).text(data);

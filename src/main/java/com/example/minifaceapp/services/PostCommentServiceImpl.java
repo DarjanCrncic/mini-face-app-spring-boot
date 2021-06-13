@@ -12,20 +12,16 @@ import com.example.minifaceapp.model.FaceUser;
 import com.example.minifaceapp.model.PostComment;
 import com.example.minifaceapp.repositories.PostCommentRepository;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class PostCommentServiceImpl implements PostCommentService {
 	
 	PostCommentRepository postCommentRepository;
 	PostCommentDTOMapper postCommentDTOMapper;
 	FaceUserDTOMapper faceUserDTOMapper;
 	
-	public PostCommentServiceImpl(PostCommentRepository postCommentRepository, PostCommentDTOMapper postCommentDTOMapper, FaceUserDTOMapper faceUserDTOMapper) {
-
-		this.postCommentRepository = postCommentRepository;
-		this.postCommentDTOMapper = postCommentDTOMapper;
-		this.faceUserDTOMapper = faceUserDTOMapper;
-	}
-
 	@Override
 	public List<PostCommentDTO> findAll() {
 		return new ArrayList<>();

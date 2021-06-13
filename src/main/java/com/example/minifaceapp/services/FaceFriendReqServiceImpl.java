@@ -13,21 +13,16 @@ import com.example.minifaceapp.repositories.FaceFriendReqRepository;
 import com.example.minifaceapp.repositories.FaceUserRepository;
 import com.example.minifaceapp.repositories.StatusRepository;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class FaceFriendReqServiceImpl implements FaceFriendReqService {
 
 	FaceFriendReqRepository faceFriendReqRepostory;
 	StatusRepository statusRepository;
 	FaceFriendReqDTOMapper faceFriendReqDTOMapper;
 	FaceUserRepository faceUserRepository;
-	
-	public FaceFriendReqServiceImpl(FaceFriendReqRepository faceFriendReqRepostory, StatusRepository statusRepository, FaceFriendReqDTOMapper faceFriendReqDTOMapper,
-			FaceUserRepository faceUserRepository) {
-		this.faceFriendReqRepostory = faceFriendReqRepostory;
-		this.statusRepository = statusRepository;
-		this.faceFriendReqDTOMapper = faceFriendReqDTOMapper;
-		this.faceUserRepository = faceUserRepository;
-	}
 
 	@Override
 	public List<FaceFriendReqDTO> findAll() {

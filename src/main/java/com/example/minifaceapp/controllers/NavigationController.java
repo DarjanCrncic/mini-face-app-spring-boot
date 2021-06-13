@@ -15,17 +15,15 @@ import com.example.minifaceapp.api.v1.mappers.FaceUserDTOMapper;
 import com.example.minifaceapp.model.FaceUser;
 import com.example.minifaceapp.services.FaceUserService;
 
+import lombok.AllArgsConstructor;
+
 @Controller
+@AllArgsConstructor
 public class NavigationController {
 
 	private static final String REGISTER_USER = "register_user";
 	private final FaceUserService faceUserService;
 	private final FaceUserDTOMapper faceUserDTOMapper;
-
-	public NavigationController(FaceUserService faceUserService, FaceUserDTOMapper faceUserDTOMapper) {
-		this.faceUserService = faceUserService;
-		this.faceUserDTOMapper = faceUserDTOMapper;
-	}
 
 	@RequestMapping({ "/", "/login" })
 	public String showLoginPage() {

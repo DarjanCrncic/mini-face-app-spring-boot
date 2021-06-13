@@ -26,21 +26,17 @@ import com.example.minifaceapp.services.FaceGroupService;
 import com.example.minifaceapp.services.FaceUserService;
 import com.example.minifaceapp.services.StatusService;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping("/groups")
+@AllArgsConstructor
 public class FaceGroupController {
 	
 	private FaceGroupService faceGroupService;
 	private FaceUserService faceUserService;
 	private StatusService statusService;
 	private FaceGroupReqService faceGroupReqService;
-
-	public FaceGroupController(FaceGroupService faceGroupService, FaceUserService faceUserService, StatusService statusService, FaceGroupReqService faceGroupReqService) {
-		this.faceGroupService = faceGroupService;
-		this.faceUserService = faceUserService;
-		this.statusService = statusService;
-		this.faceGroupReqService = faceGroupReqService;
-	}
 	
 	@PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)

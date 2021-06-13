@@ -28,19 +28,16 @@ import com.example.minifaceapp.services.FacePostService;
 import com.example.minifaceapp.services.FaceUserService;
 import com.example.minifaceapp.services.PostTypeService;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping("/posts")
+@AllArgsConstructor
 public class FacePostController {
 	
 	private final FaceUserService faceUserService;
 	private final PostTypeService postTypeService;
 	private final FacePostService facePostService;
-
-	public FacePostController(FaceUserService faceUserService, FacePostService facePostService, PostTypeService postTypeService) {
-		this.faceUserService = faceUserService;
-		this.facePostService = facePostService;
-		this.postTypeService = postTypeService;
-	}
 
 	@PostMapping(value = "/new/user", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
@@ -56,7 +53,7 @@ public class FacePostController {
 		return facePostService.searchVissiblePosts(searchDTO, userDetails.getId());
 	}
 	
-	@DeleteMapping(value = "/delete/{id}")
+	@DeleteMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void deletePost(@PathVariable Long id) {
 		facePostService.deleteById(id);
@@ -77,7 +74,7 @@ public class FacePostController {
 		return facePostService.saveGroupPost(facePostDTO, groupId);
 	}
 	
-	@DeleteMapping(value = "/delete/group/{groupId}/{id}")
+	@DeleteMapping(value = "/group/{groupId}/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteGroupPost(@PathVariable Long groupId, @PathVariable Long id) {
 		facePostService.deleteGroupPostById(groupId, id);
