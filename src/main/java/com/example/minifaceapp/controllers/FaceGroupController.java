@@ -38,14 +38,14 @@ public class FaceGroupController {
 	private StatusService statusService;
 	private FaceGroupReqService faceGroupReqService;
 	
-	@PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseStatus(HttpStatus.OK)
+	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.CREATED)
 	public FaceGroupDTO createNewGroup(@RequestBody FaceGroupDTO faceGroupDTO, @AuthenticationPrincipal CustomUserDetails userDetails) {
 		FaceUser owner = faceUserService.findByUsername(userDetails.getUsername());		
 		return faceGroupService.saveNew(faceGroupDTO, owner);
 	}
 	
-	@GetMapping(value = "/get", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public List<FaceGroupDTO> getUsersGroups(@AuthenticationPrincipal CustomUserDetails userDetails){
 		return faceGroupService.getGroupsFromUser(faceUserService.findByUsername(userDetails.getUsername()));

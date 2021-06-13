@@ -29,8 +29,8 @@ public class CommentController {
 	PostCommentService postCommentService;
 	FaceUserService faceUserService;
 
-	@PostMapping(value = "/post/new", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseStatus(HttpStatus.OK)
+	@PostMapping(value = "/post", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.CREATED)
 	public PostCommentDTO createNewComment(@RequestBody PostCommentDTO postCommentDTO, @AuthenticationPrincipal CustomUserDetails userDetails) {
 		return postCommentService.save(postCommentDTO, faceUserService.findByUsername(userDetails.getUsername()));
 	}

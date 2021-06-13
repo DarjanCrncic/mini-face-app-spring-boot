@@ -77,12 +77,17 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 
 	@Override
 	public FaceGroupDTO saveNew(FaceGroupDTO faceGroupDTO, FaceUser owner) {
-		faceGroupDTO.setOwner(faceUserDTOMapper.faceUserToFaceUserDTOMapper(owner));
-		faceGroupDTO.setMembers(new ArrayList<>());
-		faceGroupDTO.getMembers().add(faceUserDTOMapper.faceUserToFaceUserDTOMapper(owner));
-		faceGroupDTO = this.save(faceGroupDTO);
+		FaceGroup newfaceGroup = new FaceGroup();
+
+		newfaceGroup.setOwner(owner);
+		newfaceGroup.setMembers(new ArrayList<>());
+		newfaceGroup.getMembers().add(owner);
+		newfaceGroup.setName(faceGroupDTO.getName());
+		newfaceGroup.setDescription(faceGroupDTO.getDescription());
 		
-		owner.getGroups().add(faceGroupRepository.findById(faceGroupDTO.getId()).orElse(null));
+		newfaceGroup = faceGroupRepository.save(newfaceGroup);
+		
+		owner.getGroups().add(newfaceGroup);
 		faceUserRepository.save(owner);
 		return faceGroupDTO;
 	}

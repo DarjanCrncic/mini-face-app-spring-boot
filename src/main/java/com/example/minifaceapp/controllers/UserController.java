@@ -22,16 +22,15 @@ import com.example.minifaceapp.api.v1.mappers.FaceUserListDTO;
 import com.example.minifaceapp.security.CustomUserDetails;
 import com.example.minifaceapp.services.FaceUserService;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping("/profile")
+@AllArgsConstructor
 public class UserController {
 	
 	private final FaceUserService faceUserService;
 
-	public UserController(FaceUserService faceUserService) {
-		this.faceUserService = faceUserService;
-	}
-	
 	@GetMapping("/find")
     @ResponseStatus(HttpStatus.OK)
 	public FaceUserListDTO getAllUsers() {

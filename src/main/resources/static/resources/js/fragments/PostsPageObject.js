@@ -35,7 +35,7 @@ const PostsPageObject = {
 
 			$.ajax({
 				type: "POST",
-				url: 'posts/new/' + type + "/" + groupId,
+				url: 'posts/' + type + "/" + groupId,
 				dataType: 'json',
 				contentType: "application/json",
 				data: JSON.stringify(input),
@@ -167,7 +167,7 @@ const PostsPageObject = {
 
 			$.ajax({
 				type: "POST",
-				url: 'likes/post/new',
+				url: 'likes/post',
 				dataType: 'json',
 				contentType: 'application/json',
 				data: JSON.stringify(input),
@@ -191,7 +191,7 @@ const PostsPageObject = {
 
 			$.ajax({
 				type: "POST",
-				url: 'likes/comment/new',
+				url: 'likes/comment',
 				dataType: 'json',
 				contentType: "application/json",
 				data: JSON.stringify(input),
@@ -218,7 +218,7 @@ const PostsPageObject = {
 
 			$.ajax({
 				type: "POST",
-				url: 'comments/post/new',
+				url: 'comments/post',
 				dataType: 'json',
 				contentType: "application/json",
 				data: JSON.stringify(input),

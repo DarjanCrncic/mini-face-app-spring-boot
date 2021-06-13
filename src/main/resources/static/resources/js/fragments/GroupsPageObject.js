@@ -3,7 +3,7 @@ const GroupsPageObject = {
 	///// show all groups in table
 	displayGroupsTable: function() {
 		$.ajax({
-			url: 'groups/get',
+			url: 'groups/',
 			contentType: 'application/json',
 			dataType: 'json',
 			success: function(data) {
@@ -171,7 +171,7 @@ const GroupsPageObject = {
 
 				$.ajax({
 					type: "POST",
-					url: 'groups/new',
+					url: 'groups/',
 					contentType: 'application/json',
 					dataType: 'json',
 					data: JSON.stringify(input),

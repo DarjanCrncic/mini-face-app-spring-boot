@@ -39,8 +39,8 @@ public class FacePostController {
 	private final PostTypeService postTypeService;
 	private final FacePostService facePostService;
 
-	@PostMapping(value = "/new/user", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseStatus(HttpStatus.OK)
+	@PostMapping(value = "/user", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.CREATED)
 	public FacePostDTO createNewUserPost(@RequestBody FacePostDTO facePostDTO, @AuthenticationPrincipal CustomUserDetails userDetails) {
 		facePostDTO.setCreator(faceUserService.findById(userDetails.getId()));
 		facePostDTO.setType(postTypeService.findById(1L));
@@ -65,8 +65,8 @@ public class FacePostController {
 		return facePostService.edit(id, facePostDTO);
 	}
 	
-	@PostMapping(value = "/new/group/{groupId}", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseStatus(HttpStatus.OK)
+	@PostMapping(value = "/group/{groupId}", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.CREATED)
 	public FacePostDTO createNewGroupPost(@RequestBody FacePostDTO facePostDTO, @PathVariable Long groupId, @AuthenticationPrincipal CustomUserDetails userDetails) {
 		facePostDTO.setCreator(faceUserService.findById(userDetails.getId()));
 		facePostDTO.setType(postTypeService.findById(2L));

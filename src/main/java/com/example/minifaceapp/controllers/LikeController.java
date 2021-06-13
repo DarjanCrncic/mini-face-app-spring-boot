@@ -29,8 +29,8 @@ public class LikeController {
 	FacePostService facePostService;
 	PostCommentService postCommentService;
 
-	@PostMapping(value = "/post/new", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseStatus(HttpStatus.OK)
+	@PostMapping(value = "/post", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.CREATED)
 	public PostLike newPostLike(@RequestBody PostLike postLike, @AuthenticationPrincipal CustomUserDetails userDetails) {
 		postLike.setLikerId(userDetails.getId());
 		FacePostDTO facePostDTO = facePostService.findById(postLike.getPostId());
@@ -51,8 +51,8 @@ public class LikeController {
 		return facePostDTO.getLikes().size();
 	}
 
-	@PostMapping(value = "comment/new", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseStatus(HttpStatus.OK)
+	@PostMapping(value = "comment", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.CREATED)
 	public CommentLike newCommentLike(@RequestBody CommentLike commentLike, @AuthenticationPrincipal CustomUserDetails userDetails) {
 		commentLike.setLikerId(userDetails.getId());
 		PostCommentDTO postComment = postCommentService.findById(commentLike.getCommentId());
