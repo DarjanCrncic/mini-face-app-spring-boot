@@ -21,20 +21,17 @@ import com.example.minifaceapp.services.FaceFriendReqService;
 import com.example.minifaceapp.services.FaceUserService;
 import com.example.minifaceapp.services.StatusService;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping("/friends")
+@AllArgsConstructor
 public class FriendsController {
 	
 	private final FaceUserService faceUserService;
 	private final FaceFriendReqService faceFriendReqService;
 	private final StatusService statusService;
 	
-	public FriendsController(FaceUserService faceUserService, FaceFriendReqService faceFriendReqService, StatusService statusService) {
-		this.faceUserService = faceUserService;
-		this.faceFriendReqService = faceFriendReqService;
-		this.statusService = statusService;
-	}
-
 	@GetMapping("/find")
 	@ResponseStatus(HttpStatus.OK)
 	public List<FaceUserDTO> findFriends(@AuthenticationPrincipal CustomUserDetails userDetails){

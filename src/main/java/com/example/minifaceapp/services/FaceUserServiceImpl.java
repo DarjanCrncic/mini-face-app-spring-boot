@@ -26,7 +26,10 @@ import com.example.minifaceapp.repositories.FaceUserRepository;
 import com.example.minifaceapp.utils.ConcatSQLSearch;
 import com.example.minifaceapp.utils.QueryHolder;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class FaceUserServiceImpl implements FaceUserService {
 
 	private final FaceUserRepository faceUserRepository;
@@ -35,13 +38,6 @@ public class FaceUserServiceImpl implements FaceUserService {
 	private FaceUserDTOMapper faceUserDTOMapper;
 	private QueryHolder queryHolder;
 
-	public FaceUserServiceImpl(FaceUserRepository faceUserRepository, JdbcTemplate jdbcTemplate,
-			FaceUserDTOMapper faceUserDTOMapper, QueryHolder queryHolder) {
-		this.faceUserRepository = faceUserRepository;
-		this.jdbcTemplate = jdbcTemplate;
-		this.faceUserDTOMapper = faceUserDTOMapper;
-		this.queryHolder = queryHolder;
-	}
 
 	@Override
 	@Transactional

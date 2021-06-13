@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.core.env.Environment;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.mail.SimpleMailMessage;
@@ -33,6 +34,7 @@ import com.example.minifaceapp.utils.ConcatSQLSearch;
 import com.example.minifaceapp.utils.QueryHolder;
 import com.example.minifaceapp.utils.WordDocument;
 
+import lombok.AllArgsConstructor;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -42,6 +44,7 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 @Service
+@AllArgsConstructor
 public class FacePostServiceImpl implements FacePostService {
 
 	private FacePostRepository facePostRepository;
@@ -51,18 +54,7 @@ public class FacePostServiceImpl implements FacePostService {
 	private JavaMailSender emailSender;
 	private TaskExecutor taskExecutor;
 	private QueryHolder queryHolder;
-
-	public FacePostServiceImpl(FacePostRepository facePostRepository, FacePostDTOMapper facePostDTOMapper,
-			JdbcTemplate jdbcTemplate, FaceGroupRepository faceGroupRepository, JavaMailSender emailSender,
-			TaskExecutor taskExecutor, QueryHolder queryHolder) {
-		this.facePostRepository = facePostRepository;
-		this.facePostDTOMapper = facePostDTOMapper;
-		this.jdbcTemplate = jdbcTemplate;
-		this.faceGroupRepository = faceGroupRepository;
-		this.emailSender = emailSender;
-		this.taskExecutor = taskExecutor;
-		this.queryHolder = queryHolder;
-	}
+	private Environment environment;
 
 	@Override
 	public List<FacePostDTO> findAll() {
@@ -108,9 +100,11 @@ public class FacePostServiceImpl implements FacePostService {
 			placeholder = ConcatSQLSearch.createSQLQueryAddition("and", searchDTO, caseAll);
 		}
 		String id = Long.toString(faceUserId);
+		String pagination = environment.getProperty("sorting.query")
+				.replace("rowNumber", Integer.toString(searchDTO.getRowNumber() + 1))
+				.replace("offsetNumber", Integer.toString((searchDTO.getPageNumber() - 1) * searchDTO.getRowNumber()));
 		
-		String query = queryHolder.getQueries().get("vissible-posts") + placeholder + " order by fp.creation_time DESC " +		
-				" OFFSET " + (searchDTO.getPageNumber() - 1) * searchDTO.getRowNumber() + " ROWS FETCH NEXT " + (searchDTO.getRowNumber() + 1) + " ROWS ONLY";
+		String query = queryHolder.getQueries().get("vissible-posts") + placeholder + " order by fp.creation_time DESC " + pagination;	
 		
 		return jdbcTemplate.query(query, new Object[] { id, id }, new int[] { Types.INTEGER, Types.INTEGER }, new FacePostDTORowMapper());
 	}
