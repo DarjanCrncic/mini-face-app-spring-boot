@@ -15,6 +15,8 @@ import com.example.minifaceapp.repositories.FaceGroupRepository;
 import com.example.minifaceapp.repositories.FaceGroupReqRepository;
 import com.example.minifaceapp.repositories.FaceUserRepository;
 import com.example.minifaceapp.repositories.StatusRepository;
+import com.example.minifaceapp.utils.exception.GroupNotFoundException;
+import com.example.minifaceapp.utils.exception.UserNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -72,9 +74,12 @@ public class FaceGroupReqServiceImpl implements FaceGroupReqService{
 			FaceGroup faceGroup = faceGroupRepository.findById(faceGroupReqDTO.getGroupId()).orElse(null);
 			FaceUser faceUser = faceUserRepository.findById(faceGroupReqDTO.getUserId()).orElse(null);
 			
-			if(faceUser == null || faceGroup == null) {
-            	//throw new NotFoundException("User not found");
-				return null;
+			if (faceUser == null) {
+            	throw new UserNotFoundException();
+            }
+			
+			if (faceGroup == null) {
+            	throw new GroupNotFoundException();
             }
 			
 			faceUser.getGroups().add(faceGroup);	

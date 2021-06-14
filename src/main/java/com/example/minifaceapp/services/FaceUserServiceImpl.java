@@ -25,8 +25,8 @@ import com.example.minifaceapp.model.FaceUser;
 import com.example.minifaceapp.repositories.FaceUserRepository;
 import com.example.minifaceapp.utils.ConcatSQLSearch;
 import com.example.minifaceapp.utils.QueryHolder;
+import com.example.minifaceapp.utils.exception.UserNotFoundException;
 
-import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -49,6 +49,8 @@ public class FaceUserServiceImpl implements FaceUserService {
 			faceUserDTO.setEmail(faceUser.getEmail());
 			faceUserDTOMapper.updateFaceUserFromDTO(faceUserDTO, faceUser);
 			faceUser = faceUserRepository.save(faceUser);
+		} else {
+			throw new UserNotFoundException();
 		}
 		return faceUserDTOMapper.faceUserToFaceUserDTOMapper(faceUser);
 	}
@@ -61,7 +63,9 @@ public class FaceUserServiceImpl implements FaceUserService {
 
 	@Override
 	public FaceUserDTO findById(Long id) {
-		return faceUserDTOMapper.faceUserToFaceUserDTOMapper(faceUserRepository.findById(id).orElse(null));
+		FaceUserDTO faceUserDTO = faceUserDTOMapper.faceUserToFaceUserDTOMapper(faceUserRepository.findById(id).orElse(null));
+		if (faceUserDTO == null) throw new UserNotFoundException();
+		return faceUserDTO;
 	}
 
 	@Override
@@ -121,7 +125,7 @@ public class FaceUserServiceImpl implements FaceUserService {
 	            FaceUser faceUser = faceUserRepository.findById(id).orElse(null);
 	            
 	            if(faceUser == null) {
-	            	throw new NotFoundException("User not found");
+	            	throw new UserNotFoundException();
 	            }
 
 	            Byte[] byteObjects = new Byte[multipartFile.getBytes().length];
@@ -135,7 +139,7 @@ public class FaceUserServiceImpl implements FaceUserService {
 	            faceUser.setImage(byteObjects);
 	            faceUserRepository.save(faceUser);
 	            
-	       } catch (IOException | NotFoundException e) {
+	       } catch (IOException e) {
 	            e.printStackTrace();
 	       }
 		  return null;
@@ -145,8 +149,12 @@ public class FaceUserServiceImpl implements FaceUserService {
 	@Override
 	public void getImage(Long id, HttpServletResponse response) throws IOException {
 		FaceUser faceUser = faceUserRepository.findById(id).orElse(null);
-
-        if (faceUser != null && faceUser.getImage() != null) {
+		
+		if(faceUser == null) {
+        	throw new UserNotFoundException();
+        }
+		
+        if (faceUser.getImage() != null) {
             byte[] byteArray = new byte[faceUser.getImage().length];
             int i = 0;
 
@@ -165,10 +173,9 @@ public class FaceUserServiceImpl implements FaceUserService {
 	public String getImageAsString(Long id) {
 		FaceUser faceUser = faceUserRepository.findById(id).orElse(null);
 		
-		if (faceUser == null) {
-			//throw new NotFoundException("User not found");
-			return null;
-		}
+		if(faceUser == null) {
+        	throw new UserNotFoundException();
+        }
 		
 		Byte[] imageBytes = faceUser.getImage();
 		
@@ -188,8 +195,7 @@ public class FaceUserServiceImpl implements FaceUserService {
 	public FaceUserDTO switchNotify(boolean notify, Long id) {
 		FaceUser faceUser = faceUserRepository.findById(id).orElse(null);
 		if(faceUser == null) {
-        	//throw new NotFoundException("User not found");
-			return null;
+        	throw new UserNotFoundException();
         }
 		faceUser.setNotify(notify);
 		return faceUserDTOMapper.faceUserToFaceUserDTOMapper(faceUserRepository.save(faceUser));

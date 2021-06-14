@@ -12,6 +12,7 @@ import com.example.minifaceapp.model.Status;
 import com.example.minifaceapp.repositories.FaceFriendReqRepository;
 import com.example.minifaceapp.repositories.FaceUserRepository;
 import com.example.minifaceapp.repositories.StatusRepository;
+import com.example.minifaceapp.utils.exception.UserNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -70,8 +71,7 @@ public class FaceFriendReqServiceImpl implements FaceFriendReqService {
 			FaceUser friendUser = faceUserRepository.findById(faceFriendReqDTO.getFaceUserId()).orElse(null);
 			
 			if(currentUser == null || friendUser == null) {
-            	//throw new NotFoundException("User not found");
-				return null;
+            	throw new UserNotFoundException();
             }
 			
 			currentUser.getFriends().add(friendUser);

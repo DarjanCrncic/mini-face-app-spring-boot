@@ -25,7 +25,7 @@ $.ajax({
 	contentType: 'application/json',
 	success: function(data) {
 		// on login connect the user to the websocket endpoint on server
-		var websocket = new WebSocket("ws://localhost:8080/miniFaceApp/chat");
+		var websocket = new WebSocket("ws://localhost:8080/chat");
 
 		websocket.onmessage = function processMessage(message) {
 

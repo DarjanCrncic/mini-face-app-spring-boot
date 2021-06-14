@@ -21,6 +21,8 @@ import com.example.minifaceapp.repositories.FaceGroupRepository;
 import com.example.minifaceapp.repositories.FaceUserRepository;
 import com.example.minifaceapp.utils.ConcatSQLSearch;
 import com.example.minifaceapp.utils.QueryHolder;
+import com.example.minifaceapp.utils.exception.GroupNotFoundException;
+import com.example.minifaceapp.utils.exception.UserNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -50,8 +52,7 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 		FaceGroup oldGroup = faceGroupRepository.findById(faceGroupDTO.getId()).orElse(null);
 		
 		if(oldGroup == null) {
-        	//throw new NotFoundException("User not found");
-			return null;
+        	throw new GroupNotFoundException();
         }
 		
 		oldGroup.setName(faceGroupDTO.getName());
@@ -111,10 +112,13 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 		FaceUser faceUser = faceUserRepository.findById(userId).orElse(null);
 		FaceGroup faceGroup = faceGroupRepository.findById(groupId).orElse(null);
 		
-		if (faceUser == null || faceGroup == null) {
-			//throw new NotFoundException("User not found");
-			return new ArrayList<>();
-		}
+		if (faceUser == null) {
+        	throw new UserNotFoundException();
+        }
+		
+		if (faceGroup == null) {
+        	throw new GroupNotFoundException();
+        }
 		
 		List <FaceUser> notMembers = faceUser.getFriends();
 		List<FaceUser> members = faceGroup.getMembers();
@@ -133,7 +137,9 @@ public class FaceGroupServiceImpl implements FaceGroupService{
 
 	@Override
 	public FaceGroupViewDTO getGroupDetailsAndPosts(Long id) {
-		return faceGroupDTOMapper.faceGroupToFaceGroupViewDTO(faceGroupRepository.findById(id).orElse(null));
+		FaceGroupViewDTO faceGroupViewDTO = faceGroupDTOMapper.faceGroupToFaceGroupViewDTO(faceGroupRepository.findById(id).orElse(null));
+		if(faceGroupViewDTO == null) throw new GroupNotFoundException();
+		return faceGroupViewDTO;
 	}
 	
 }

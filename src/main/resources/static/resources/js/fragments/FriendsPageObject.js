@@ -88,19 +88,20 @@ const FriendsPageObject = {
 					FriendsPageObject.viewProfileListener(data[i].id);
 				}
 			},
-			error: function() {
-				//alert('Something went wrong, try again later');
+			error: function(message) {
+				if(message != null) alert(message);
 			}
 		});
 	},
 
 	viewProfileListener: function(id) {
 		$('#viewProfile_' + id).click(function() {
-			MainObject.loadSecondary("resources/html/fragments/friendPage.html", false, MainObject.hidePrimary);
 			$.ajax({
 				url: 'profile/friend/' + id,
 				dataType: 'json',
 				success: function(data) {
+					MainObject.loadSecondary("resources/html/fragments/friendPage.html", false, MainObject.hidePrimary);
+					
 					$('#profilePageTitle').text(data.name + '\'s Profile:')					
 					$("#profilePictureOnProfile").attr("src", "data:image/jpg;base64," + data.image);
 					$('#profileName').text(data.name);
@@ -112,7 +113,7 @@ const FriendsPageObject = {
 					$('#profileGender').text(data.gender);
 				},
 				error: function() {
-					alert(data.message);
+					
 				}
 			});
 		})
