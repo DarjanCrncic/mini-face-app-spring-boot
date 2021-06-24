@@ -89,7 +89,7 @@ const FriendsPageObject = {
 				}
 			},
 			error: function(message) {
-				if(message != null) alert(message);
+				if (message != null) alert(message);
 			}
 		});
 	},
@@ -100,20 +100,23 @@ const FriendsPageObject = {
 				url: 'profile/friend/' + id,
 				dataType: 'json',
 				success: function(data) {
-					MainObject.loadSecondary("resources/html/fragments/friendPage.html", false, MainObject.hidePrimary);
-					
-					$('#profilePageTitle').text(data.name + '\'s Profile:')					
-					$("#profilePictureOnProfile").attr("src", "data:image/jpg;base64," + data.image);
-					$('#profileName').text(data.name);
-					$('#profileSurname').text(data.surname);
-					$('#profileFullName').text(data.name + " " + data.surname);
-					$('#profileAge').text((data.age != 0) ? data.age : "");
-					$('#profileCity').text(data.city);
-					$('#profileCountry').text(data.country);
-					$('#profileGender').text(data.gender);
+					console.log(data)
+					MainObject.loadSecondary("resources/html/fragments/friendPage.html", false, () => {
+						MainObject.hidePrimary();
+
+						$('#profilePageTitle').text(data.name + '\'s Profile:')
+						$("#profilePictureOnProfile").attr("src", "data:image/jpg;base64," + data.image);
+						$('#profileName').text(data.name);
+						$('#profileSurname').text(data.surname);
+						$('#profileFullName').text(data.name + " " + data.surname);
+						$('#profileAge').text((data.age != 0) ? data.age : "");
+						$('#profileCity').text(data.city);
+						$('#profileCountry').text(data.country);
+						$('#profileGender').text(data.gender);
+					});
 				},
 				error: function() {
-					
+
 				}
 			});
 		})
