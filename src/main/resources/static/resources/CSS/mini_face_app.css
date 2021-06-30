@@ -318,6 +318,7 @@
     bottom: 0;
     width: 28%;
     height: 32rem;
+    transition: bottom 0.5s;
 }
 
 #wholeChatDiv{
