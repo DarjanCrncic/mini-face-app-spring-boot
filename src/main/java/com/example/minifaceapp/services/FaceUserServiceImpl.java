@@ -79,7 +79,7 @@ public class FaceUserServiceImpl implements FaceUserService {
 
 		String placeholder = "";
 
-		if (!searchDTO.getSearchWords().get(0).isBlank()) {
+		if (!searchDTO.getSearchWords().get(0).trim().isEmpty()) {
 			placeholder = ConcatSQLSearch.createSQLQueryAddition("and", searchDTO, caseAll);
 		}
 		String id = Long.toString(faceUserId);

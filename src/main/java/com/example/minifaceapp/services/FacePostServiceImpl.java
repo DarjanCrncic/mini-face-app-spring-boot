@@ -102,7 +102,7 @@ public class FacePostServiceImpl implements FacePostService {
 	public List<FacePostSearchDTO> searchVissiblePosts(SearchDTO searchDTO, Long faceUserId) {
 		String[] caseAll = { "FP.TITLE", "FP.BODY", "FP.TYPE", "(FU.NAME || ' ' || FU.SURNAME)" };
 		String placeholder = "";
-		if (!searchDTO.getSearchWords().get(0).isBlank()) {
+		if (!searchDTO.getSearchWords().get(0).trim().isEmpty()) {
 			placeholder = ConcatSQLSearch.createSQLQueryAddition("and", searchDTO, caseAll);
 		}
 		String id = Long.toString(faceUserId);
