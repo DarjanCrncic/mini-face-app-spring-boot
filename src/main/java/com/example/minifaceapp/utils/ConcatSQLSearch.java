@@ -54,7 +54,7 @@ public class ConcatSQLSearch {
 	public static String generateReportQuery(ReportDTO reportDTO) {
 		StringBuilder str = new StringBuilder();
 
-		if (!reportDTO.getTitleKeyword().isEmpty() && !reportDTO.getTitleKeyword().isEmpty()) {
+		if (!reportDTO.getTitleKeyword().trim().isEmpty()) {
 			str.append(" AND ");
 			str.append("UPPER(fp.title) LIKE '%" + reportDTO.getTitleKeyword().toUpperCase() + "%'");
 		}
