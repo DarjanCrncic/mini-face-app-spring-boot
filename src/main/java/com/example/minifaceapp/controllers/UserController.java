@@ -60,7 +60,7 @@ public class UserController {
 	@ResponseStatus(HttpStatus.OK)
 	public void uploadPhoto(@RequestParam("image") MultipartFile multipartFile, @AuthenticationPrincipal CustomUserDetails userDetails, HttpServletResponse response) throws IOException {
 		faceUserService.saveImage(multipartFile, userDetails.getId());
-		response.sendRedirect("/miniFaceApp/main");
+		response.sendRedirect("/main");
 	}
 	
 	@GetMapping("/image/{id}")
