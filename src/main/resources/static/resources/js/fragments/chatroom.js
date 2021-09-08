@@ -25,7 +25,16 @@ $.ajax({
 	contentType: 'application/json',
 	success: function(data) {
 		// on login connect the user to the websocket endpoint on server
-		var websocket = new WebSocket("ws://localhost:8080/chat");
+		var url = window.location.href;
+		let path = "localhost:8080"; 
+		let connType = "ws";
+		if (url.includes("https")) {
+			connType = "wss";
+		}
+		if (url.includes("heroku")) {
+			path = "mini-face-app.herokuapp.com";
+		}
+		var websocket = new WebSocket(connType + "://" + path + "/chat");
 
 		websocket.onmessage = function processMessage(message) {
 
