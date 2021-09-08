@@ -15,7 +15,7 @@
 	<name>minifaceapp</name>
 	<description>Miniature Facebook application.</description>
 	<properties>
-		<java.version>8</java.version>
+		<java.version>1.8</java.version>
 
 		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
 
